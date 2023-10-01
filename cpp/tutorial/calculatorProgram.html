@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>calculatorProgram.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="calculator-program-using-cpp"><strong>Calculator program using cpp</strong></h2>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cmath&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-comment">// class called number with various functions</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Number</span>{</span>
+    <span class="hljs-comment">// attributes are private</span>
+    <span class="hljs-keyword">private</span>:
+        <span class="hljs-keyword">double</span> number;
+    
+    <span class="hljs-comment">// methods are public</span>
+    <span class="hljs-keyword">public</span>:
+        <span class="hljs-comment">// return number</span>
+        <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">getNumberInfo</span><span class="hljs-params">()</span></span>{
+            <span class="hljs-keyword">return</span> number;
+        }
+
+        <span class="hljs-comment">// replace number with another</span>
+        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">inputNumber</span><span class="hljs-params">(<span class="hljs-keyword">double</span> input)</span></span>{
+            number = input;
+        }
+
+        <span class="hljs-comment">// return sum of number and other object's number</span>
+        <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">add</span><span class="hljs-params">(Number number2)</span></span>{
+            <span class="hljs-keyword">return</span> number + number2.getNumberInfo();
+        }
+
+        <span class="hljs-comment">// return difference of number and other object's number</span>
+        <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">subtract</span><span class="hljs-params">(Number number2)</span></span>{
+            <span class="hljs-keyword">return</span> number - number2.getNumberInfo();
+        }
+
+        <span class="hljs-comment">// return product of number and other object's number</span>
+        <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">multiply</span><span class="hljs-params">(Number number2)</span></span>{
+            <span class="hljs-keyword">return</span> number * number2.getNumberInfo();
+        }
+
+        <span class="hljs-comment">// return quotient of number and other object's number</span>
+        <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">divide</span><span class="hljs-params">(Number number2)</span></span>{
+            <span class="hljs-keyword">return</span> number / number2.getNumberInfo();
+        }
+
+        <span class="hljs-comment">// return number to the power of other object's number</span>
+        <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">powerOf</span><span class="hljs-params">(Number number2)</span></span>{
+            <span class="hljs-comment">// double originalNumber = number;</span>
+            <span class="hljs-comment">// if(number2.getNumberInfo == 1){</span>
+            <span class="hljs-comment">//     return number;</span>
+            <span class="hljs-comment">// } else if(number2.getNumberInfo() == 0){</span>
+            <span class="hljs-comment">//     return 1;</span>
+            <span class="hljs-comment">// } else if(number2 &lt; 0){</span>
+            <span class="hljs-comment">//     cout &lt;&lt; "Please input positive integers only!" &lt;&lt; endl;</span>
+            <span class="hljs-comment">//     return -1;</span>
+            <span class="hljs-comment">// }</span>
+
+            <span class="hljs-comment">// for(int i = 0; i &lt; number2.getNumberInfo()-1; i++){</span>
+            <span class="hljs-comment">//     number *= originalNumber;</span>
+            <span class="hljs-comment">// }</span>
+            <span class="hljs-comment">// uses pow function from cmath</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-built_in">pow</span>(number, number2.getNumberInfo());
+        }
+};
+
+<span class="hljs-comment">// gets input of a double and returns a Number object</span>
+<span class="hljs-function">Number <span class="hljs-title">getNumberInput</span><span class="hljs-params">()</span></span>;
+
+<span class="hljs-comment">// main code</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// flag</span>
+    <span class="hljs-keyword">bool</span> flag = <span class="hljs-literal">true</span>;
+    <span class="hljs-comment">// choice variable</span>
+    <span class="hljs-keyword">int</span> userChoice;
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Calculator program: "</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-comment">// input starting number</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"First input a number you want to calculate:"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    Number userNumber = getNumberInput();
+
+    <span class="hljs-comment">// while flag is true</span>
+    <span class="hljs-keyword">while</span>(flag){
+        <span class="hljs-comment">// print choices</span>
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"What would you like to do?"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"1. Add"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"2. Subtract"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"3. Multiply"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"4. Divide"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"5. Power of"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"6. Reset number"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"7. Quit program"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        <span class="hljs-comment">// get input from user</span>
+        <span class="hljs-built_in">cin</span> &gt;&gt; userChoice;
+
+        <span class="hljs-keyword">switch</span>(userChoice){
+            <span class="hljs-comment">// addition</span>
+            <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+                <span class="hljs-comment">// print current number</span>
+                <span class="hljs-built_in">cout</span> &lt;&lt; userNumber.getNumberInfo() &lt;&lt; <span class="hljs-string">" + "</span>;
+                <span class="hljs-comment">// change the userNumber to the sum of existing number with another number</span>
+                userNumber.inputNumber(userNumber.add(getNumberInput()));
+                <span class="hljs-comment">// print answer</span>
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"= "</span> &lt;&lt; userNumber.getNumberInfo() &lt;&lt; <span class="hljs-built_in">endl</span>;
+                <span class="hljs-keyword">break</span>;
+
+            <span class="hljs-comment">// subtraction</span>
+            <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+                <span class="hljs-comment">// print current number</span>
+                <span class="hljs-built_in">cout</span> &lt;&lt; userNumber.getNumberInfo() &lt;&lt; <span class="hljs-string">" - "</span>;
+                <span class="hljs-comment">// change the userNumber to the difference of existing number with another number</span>
+                userNumber.inputNumber(userNumber.subtract(getNumberInput()));
+                <span class="hljs-comment">// print answer</span>
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"= "</span> &lt;&lt; userNumber.getNumberInfo() &lt;&lt; <span class="hljs-built_in">endl</span>;
+                <span class="hljs-keyword">break</span>;
+
+            <span class="hljs-comment">// multiplication</span>
+            <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+                <span class="hljs-comment">// print current number</span>
+                <span class="hljs-built_in">cout</span> &lt;&lt; userNumber.getNumberInfo() &lt;&lt; <span class="hljs-string">" x "</span>;
+                <span class="hljs-comment">// change the userNumber to the product of existing number with another number</span>
+                userNumber.inputNumber(userNumber.multiply(getNumberInput()));
+                <span class="hljs-comment">// print answer</span>
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"= "</span> &lt;&lt; userNumber.getNumberInfo() &lt;&lt; <span class="hljs-built_in">endl</span>;
+                <span class="hljs-keyword">break</span>;
+
+            <span class="hljs-comment">// division</span>
+            <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>: 
+                <span class="hljs-comment">// print current number</span>
+                <span class="hljs-built_in">cout</span> &lt;&lt; userNumber.getNumberInfo() &lt;&lt; <span class="hljs-string">" / "</span>;
+                <span class="hljs-comment">// change the userNumber to the quotient of existing number with another number</span>
+                userNumber.inputNumber(userNumber.divide(getNumberInput()));
+                <span class="hljs-comment">// print answer</span>
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"= "</span> &lt;&lt; userNumber.getNumberInfo() &lt;&lt; <span class="hljs-built_in">endl</span>;
+                <span class="hljs-keyword">break</span>;
+
+            <span class="hljs-comment">// power of</span>
+            <span class="hljs-keyword">case</span> <span class="hljs-number">5</span>: 
+                <span class="hljs-comment">// print current number</span>
+                <span class="hljs-built_in">cout</span> &lt;&lt; userNumber.getNumberInfo() &lt;&lt; <span class="hljs-string">"^"</span>;
+                <span class="hljs-comment">// change the userNumber to the existing number to the power of another number</span>
+                userNumber.inputNumber(userNumber.powerOf(getNumberInput()));
+                <span class="hljs-comment">// print answer</span>
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"= "</span> &lt;&lt; userNumber.getNumberInfo() &lt;&lt; <span class="hljs-built_in">endl</span>;
+                <span class="hljs-keyword">break</span>;  
+
+            <span class="hljs-comment">// reset number</span>
+            <span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:
+                <span class="hljs-comment">// replace a userNumber with new input</span>
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Please input number to replace: "</span>;
+                userNumber = getNumberInput();
+                <span class="hljs-keyword">break</span>;
+
+            <span class="hljs-comment">// quit program</span>
+            <span class="hljs-keyword">case</span> <span class="hljs-number">7</span>:
+                <span class="hljs-comment">// switch flag</span>
+                flag = <span class="hljs-literal">false</span>;
+                <span class="hljs-keyword">break</span>;
+
+            <span class="hljs-keyword">default</span>:
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Please input a number between 1 and 7"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        }
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">// gets input of a double and returns a Number object</span>
+<span class="hljs-function">Number <span class="hljs-title">getNumberInput</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// create new object</span>
+    Number userNumber;
+
+    <span class="hljs-comment">// create double variable</span>
+    <span class="hljs-keyword">double</span> number;
+
+    <span class="hljs-comment">// get input for the double</span>
+    <span class="hljs-built_in">cin</span> &gt;&gt; number;
+
+    <span class="hljs-comment">// assign this number as the object's number</span>
+    userNumber.inputNumber(number);
+
+    <span class="hljs-comment">// return object</span>
+    <span class="hljs-keyword">return</span> userNumber;
+}
+</div></code></pre>
+
+</body>
+</html>

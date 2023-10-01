@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>01_25_06_23.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="june-25th-2023--cpp"><strong>June 25th 2023- cpp</strong></h2>
+<h3 id="what-is-c"><strong>What is c++?</strong></h3>
+<ul>
+<li>popular programming lang</li>
+<li>very similar to clang</li>
+<li>object oriented</li>
+<li>classes</li>
+<li>used in a lot of things</li>
+</ul>
+<blockquote>
+<p><strong>basic c layout</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// including a library that allows input/output</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-comment">// using names for objects and variables from std library</span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// output Hello World!</span>
+
+    <span class="hljs-comment">// can be written like this without namespace</span>
+    <span class="hljs-comment">// std::cout &lt;&lt; "Hello World!\n";</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Hello World!"</span> &lt;&lt; <span class="hljs-built_in">endl</span> &lt;&lt; <span class="hljs-string">"otai JJang!!!"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-comment">// endl = '\n'</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"I am learning C++"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>comments can be used with:<br>
+// and /* */ for multline</p>
+</blockquote>
+<blockquote>
+<p><strong>input, integer variables</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// create variable</span>
+    <span class="hljs-keyword">int</span> a;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Type a number: "</span>; <span class="hljs-comment">// Type a number and press enter</span>
+    <span class="hljs-built_in">cin</span> &gt;&gt; a; <span class="hljs-comment">// Get user input from the keyboard to put into a</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Your number is: "</span> &lt;&lt; a &lt;&lt; <span class="hljs-built_in">endl</span>; <span class="hljs-comment">// Display the input value</span>
+
+    <span class="hljs-comment">// create 2 integer variables</span>
+    <span class="hljs-keyword">int</span> x, y;
+
+    <span class="hljs-comment">// create a int called sum</span>
+    <span class="hljs-keyword">int</span> sum;
+
+    <span class="hljs-comment">// get input for x</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Type a number: "</span>;
+    <span class="hljs-built_in">cin</span> &gt;&gt; x;
+
+    <span class="hljs-comment">// get input for y</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Type another number: "</span>;
+    <span class="hljs-built_in">cin</span> &gt;&gt; y;
+
+    <span class="hljs-comment">// add x and y, and put it into sum</span>
+    sum = x+y;
+    
+    <span class="hljs-comment">// print sum</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Sum is: "</span> &lt;&lt; sum;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p><strong>bitwise, methods, strings, math, bools</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-comment">// include string and math library</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cmath&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// create a string var</span>
+    <span class="hljs-built_in">string</span> greeting = <span class="hljs-string">"Hello"</span>;
+    <span class="hljs-comment">// print this string</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; greeting &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-comment">// create two string variables </span>
+    <span class="hljs-built_in">string</span> firstName = <span class="hljs-string">"John "</span>;
+    <span class="hljs-built_in">string</span> lastName = <span class="hljs-string">"Doe"</span>;
+
+    <span class="hljs-comment">// concat them together</span>
+    <span class="hljs-built_in">string</span> fullName = firstName + lastName;
+    <span class="hljs-comment">// print full name</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; fullName &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-comment">// create another fullname variable</span>
+    <span class="hljs-comment">// use append method to add firstName and lastName</span>
+    <span class="hljs-built_in">string</span> fullName2 = firstName.append(lastName);
+
+    <span class="hljs-comment">// print fullName2</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; fullName2 &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-comment">// print firstName</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; firstName &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-comment">// append ALSO changes firstName</span>
+
+    <span class="hljs-comment">// create 2 integers x, y</span>
+    <span class="hljs-keyword">int</span> x = <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">int</span> y = <span class="hljs-number">20</span>;
+
+    <span class="hljs-comment">// add them together</span>
+    <span class="hljs-comment">// sum = z</span>
+    <span class="hljs-keyword">int</span> z = x + y;
+
+    <span class="hljs-comment">// print this sum</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; z &lt;&lt; <span class="hljs-built_in">endl</span>; 
+
+    <span class="hljs-comment">// bitwise operators</span>
+    <span class="hljs-comment">// &amp; AND</span>
+    <span class="hljs-comment">// sets each bit to 1 if both bits are 1</span>
+    <span class="hljs-keyword">int</span> x2 = <span class="hljs-number">5</span>; <span class="hljs-comment">// 101 in binary</span>
+    x2 &amp;= <span class="hljs-number">3</span>; <span class="hljs-comment">// 3 = 11 in binary</span>
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; x2 &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-comment">// result: 1 (1)</span>
+
+    <span class="hljs-comment">// | OR</span>
+    <span class="hljs-comment">// sets each bit to 1 if one of two bits is 1</span>
+    <span class="hljs-keyword">int</span> x4 = <span class="hljs-number">5</span>; <span class="hljs-comment">// 101 in binary</span>
+    x4 |= <span class="hljs-number">3</span>; <span class="hljs-comment">// 3 = 11 in binary</span>
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; x4 &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-comment">// result: 7 (111)</span>
+
+    <span class="hljs-comment">// ^ XOR</span>
+    <span class="hljs-comment">// sets each bit to 1 ONLY if one of two bits is 1</span>
+    <span class="hljs-keyword">int</span> x5 = <span class="hljs-number">5</span>; <span class="hljs-comment">// 101 in binary</span>
+    x5 ^= <span class="hljs-number">3</span>; <span class="hljs-comment">// 3 = 11 in binary</span>
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; x5 &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-comment">// result: 6 (110)</span>
+
+    <span class="hljs-comment">// &gt;&gt; signed right shift</span>
+    <span class="hljs-comment">// shift all bits to the right deleting the end bit</span>
+    <span class="hljs-keyword">int</span> x6 = <span class="hljs-number">5</span>; <span class="hljs-comment">// 101 in binary</span>
+    x6 &gt;&gt;= <span class="hljs-number">3</span>; <span class="hljs-comment">// 3 = 11 in binary</span>
+
+    <span class="hljs-comment">// &gt;&gt; zerofill left shift</span>
+    <span class="hljs-comment">// shift all bits to the left creating 0 in the end</span>
+    <span class="hljs-keyword">int</span> x7 = <span class="hljs-number">5</span>; <span class="hljs-comment">// 101 in binary</span>
+    x7 &lt;&lt;= <span class="hljs-number">3</span>; <span class="hljs-comment">// 3 = 11 in binary</span>
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; x7 &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-comment">// result: 40 (101000)</span>
+
+    <span class="hljs-comment">// create two strings</span>
+    <span class="hljs-built_in">string</span> a = <span class="hljs-string">"10"</span>;
+    <span class="hljs-built_in">string</span> b = <span class="hljs-string">"20"</span>;
+
+    <span class="hljs-comment">// concat them and print</span>
+    <span class="hljs-built_in">string</span> c = a + b;
+    <span class="hljs-built_in">cout</span> &lt;&lt; c &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-comment">// store alphabet in a string</span>
+    <span class="hljs-built_in">string</span> txt = <span class="hljs-string">"ABCDEFGHIJKLMNOPQRSTUVWXYZ"</span>;
+
+    <span class="hljs-comment">// get the length using the length() method</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"The length of the txt string is: "</span> &lt;&lt; txt.length() &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-comment">// get the length using the size() method</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"The length of the txt string is: "</span> &lt;&lt; txt.<span class="hljs-built_in">size</span>() &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-comment">// create a string</span>
+    <span class="hljs-built_in">string</span> myString = <span class="hljs-string">"Hello"</span>;
+
+    <span class="hljs-comment">// access individual chars using index</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; myString[<span class="hljs-number">0</span>] &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-comment">// Outputs H</span>
+
+    <span class="hljs-comment">// get the second</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; myString[<span class="hljs-number">1</span>] &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-comment">// Outputs e</span>
+
+    <span class="hljs-comment">// change the first char into J</span>
+    myString[<span class="hljs-number">0</span>] = <span class="hljs-string">'J'</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; myString &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-comment">// Outputs Jello instead of Hello</span>
+
+    <span class="hljs-comment">// Escape character: \"</span>
+    <span class="hljs-built_in">string</span> txt2 = <span class="hljs-string">"We are the so-called \"Viking\" from the north."</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; txt2 &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-comment">// Escape character: \'</span>
+    <span class="hljs-built_in">string</span> txt3 = <span class="hljs-string">"It\'s alright."</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; txt3 &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-comment">// Escape character: \\ asdf</span>
+    <span class="hljs-comment">// string txt4 = "The character \\ is called backslash.";</span>
+    <span class="hljs-comment">// cout &lt;&lt; txt4 &lt;&lt; endl;</span>
+
+    <span class="hljs-comment">// string firstName2;</span>
+    <span class="hljs-comment">// cout &lt;&lt; "Type your first name: ";</span>
+    <span class="hljs-comment">// cin &gt;&gt; firstName2; // get user input from the keyboard</span>
+    <span class="hljs-comment">// cout &lt;&lt; "Your name is: " &lt;&lt; firstName2 &lt;&lt; endl;</span>
+
+    <span class="hljs-comment">// Type your first name : John</span>
+    <span class="hljs-comment">// Your name is : John</span>
+
+    <span class="hljs-comment">// create a string</span>
+    <span class="hljs-built_in">string</span> fullName3;
+
+    <span class="hljs-comment">// get input using getline</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Type your full name: "</span>;
+    getline(<span class="hljs-built_in">cin</span>, fullName3);
+
+    <span class="hljs-comment">// print input</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Your name is "</span> &lt;&lt; fullName3 &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-comment">// use sqrt to get the square root</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">64</span>) &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-comment">// use round to round numbers</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; round(<span class="hljs-number">2.6</span>) &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">log</span>(<span class="hljs-number">2</span>) &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+
+    <span class="hljs-comment">// create bools, either true or false</span>
+    <span class="hljs-keyword">bool</span> isCodingFun = <span class="hljs-literal">true</span>;
+    <span class="hljs-keyword">bool</span> isFishTasty = <span class="hljs-literal">false</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; isCodingFun &lt;&lt; <span class="hljs-built_in">endl</span>; <span class="hljs-comment">// Outputs 1(true)</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; isFishTasty &lt;&lt; <span class="hljs-built_in">endl</span>; <span class="hljs-comment">// Outputs 0(false)</span>
+
+    <span class="hljs-comment">// conditions</span>
+    <span class="hljs-keyword">int</span> x3= <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">int</span> y3 = <span class="hljs-number">9</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt;(x3 &gt; y3); <span class="hljs-comment">// returns 1 (true), because 10 is higher than 9</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+
+</body>
+</html>

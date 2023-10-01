@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>04_20_08_23.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="august-20th-2023--cpp"><strong>August 20th 2023- cpp</strong></h2>
+<h3 id="references-and-pointers"><strong>References and pointers</strong></h3>
+<blockquote>
+<p><strong>Creating references</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// create a string variable</span>
+<span class="hljs-built_in">string</span> food = <span class="hljs-string">"pizza"</span>;
+<span class="hljs-built_in">string</span> &amp;meal = food; <span class="hljs-comment">// meal is refrencing food variable</span>
+
+<span class="hljs-comment">// change food into hamburger</span>
+food = <span class="hljs-string">"hamburger"</span>;
+<span class="hljs-comment">// change reference to cereal</span>
+meal = <span class="hljs-string">"cereal"</span>;
+
+<span class="hljs-comment">// both prints cereal</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; food &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; meal &lt;&lt; <span class="hljs-built_in">endl</span>;
+</div></code></pre>
+<blockquote>
+<p><strong>Creating and modifying pointers</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-built_in">string</span> food = <span class="hljs-string">"pizza"</span>; <span class="hljs-comment">// create variable</span>
+<span class="hljs-built_in">string</span>* ptr = &amp;food; <span class="hljs-comment">// string pointer storing the address of variable</span>
+
+<span class="hljs-comment">// print food</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; food &lt;&lt; <span class="hljs-string">"\n"</span>;
+<span class="hljs-comment">// print address of food</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; &amp;food &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+<span class="hljs-comment">// print ptr (prints out address of food)</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; ptr &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-comment">// prints out what ptr is pointing to (food's value)</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; *ptr &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-comment">// cout &lt;&lt; *(++ptr) &lt;&lt; endl;</span>
+
+<span class="hljs-comment">// change what ptr is pointing to to hamburger</span>
+*ptr = <span class="hljs-string">"hamburger"</span>;
+<span class="hljs-comment">// print what pointer is pointing to </span>
+<span class="hljs-built_in">cout</span> &lt;&lt; *ptr &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-comment">// print food value (same as pointers value)</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; food &lt;&lt; <span class="hljs-built_in">endl</span>;
+</div></code></pre>
+<h3 id="functions"><strong>Functions</strong></h3>
+<blockquote>
+<p><strong>Calling functions</strong>
+Function:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// function that has no parameters and returns nothing</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunction</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// print this:</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"I just got called"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>Main code:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// call myFunction 3 times</span>
+myFunction();
+myFunction();
+myFunction();
+</div></code></pre>
+<blockquote>
+<p><strong>Parameters and arguments</strong>
+Prototype:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// create a prototype of a function that gets parameters</span>
+<span class="hljs-comment">// including string and integer</span>
+<span class="hljs-comment">// if no parameter is added, use Steve and 12  as default for the parameters</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunction2</span><span class="hljs-params">(<span class="hljs-built_in">string</span> fname = <span class="hljs-string">"Steve"</span>, <span class="hljs-keyword">int</span> age= <span class="hljs-number">12</span>)</span></span>;
+</div></code></pre>
+<blockquote>
+<p>Default parameters can be added to make the<br>
+functions still work without giving parameters<br>
+You cannot redefine the defaults in the main function code</p>
+</blockquote>
+<blockquote>
+<p>Function:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// function that gets a string and integer for parameters</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunction2</span><span class="hljs-params">(<span class="hljs-built_in">string</span> fname, <span class="hljs-keyword">int</span> age)</span></span>{
+    <span class="hljs-comment">// prints "my name is" and string parameter fname </span>
+    <span class="hljs-comment">// and " I am " + integer parameter age</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"my name is "</span> &lt;&lt; fname &lt;&lt; <span class="hljs-string">" I am "</span> &lt;&lt; age &lt;&lt; <span class="hljs-built_in">endl</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>Main code:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// calls functions with providing the parameters</span>
+myFunction2(<span class="hljs-string">"liam"</span>, <span class="hljs-number">99</span>);
+myFunction2(<span class="hljs-string">"jenny"</span>, <span class="hljs-number">0</span>);
+myFunction2(<span class="hljs-string">"anja"</span>, <span class="hljs-number">8</span>);
+
+<span class="hljs-comment">// uses default parameters since no parameters are provided</span>
+myFunction2();
+</div></code></pre>
+<blockquote>
+<p><strong>Return values</strong>
+Function:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">ex02</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span>{
+    <span class="hljs-comment">// returns x+5</span>
+    <span class="hljs-comment">// (DOES NOT PRINT)</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">5</span>+x;
+}
+</div></code></pre>
+<blockquote>
+<p>Main code:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// prints the returned value from the function</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; ex02(<span class="hljs-number">1</span>) &lt;&lt; <span class="hljs-built_in">endl</span>;
+</div></code></pre>
+<blockquote>
+<p><strong>Addition function</strong>
+Function:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">addition</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span></span>{
+    <span class="hljs-keyword">return</span> x+y;    
+}
+</div></code></pre>
+<blockquote>
+<p>Main code:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// prints added value of two integers</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; addition(<span class="hljs-number">12341234</span>, <span class="hljs-number">12341</span>) &lt;&lt; <span class="hljs-built_in">endl</span>;
+</div></code></pre>
+<blockquote>
+<p><strong>Pass by refrences</strong>
+Function:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// gets refrenced parameters x and y </span>
+<span class="hljs-comment">// allows function to change parameters' values</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">swapNums</span><span class="hljs-params">(<span class="hljs-keyword">int</span> &amp;x, <span class="hljs-keyword">int</span> &amp;y)</span></span>{
+    <span class="hljs-comment">// create a variable with x's value</span>
+    <span class="hljs-keyword">int</span> z = x;
+
+    <span class="hljs-comment">// assign y to x</span>
+    x = y;
+    <span class="hljs-comment">// assign z to y</span>
+    y = z;
+}
+</div></code></pre>
+<blockquote>
+<p>Main code</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> firstNum = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">int</span> secondNum = <span class="hljs-number">20</span>;
+
+<span class="hljs-comment">// print variables before swap</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Before swap: "</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; firstNum &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; secondNum &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+<span class="hljs-comment">// swap variables</span>
+swapNums(firstNum, secondNum);
+
+<span class="hljs-comment">// print variables after swap</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"After swap: "</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; firstNum &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; secondNum &lt;&lt; <span class="hljs-built_in">endl</span>;
+</div></code></pre>
+<blockquote>
+<p><strong>Pass arrays as Function Parameters</strong>
+Function (option 1):</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// function that gets pointer of array and integer</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunction3</span><span class="hljs-params">(<span class="hljs-keyword">int</span>* myNumbers, <span class="hljs-keyword">int</span> size)</span></span>{
+    <span class="hljs-comment">// loop through myNumbers using size</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; size; i++){
+        <span class="hljs-comment">// print element</span>
+        <span class="hljs-built_in">cout</span> &lt;&lt; myNumbers[i] &lt;&lt; <span class="hljs-built_in">endl</span>;
+    }
+}
+</div></code></pre>
+<blockquote>
+<p>Function (option 2):</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// function that gets array as parameter directly</span>
+<span class="hljs-comment">// size of array cannot be flexible</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunction4</span><span class="hljs-params">(<span class="hljs-keyword">int</span> myNumbers[<span class="hljs-number">5</span>])</span></span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++){
+        <span class="hljs-built_in">cout</span> &lt;&lt; myNumbers[i] &lt;&lt; <span class="hljs-built_in">endl</span>;
+    }
+
+    <span class="hljs-comment">// foreach loop doesn't work</span>
+    <span class="hljs-comment">// since iterator doesn't carry on</span>
+    <span class="hljs-comment">// for(int number : myNumbers){</span>
+    <span class="hljs-comment">//     cout &lt;&lt; number &lt;&lt; endl;</span>
+    <span class="hljs-comment">// }</span>
+}
+</div></code></pre>
+<blockquote>
+<p>Main code:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> size = <span class="hljs-number">5</span>;
+<span class="hljs-keyword">int</span> myNumbers[size] = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
+myFunction3(myNumbers, size);
+myFunction4(myNumbers);
+</div></code></pre>
+<blockquote>
+<p><strong>Overloading</strong>
+Function using integer:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">plusFunc</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span></span>{<span class="hljs-keyword">return</span> x+y;}
+</div></code></pre>
+<blockquote>
+<p>Function using doubles:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// same function with same name except different data types</span>
+<span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">plusFunc</span><span class="hljs-params">(<span class="hljs-keyword">double</span> x, <span class="hljs-keyword">double</span> y)</span></span>{<span class="hljs-keyword">return</span> x+y;}
+</div></code></pre>
+<blockquote>
+<p>Main code:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// dont need to create 2 seperate functions</span>
+<span class="hljs-comment">// dont need to specify data type</span>
+<span class="hljs-keyword">int</span> myNum1 = plusFunc(<span class="hljs-number">8</span>,<span class="hljs-number">5</span>);
+<span class="hljs-keyword">double</span> myNum2 = plusFunc(<span class="hljs-number">4.3</span>, <span class="hljs-number">6.26</span>);
+
+<span class="hljs-comment">// print results</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Int: "</span> &lt;&lt; myNum1 &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Double: "</span> &lt;&lt; myNum2 &lt;&lt; <span class="hljs-built_in">endl</span>;
+</div></code></pre>
+<blockquote>
+<p><strong>Recursions</strong>
+Function:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">sum</span><span class="hljs-params">(<span class="hljs-keyword">int</span> k)</span></span>{
+    <span class="hljs-comment">// if k is larger than 0</span>
+    <span class="hljs-keyword">if</span>(k &gt; <span class="hljs-number">0</span>){
+        <span class="hljs-comment">// return k added with sum(k-1)</span>
+        <span class="hljs-keyword">return</span> k + sum(k<span class="hljs-number">-1</span>);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// return 0</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+}
+</div></code></pre>
+<blockquote>
+<p>k = 0 -&gt; 1 -&gt; 2 -&gt;3...</p>
+</blockquote>
+<blockquote>
+<p>Main code:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> result = sum(<span class="hljs-number">10</span>);
+<span class="hljs-built_in">cout</span> &lt;&lt; result &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-comment">// result = 10+9+8+7+6+5+4+3+2+1+0 = 55</span>
+</div></code></pre>
+<h3 id="classes"><strong>Classes</strong></h3>
+<blockquote>
+<p><strong>Create an object</strong></p>
+</blockquote>
+<blockquote>
+<p>Class:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ClassTemp</span> {</span>       <span class="hljs-comment">// The class        </span>
+    <span class="hljs-keyword">public</span>:             <span class="hljs-comment">// Access specifier</span>
+        <span class="hljs-keyword">int</span> num;        <span class="hljs-comment">// Attributes</span>
+        <span class="hljs-built_in">string</span> text;
+};
+</div></code></pre>
+<blockquote>
+<p>Main code:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// create an object of the class</span>
+ClassTemp obj;
+
+<span class="hljs-comment">// assign values to object's attributes</span>
+obj.num = <span class="hljs-number">14</span>;
+obj.text = <span class="hljs-string">"asldjfh"</span>;
+
+<span class="hljs-comment">// print object's attributes</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; obj.num &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; obj.text &lt;&lt; <span class="hljs-built_in">endl</span>;
+</div></code></pre>
+<blockquote>
+<p><strong>Multiple objects</strong>
+Class:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// create car class</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span> {</span>       
+    <span class="hljs-comment">// make class attributes public</span>
+    <span class="hljs-keyword">public</span>:   
+        <span class="hljs-comment">// attributes          </span>
+        <span class="hljs-built_in">string</span> brand;
+        <span class="hljs-built_in">string</span> model;        
+        <span class="hljs-keyword">int</span> year;
+    
+    <span class="hljs-comment">// make methods public</span>
+    <span class="hljs-keyword">public</span>:
+        <span class="hljs-comment">// prints info of car</span>
+        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">printInfo</span><span class="hljs-params">()</span></span>{
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Car Info: "</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Brand: "</span> &lt;&lt; brand &lt;&lt; <span class="hljs-built_in">endl</span>;
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Model: "</span> &lt;&lt; model &lt;&lt; <span class="hljs-built_in">endl</span>;
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Year: "</span> &lt;&lt; year &lt;&lt; <span class="hljs-built_in">endl</span>;
+        }
+        <span class="hljs-comment">// add prototypes for other methods</span>
+        <span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">getModel</span><span class="hljs-params">()</span></span>;
+        <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">speed</span><span class="hljs-params">(<span class="hljs-keyword">int</span> maxSpeed)</span></span>;
+};
+
+<span class="hljs-comment">// create methods after</span>
+<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">Car::getModel</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">return</span> model;
+}
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Car::speed</span><span class="hljs-params">(<span class="hljs-keyword">int</span> maxSpeed)</span></span>{
+    <span class="hljs-keyword">return</span> maxSpeed;
+}
+</div></code></pre>
+<blockquote>
+<p>Main code:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// create 2 objects of car</span>
+Car car1;
+Car car2;
+
+<span class="hljs-comment">// assign values to objects</span>
+car1.brand = <span class="hljs-string">"Kia"</span>;
+car1.model = <span class="hljs-string">"Sorento"</span>;
+car1.year = <span class="hljs-number">1000</span>;
+
+car2.brand = <span class="hljs-string">"Tesla"</span>;
+car2.model = <span class="hljs-string">"X"</span>;
+car2.year = <span class="hljs-number">2999</span>;
+
+<span class="hljs-comment">// cout &lt;&lt; "Car1: " &lt;&lt; endl;</span>
+<span class="hljs-comment">// cout &lt;&lt; "Brand: " &lt;&lt; car1.brand &lt;&lt; endl;</span>
+<span class="hljs-comment">// cout &lt;&lt; "Model: " &lt;&lt; car1.model &lt;&lt; endl;</span>
+<span class="hljs-comment">// cout &lt;&lt; "Year: " &lt;&lt; car1.year &lt;&lt; endl;</span>
+<span class="hljs-comment">// print info of car1</span>
+car1.printInfo();
+<span class="hljs-comment">// cout &lt;&lt; "Car2: " &lt;&lt; endl;</span>
+<span class="hljs-comment">// cout &lt;&lt; "Brand: " &lt;&lt; car2.brand &lt;&lt; endl;</span>
+<span class="hljs-comment">// cout &lt;&lt; "Model: " &lt;&lt; car2.model &lt;&lt; endl;</span>
+<span class="hljs-comment">// cout &lt;&lt; "Year: " &lt;&lt; car2.year &lt;&lt; endl;</span>
+<span class="hljs-comment">// print info of car2</span>
+car2.printInfo();
+
+<span class="hljs-built_in">cout</span> &lt;&lt; car1.getModel() &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; car1.speed(<span class="hljs-number">12312</span>) &lt;&lt; <span class="hljs-built_in">endl</span>;
+</div></code></pre>
+
+</body>
+</html>

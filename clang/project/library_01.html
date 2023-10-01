@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>library_01.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> TRUE 1</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FALSE 0</span>
+
+<span class="hljs-comment">/**
+* -----------------------------
+* 
+* @ author : Tay Oh
+* @ date : 26th March 2023
+* @ description : A project allowing the user to do library related tasks
+*                 using array, pointer, function on clang.
+* 
+* ------------------------------
+*
+* function list:
+* - main : allows the user to select the main choices
+* - add_book : adds a book 
+*              with the name, author and publisher 
+*              into the library
+* - search_book : searches for a book 
+*                 with the inputted the name, author or publisher
+* - borrow_book : borrows a book
+*                 with the given book number
+* - return_book : returns a book
+*                 with the given book number
+* - view_book_list : displays all books
+*                    and its book number, name, publisher and author
+* - a_book_info : returns a book
+*                 with the given book number
+*/</span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">add_book</span><span class="hljs-params">( 
+    <span class="hljs-keyword">char</span> (*book_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">char</span> (*auth_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">char</span> (*publ_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">int</span> *borrowed, 
+    <span class="hljs-keyword">int</span> *num_total_book )</span></span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">search_book</span><span class="hljs-params">( 
+    <span class="hljs-keyword">char</span> (*book_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">char</span> (*auth_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">char</span> (*publ_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">int</span> *borrowed,
+    <span class="hljs-keyword">int</span> *num_total_book )</span></span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">borrow_book</span><span class="hljs-params">( 
+    <span class="hljs-keyword">int</span> *borrowed,
+    <span class="hljs-keyword">int</span> num_book )</span></span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">return_book</span><span class="hljs-params">( 
+    <span class="hljs-keyword">int</span> *borrowed,
+    <span class="hljs-keyword">int</span> num_book)</span></span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">view_book_list</span><span class="hljs-params">( 
+    <span class="hljs-keyword">char</span> (*book_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">char</span> (*auth_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">char</span> (*publ_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">int</span> *borrowed, 
+    <span class="hljs-keyword">int</span> *num_total_book )</span></span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">a_book_info</span><span class="hljs-params">(    
+    <span class="hljs-keyword">int</span> book_num,
+    <span class="hljs-keyword">char</span> (*book_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">char</span> (*auth_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">char</span> (*publ_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">int</span> *borrowed)</span></span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">str_search</span><span class="hljs-params">(<span class="hljs-keyword">char</span> *source, <span class="hljs-keyword">char</span> *keyword)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">str_len</span><span class="hljs-params">(<span class="hljs-keyword">char</span> *str)</span></span>;
+    
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">int</span> user_choice;
+    <span class="hljs-keyword">int</span> num_total_book=<span class="hljs-number">0</span>;
+
+    <span class="hljs-keyword">int</span> *p_num_total_book=&amp;num_total_book;
+    
+    <span class="hljs-keyword">char</span> book_name[<span class="hljs-number">100</span>][<span class="hljs-number">100</span>];
+    <span class="hljs-keyword">char</span> auth_name[<span class="hljs-number">100</span>][<span class="hljs-number">100</span>];
+    <span class="hljs-keyword">char</span> publ_name[<span class="hljs-number">100</span>][<span class="hljs-number">100</span>];
+
+    <span class="hljs-keyword">int</span> borrowed[<span class="hljs-number">100</span>] = {<span class="hljs-number">0</span>,};
+
+    <span class="hljs-keyword">int</span> exit_flag = TRUE;
+    <span class="hljs-keyword">int</span> book_num = <span class="hljs-number">-1</span>;
+
+    <span class="hljs-keyword">while</span>( exit_flag  ){
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"library organising program\n"</span>);
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"select a menu\n"</span>);
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"1. add a book\n"</span>);
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"2. search a book\n"</span>);
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"3. borrow a book\n"</span>);
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"4. return a book\n"</span>);
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"5. view book list \n"</span>);
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"6. program exit\n"</span>);
+
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"your selection: "</span>);
+        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;user_choice);
+
+        <span class="hljs-keyword">switch</span>( user_choice ){
+            <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+                add_book(book_name, auth_name, publ_name, borrowed, &amp;num_total_book);
+                <span class="hljs-comment">// add a book function</span>
+                <span class="hljs-keyword">break</span>;
+
+            <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+                <span class="hljs-comment">// search a book function</span>
+                search_book(book_name, auth_name, publ_name, borrowed, &amp;num_total_book);
+                <span class="hljs-keyword">break</span>;
+
+            <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+                <span class="hljs-comment">// borrow a book function</span>
+                <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;book_num);
+                fflush(<span class="hljs-built_in">stdin</span>);
+    
+                borrow_book(borrowed, book_num);
+
+                <span class="hljs-keyword">break</span>;
+
+            <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:
+                <span class="hljs-comment">// return a book function</span>
+                <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;book_num);
+                fflush(<span class="hljs-built_in">stdin</span>);
+
+                return_book(borrowed, book_num);
+
+                <span class="hljs-keyword">break</span>;
+
+            <span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:
+                view_book_list(book_name, auth_name, publ_name, borrowed, &amp;num_total_book);
+                <span class="hljs-comment">// view list</span>
+                <span class="hljs-keyword">break</span>;
+
+            <span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:
+                <span class="hljs-comment">// exit program</span>
+                exit_flag = FALSE;
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Thank you for using this program!~~"</span>);
+
+                <span class="hljs-keyword">break</span>;
+
+            <span class="hljs-keyword">default</span>:
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">"input only numbers from 1-6.\n"</span>);                
+                <span class="hljs-keyword">break</span>;
+
+        }
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">add_book</span><span class="hljs-params">( 
+    <span class="hljs-keyword">char</span> (*book_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">char</span> (*auth_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">char</span> (*publ_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">int</span> *borrowed, 
+    <span class="hljs-keyword">int</span> *num_total_book )</span></span>{
+    
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Please input the book name: "</span>);
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>, book_name[*num_total_book]);
+    fflush(<span class="hljs-built_in">stdin</span>);
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Please input the author\'s name: "</span>);
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>, auth_name[*num_total_book]);
+    fflush(<span class="hljs-built_in">stdin</span>);
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Please input the book publisher: "</span>);
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>, publ_name[*num_total_book]);
+    fflush(<span class="hljs-built_in">stdin</span>);
+    borrowed[*num_total_book] = <span class="hljs-number">0</span>;
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"adding succesful!\n"</span>);
+
+    (*num_total_book)++;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">view_book_list</span><span class="hljs-params">( 
+    <span class="hljs-keyword">char</span> (*book_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">char</span> (*auth_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">char</span> (*publ_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">int</span> *borrowed, 
+    <span class="hljs-keyword">int</span> *num_total_book )</span></span>{
+    
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">" book list \n"</span> );
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">" total %d ea \n"</span>, *num_total_book );
+
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> book_num=<span class="hljs-number">0</span>; book_num&lt; *num_total_book; book_num++){
+        a_book_info(book_num, book_name, auth_name, publ_name, borrowed);
+
+        <span class="hljs-comment">// if(borrowed[book_num]){</span>
+        <span class="hljs-comment">//     printf("Borrowed\n");</span>
+        <span class="hljs-comment">// } else{</span>
+        <span class="hljs-comment">//     printf("Available\n");</span>
+        <span class="hljs-comment">// }</span>
+
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">borrow_book</span><span class="hljs-params">( 
+    <span class="hljs-keyword">int</span> *borrowed,
+    <span class="hljs-keyword">int</span> num_book )</span></span>{
+    
+    borrowed[num_book<span class="hljs-number">-1</span>] = <span class="hljs-number">1</span>;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"borrow succesful!\n"</span>);
+
+    <span class="hljs-keyword">return</span> num_book;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">return_book</span><span class="hljs-params">( 
+    <span class="hljs-keyword">int</span> *borrowed,
+    <span class="hljs-keyword">int</span> num_book )</span></span>{
+    
+    borrowed[num_book<span class="hljs-number">-1</span>] = <span class="hljs-number">0</span>;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"returned succesful!\n"</span>);
+    
+    <span class="hljs-keyword">return</span> num_book;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">toggle_lent_status</span><span class="hljs-params">( 
+    <span class="hljs-keyword">int</span> *borrowed,
+    <span class="hljs-keyword">int</span> num_book )</span></span>{
+    
+    borrowed[num_book] = !borrowed[num_book];
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">search_book</span><span class="hljs-params">( 
+    <span class="hljs-keyword">char</span> (*book_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">char</span> (*auth_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">char</span> (*publ_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">int</span> *borrowed,
+    <span class="hljs-keyword">int</span> *num_total_book )</span></span>{
+
+    <span class="hljs-keyword">int</span> user_input;
+
+    <span class="hljs-comment">// char buffer[100] = { '\0', };</span>
+    <span class="hljs-keyword">char</span> search[<span class="hljs-number">100</span>];
+
+    <span class="hljs-keyword">int</span> is_find = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> count_of_find=<span class="hljs-number">0</span>;
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"How do you want to search for a book?\n"</span>);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"1: By book name\n"</span>);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"2: By author name\n"</span>);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"3: By publisher name\n"</span>);
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;user_input);
+
+    <span class="hljs-keyword">switch</span>(user_input){
+        <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+            <span class="hljs-comment">// book name</span>
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"input: "</span>);
+            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>, search);
+            fflush(<span class="hljs-built_in">stdin</span>);
+
+            <span class="hljs-keyword">for</span>( <span class="hljs-keyword">int</span> book_num = <span class="hljs-number">0</span>; book_num &lt; *num_total_book; book_num++){
+                is_find = str_search(book_name[book_num], search);
+                <span class="hljs-keyword">if</span>( is_find ) {
+                    count_of_find++;
+                    a_book_info(book_num, book_name, auth_name, publ_name, borrowed);
+                }
+                
+            }
+            <span class="hljs-comment">// book name</span>
+
+            <span class="hljs-keyword">break</span>;
+            
+        <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+            <span class="hljs-comment">// author name</span>
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"input: "</span>);
+            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>, search);
+            fflush(<span class="hljs-built_in">stdin</span>);
+
+            <span class="hljs-keyword">for</span>( <span class="hljs-keyword">int</span> book_num = <span class="hljs-number">0</span>; book_num &lt; *num_total_book; book_num++){
+                is_find = str_search(auth_name[book_num], search);
+                <span class="hljs-keyword">if</span>( is_find ) {
+                    count_of_find++;
+                    a_book_info(book_num, book_name, auth_name, publ_name, borrowed);
+                }
+            }
+            <span class="hljs-keyword">break</span>;
+            
+        <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+            <span class="hljs-comment">// publisher name</span>
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"input: "</span>);
+            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>, search);
+            fflush(<span class="hljs-built_in">stdin</span>);
+
+            <span class="hljs-keyword">for</span>( <span class="hljs-keyword">int</span> book_num = <span class="hljs-number">0</span>; book_num &lt; *num_total_book; book_num++){
+                is_find = str_search(publ_name[book_num], search);
+
+                <span class="hljs-keyword">if</span>( is_find ) {
+                    count_of_find++;
+                    a_book_info(book_num, book_name, auth_name, publ_name, borrowed);
+                }
+            }
+
+            <span class="hljs-keyword">break</span>;
+            
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"input numbers from 1-3 only\n"</span>);
+            <span class="hljs-keyword">break</span>;
+           
+    }
+
+    <span class="hljs-keyword">if</span>(!count_of_find){
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Sorry! This book is not in our library!\n"</span>);
+    }
+
+    <span class="hljs-keyword">return</span> TRUE;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">str_search</span><span class="hljs-params">(<span class="hljs-keyword">char</span> *source, <span class="hljs-keyword">char</span> *keyword)</span></span>{
+    <span class="hljs-comment">// compare length</span>
+    <span class="hljs-keyword">int</span> source_len = str_len(source);
+    <span class="hljs-keyword">int</span> keyword_len = str_len(keyword);
+    <span class="hljs-keyword">int</span> flag = <span class="hljs-number">0</span>;
+
+    <span class="hljs-keyword">if</span>(source_len &lt; keyword_len){
+        <span class="hljs-keyword">return</span> flag;
+    }
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> s_char = <span class="hljs-number">0</span>; s_char &lt; source_len; s_char++){
+        <span class="hljs-comment">// printf("== outer : s_char: %c, char num: %d\n", source[s_char], s_char);</span>
+        
+        flag = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k_char = <span class="hljs-number">0</span>; k_char &lt; keyword_len; k_char++){
+            <span class="hljs-comment">// printf("== inner :k_char: %c, char num: %d\n", keyword[k_char], k_char);</span>
+            <span class="hljs-keyword">if</span>( source[s_char+k_char]!= keyword[k_char]){
+                <span class="hljs-comment">// printf("========= breaking ==========\n");</span>
+                flag = <span class="hljs-number">0</span>;
+                <span class="hljs-keyword">break</span>;
+            }
+        }
+        <span class="hljs-keyword">if</span> (flag){
+            <span class="hljs-keyword">return</span> flag;
+        }
+
+    }
+    <span class="hljs-keyword">return</span> flag;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">str_len</span><span class="hljs-params">(<span class="hljs-keyword">char</span> *str)</span></span>{
+    <span class="hljs-keyword">int</span> len = <span class="hljs-number">0</span>;
+
+    <span class="hljs-keyword">while</span>(*str!=<span class="hljs-string">'\0'</span>){
+        str++;
+        len++;
+    }
+
+    <span class="hljs-keyword">return</span> len;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">a_book_info</span><span class="hljs-params">(    
+    <span class="hljs-keyword">int</span> book_num,
+    <span class="hljs-keyword">char</span> (*book_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">char</span> (*auth_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">char</span> (*publ_name)[<span class="hljs-number">100</span>], 
+    <span class="hljs-keyword">int</span> *borrowed)</span></span>{
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">" ================================ \n"</span> );
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">" Book number: %d\n"</span>, book_num+<span class="hljs-number">1</span>);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">" Book name: %s\n"</span>, book_name[book_num]);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">" Author name: %s\n"</span>, auth_name[book_num]);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">" Publisher name: %s\n"</span>, publ_name[book_num]);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">" Borrowed Status: %s\n"</span>, (borrowed[book_num])? <span class="hljs-string">"Borrowed"</span>: <span class="hljs-string">"Available"</span>);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">" ˜================================ \n"</span> );
+
+    <span class="hljs-keyword">return</span> TRUE;
+}
+</div></code></pre>
+
+</body>
+</html>

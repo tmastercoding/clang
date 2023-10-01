@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>18_06_23.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="june-18th-2023--clang"><strong>June 18th 2023- clang</strong></h2>
+<h3 id="buffer"><strong>buffer:</strong></h3>
+<blockquote>
+<p><strong>buffer input</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// buffer, takes bit by bit of the</span>
+    <span class="hljs-comment">// file instead of the whole thing</span>
+
+    <span class="hljs-comment">// open the file a.txt to read</span>
+    FILE *fp = fopen(<span class="hljs-string">"a.txt"</span>, <span class="hljs-string">"r"</span>);
+
+    <span class="hljs-comment">// assign a char variable called c</span>
+    <span class="hljs-keyword">char</span> c;
+
+    <span class="hljs-comment">// EOF = End of File = -1</span>
+
+    <span class="hljs-comment">// print every character in a.txt</span>
+    <span class="hljs-comment">// until the character reaches EOF</span>
+    <span class="hljs-keyword">while</span>((c = fgetc(fp)) != EOF) {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%c"</span>, c);
+    }
+
+    <span class="hljs-comment">// close the file</span>
+    fclose(fp);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>Problem - takes a long time to access the <br>
+whole file at once</p>
+</blockquote>
+<blockquote>
+<p>Solution - uses a buffer to take a smaller <br>
+section of the file in multiple times.</p>
+</blockquote>
+<blockquote>
+<p>Normally this 'smaller section' is <br>
+around 2KB</p>
+</blockquote>
+<blockquote>
+<p><strong>using buffer to calculate size</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// open the file a.txt to read</span>
+    FILE *fp = fopen(<span class="hljs-string">"a.txt"</span>, <span class="hljs-string">"r"</span>);
+
+    <span class="hljs-comment">// create a int variable called size</span>
+    <span class="hljs-keyword">int</span> <span class="hljs-built_in">size</span> = <span class="hljs-number">0</span>;
+
+    <span class="hljs-comment">// while the buffer isn't EOF</span>
+    <span class="hljs-keyword">while</span>(fgetc(fp) != EOF){
+        <span class="hljs-comment">// add 1 to the size</span>
+        <span class="hljs-built_in">size</span>++;
+    }
+
+    <span class="hljs-comment">// print the result</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"file's size: %d bytes \n"</span>, <span class="hljs-built_in">size</span>);
+    
+    <span class="hljs-comment">// close the file</span>
+    fclose(fp);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p><strong>file indicator</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// open the file a.txt to read</span>
+    FILE *fp = fopen(<span class="hljs-string">"a.txt"</span>, <span class="hljs-string">"r"</span>);
+
+    <span class="hljs-comment">// cursor is pointing to H</span>
+    fgetc(fp);
+
+    <span class="hljs-comment">// cursor is pointing to e</span>
+    fgetc(fp);
+
+    <span class="hljs-comment">// cursor is pointing to l</span>
+    fgetc(fp);
+
+    <span class="hljs-comment">// cursor is pointing to l</span>
+    fgetc(fp);
+
+    <span class="hljs-comment">// cursor is now pointing to o, </span>
+    <span class="hljs-comment">// but only inputted until Hell</span>
+
+    <span class="hljs-comment">// make the cursor point to the first char,</span>
+    <span class="hljs-comment">// or 0</span>
+    fseek(fp, <span class="hljs-number">0</span>, SEEK_SET);
+
+    <span class="hljs-comment">// print the character </span>
+    <span class="hljs-comment">// the cursor pointing to</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"If you start from the top: %c \n"</span>, fgetc(fp));
+    
+    <span class="hljs-comment">// close the file</span>
+    fclose(fp);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>you can see how the file indicator<br>
+or the cursor moves when you use the<br>
+fgetc or fgets function<br>
+and also how to manipulate the cursor</p>
+</blockquote>
+<blockquote>
+<p><strong>using file indicator to ouput</strong></p>
+</blockquote>
+<blockquote>
+<p>works the same way as inputting</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// open a file called a.txt to write</span>
+    FILE *fp = fopen(<span class="hljs-string">"a.txt"</span>, <span class="hljs-string">"w"</span>);
+
+    <span class="hljs-comment">// put this string into the file</span>
+    <span class="hljs-built_in">fputs</span>(<span class="hljs-string">"TmasterCoding is an excellent C programmer\n"</span>, fp);
+
+    <span class="hljs-comment">// move the cursor back to the front</span>
+    fseek(fp, <span class="hljs-number">0</span>, SEEK_SET);
+
+    <span class="hljs-comment">// now replace the first 16 characters</span>
+    <span class="hljs-comment">// with this string</span>
+    <span class="hljs-built_in">fputs</span>(<span class="hljs-string">"Is TmasterCoding"</span>, fp);
+
+    <span class="hljs-comment">// close the file</span>
+    fclose(fp);
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>first a.txt would look like this:<br>
+<em>TmasterCoding is an excellent C programmer</em></p>
+</blockquote>
+<blockquote>
+<p>After it would look like this:<br>
+<em>Is TmasterCoding an excellent C programmer</em></p>
+</blockquote>
+<blockquote>
+<p>As you can see the program didn't<br>
+replace the whole string<br>
+and also didn't add it to the end of the program</p>
+</blockquote>
+<blockquote>
+<p><strong>making a program that creates a</strong><br>
+<strong>file with the user input as the name</strong><br>
+<strong>with the char <em>a</em> inside</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> **argv)</span></span>{
+    <span class="hljs-comment">// input</span>
+    <span class="hljs-comment">// argc = number of parameters</span>
+    <span class="hljs-comment">// argv = inputted things</span>
+
+    <span class="hljs-comment">// a ptr will point to the first input</span>
+    <span class="hljs-comment">// DISCLAIMER argv[1] is actually</span>
+    <span class="hljs-comment">// the second input, since the </span>
+    <span class="hljs-comment">// directory counts as the first input</span>
+    <span class="hljs-keyword">char</span> *name = argv[<span class="hljs-number">1</span>];
+
+    <span class="hljs-comment">// create with the name as the name</span>
+    <span class="hljs-comment">// to write</span>
+    FILE *fp = fopen(name, <span class="hljs-string">"w"</span>);
+
+    <span class="hljs-comment">// put a inside the file</span>
+    putc(<span class="hljs-string">'a'</span>, fp);
+
+    <span class="hljs-comment">// close the file</span>
+    fclose(fp);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p><strong>get input from a certain file</strong><br>
+<strong>and then put it into a different file</strong><br>
+<strong>reversed</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// get input from pre.txt and </span>
+<span class="hljs-comment">// ouput to post.txt reverse</span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// open pre.txt to read and call it src</span>
+    FILE *src = fopen(<span class="hljs-string">"pre.txt"</span>, <span class="hljs-string">"r"</span>);
+    
+    <span class="hljs-comment">// declare a int var called size</span>
+    <span class="hljs-keyword">int</span> <span class="hljs-built_in">size</span> = <span class="hljs-number">0</span>;
+
+    <span class="hljs-comment">// get the size of file src</span>
+    <span class="hljs-keyword">while</span>(fgetc(src) != EOF){
+        <span class="hljs-built_in">size</span>++;
+    }
+
+    <span class="hljs-comment">// declare a char var called c</span>
+    <span class="hljs-keyword">char</span> c;
+    
+    <span class="hljs-comment">// declare a string that is long as the size of the arr</span>
+    <span class="hljs-keyword">char</span> str[<span class="hljs-built_in">size</span>];
+
+    <span class="hljs-comment">// create a pointer pointing to str</span>
+    <span class="hljs-keyword">char</span> *ptr = str;
+
+    <span class="hljs-comment">// put the cursor back to the front</span>
+    fseek(src, <span class="hljs-number">0</span>, SEEK_SET);
+
+    <span class="hljs-comment">// while the buffer isn't EOF</span>
+    <span class="hljs-keyword">while</span>((c = fgetc(src)) != EOF){
+        <span class="hljs-comment">// assign c to the pointer</span>
+        <span class="hljs-comment">// so that it's added to the str</span>
+        <span class="hljs-comment">// then ptr is increased</span>
+        *(ptr++) = c;
+    }
+
+    <span class="hljs-comment">// close the source file</span>
+    fclose(src);
+
+    <span class="hljs-comment">// open the file post.txt to write</span>
+    <span class="hljs-comment">// as dest</span>
+    FILE *dest = fopen(<span class="hljs-string">"post.txt"</span>, <span class="hljs-string">"w"</span>);
+
+    <span class="hljs-comment">// do size-1, to get rid of the garbage val</span>
+    <span class="hljs-built_in">size</span> -= <span class="hljs-number">1</span>;
+
+    <span class="hljs-comment">// while size is greater than 0</span>
+    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">size</span> &gt;= <span class="hljs-number">0</span>){
+        <span class="hljs-comment">// put each char to dest</span>
+        fputc(str[<span class="hljs-built_in">size</span>], dest);
+
+        <span class="hljs-comment">// descrease size</span>
+        <span class="hljs-built_in">size</span>--;
+    }
+    
+    <span class="hljs-comment">// close the file</span>
+    fclose(dest);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p><strong>make a program that searches for a string</strong><br>
+<strong>that the user inputted</strong><br>
+<strong>from a certain file</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string.h&gt;</span></span>
+
+<span class="hljs-comment">// create a program that searches for</span>
+<span class="hljs-comment">// a string from a file</span>
+
+<span class="hljs-comment">// search function with src and keyword</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">search</span><span class="hljs-params">(<span class="hljs-keyword">char</span> *src, <span class="hljs-keyword">char</span> *keyword)</span></span>;
+
+<span class="hljs-comment">// get input that'll be keyword</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> **argv)</span></span>{
+
+    <span class="hljs-comment">// assign keyword</span>
+    <span class="hljs-keyword">char</span> *keyword = argv[<span class="hljs-number">1</span>];
+
+    <span class="hljs-comment">// open the file lr.txt to read</span>
+    FILE *fp = fopen(<span class="hljs-string">"lr.txt"</span>, <span class="hljs-string">"r"</span>);
+    
+    <span class="hljs-comment">// get the size of the file</span>
+    <span class="hljs-keyword">int</span> <span class="hljs-built_in">size</span> = <span class="hljs-number">0</span>;
+    
+    <span class="hljs-keyword">while</span>(getc(fp) != EOF){
+        <span class="hljs-built_in">size</span>++;
+    }
+
+    <span class="hljs-comment">// put the cursor back at the front</span>
+    fseek(fp, <span class="hljs-number">0</span>, SEEK_SET);
+
+    <span class="hljs-comment">// make the file as a string</span>
+
+    <span class="hljs-comment">// declare buffer variable</span>
+    <span class="hljs-keyword">char</span> c;
+
+    <span class="hljs-comment">// declare a string as long as the file's size</span>
+    <span class="hljs-keyword">char</span> str[<span class="hljs-built_in">size</span>];
+
+    <span class="hljs-comment">// create a pointer pointing to str</span>
+    <span class="hljs-keyword">char</span> *ptr = str;
+
+    <span class="hljs-comment">// while the buffer isn't EOF</span>
+    <span class="hljs-keyword">while</span>((c = getc(fp)) != EOF){
+        <span class="hljs-comment">// assign c to string</span>
+        <span class="hljs-comment">// increase pointer</span>
+        *(ptr++) = c;
+    }
+
+    <span class="hljs-comment">// close the file</span>
+    fclose(fp);
+    
+    <span class="hljs-keyword">int</span> result = search(str, keyword);
+
+    <span class="hljs-comment">// prints result</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"is there %s in the file?\n"</span>, keyword);
+    <span class="hljs-keyword">if</span>(result){
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Yes!\n"</span>);
+    } <span class="hljs-keyword">else</span>{
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"No.\n"</span>);
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">// search function with src and keyword</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">search</span><span class="hljs-params">(<span class="hljs-keyword">char</span> *src, <span class="hljs-keyword">char</span> *keyword)</span></span>{
+    <span class="hljs-comment">// src length</span>
+    <span class="hljs-keyword">int</span> src_len = <span class="hljs-built_in">strlen</span>(src);
+
+    <span class="hljs-comment">// keyword length</span>
+    <span class="hljs-keyword">int</span> key_len = <span class="hljs-built_in">strlen</span>(keyword);
+
+    <span class="hljs-comment">// compare all possible strings from src to keyword</span>
+    <span class="hljs-comment">// run while size is smaller than</span>
+    <span class="hljs-comment">// length of src subtracted by the len of keyword</span>
+    <span class="hljs-comment">// increase size</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> <span class="hljs-built_in">size</span> = <span class="hljs-number">0</span>; <span class="hljs-built_in">size</span> &lt; (src_len - key_len)+<span class="hljs-number">1</span>; <span class="hljs-built_in">size</span>++){
+        <span class="hljs-comment">// get a keyword sized string from the src</span>
+        <span class="hljs-comment">// declare a string as long as keyword</span>
+        <span class="hljs-keyword">char</span> str[key_len];
+
+        <span class="hljs-comment">// create a pointing to str</span>
+        <span class="hljs-keyword">char</span> *ptr = str;
+
+        <span class="hljs-comment">// while idx is smaller than the length of keyword</span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> idx = <span class="hljs-number">0</span>; idx &lt; key_len; idx++){
+            <span class="hljs-comment">// assign the (size+idx)th char of src to the str </span>
+            *(ptr++) = src[<span class="hljs-built_in">size</span>+idx];
+        }
+        <span class="hljs-comment">// compare this string and keyword</span>
+        <span class="hljs-comment">// if strcmp is true return 1</span>
+        <span class="hljs-keyword">if</span>(!(<span class="hljs-built_in">strcmp</span>(keyword, str))){
+            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+        }
+    }
+
+    <span class="hljs-comment">// if not return 0</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+
+</body>
+</html>

@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>05_03_09_23.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="september-3rd-2023--cpp"><strong>September 3rd 2023- cpp</strong></h2>
+<h3 id="class-methods"><strong>Class Methods</strong></h3>
+<blockquote>
+<p><strong>Creating a method</strong></p>
+</blockquote>
+<blockquote>
+<p>Class defenition:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// create class</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span>{</span>
+    <span class="hljs-comment">// access specifier, methods can be accessed from outside</span>
+    <span class="hljs-keyword">public</span>:
+        <span class="hljs-comment">// basically a function of a class</span>
+        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myMethod</span><span class="hljs-params">()</span></span>{
+            <span class="hljs-comment">// prints hello world</span>
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"HELLO WORLD!"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        }
+};
+</div></code></pre>
+<blockquote>
+<p>Main code:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// create object</span>
+MyClass myObj;
+<span class="hljs-comment">// methods can be accessed by putting a decimal point mark</span>
+myObj.myMethod();
+</div></code></pre>
+<blockquote>
+<p>Methods are generally public, so that it can be accessed from outside <br>
+the class, but some are private, if they should be only used from inside</p>
+</blockquote>
+<blockquote>
+<p><strong>Method definition outside the class</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span>{</span>
+    <span class="hljs-keyword">public</span>:
+        <span class="hljs-comment">// just a prototype of the method</span>
+        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myMethod</span><span class="hljs-params">()</span></span>;
+};
+
+<span class="hljs-comment">// definiton outside of the class</span>
+<span class="hljs-comment">// classname::methodname</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">MyClass::myMethod</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// prints hello world</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"HELLO WORLD"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>Methods can be defined as prototypes inside the class<br>
+and properly defined outside</p>
+</blockquote>
+<blockquote>
+<p><strong>Methods with parameters</strong></p>
+</blockquote>
+<blockquote>
+<p>Class &amp; method defenition:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span>{</span>
+    <span class="hljs-keyword">public</span>:
+        <span class="hljs-comment">// prototype of method with an integer parameter</span>
+        <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">speed</span><span class="hljs-params">(<span class="hljs-keyword">int</span> maxSpeed)</span></span>;
+};
+
+<span class="hljs-comment">// method defintion outside with the parameter</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Car::speed</span><span class="hljs-params">(<span class="hljs-keyword">int</span> maxSpeed)</span></span>{
+    <span class="hljs-comment">// returns maxSpeed</span>
+    <span class="hljs-keyword">return</span> maxSpeed;
+}
+</div></code></pre>
+<blockquote>
+<p>Main code:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// create object</span>
+Car myCar;
+<span class="hljs-comment">// just add the parameter as you would do for a function</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; myCar.speed(<span class="hljs-number">100</span>) &lt;&lt; <span class="hljs-built_in">endl</span>;
+</div></code></pre>
+<h3 id="constructors"><strong>Constructors</strong></h3>
+<blockquote>
+<p><strong>Creating a constructor</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// define class</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> {</span>
+    <span class="hljs-keyword">public</span>:
+        <span class="hljs-comment">// public constructor:</span>
+        <span class="hljs-comment">// every time object created</span>
+        <span class="hljs-comment">// constructor name same as class name</span>
+        MyClass(){
+            <span class="hljs-comment">// this code is executed</span>
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Hello World!"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        }
+};
+</div></code></pre>
+<blockquote>
+<p>Constructors are special methods, that gets executed when the object is created<br>
+These can be used to assign values to attributes</p>
+</blockquote>
+<blockquote>
+<p><strong>Constructor parameters</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span> {</span>
+    <span class="hljs-comment">// attributes that are private</span>
+    <span class="hljs-keyword">private</span>:
+        <span class="hljs-built_in">string</span> brand;
+        <span class="hljs-built_in">string</span> model;
+        <span class="hljs-keyword">int</span> year;
+
+    <span class="hljs-keyword">public</span>:
+        <span class="hljs-comment">// constructor has parameters</span>
+        Car(<span class="hljs-built_in">string</span> brand, <span class="hljs-built_in">string</span> model, <span class="hljs-keyword">int</span> year){
+            <span class="hljs-comment">// sets the attributes</span>
+            <span class="hljs-keyword">this</span>-&gt;brand = brand;
+            <span class="hljs-keyword">this</span>-&gt;model = model;
+            <span class="hljs-keyword">this</span>-&gt;year = year;
+        }
+
+        <span class="hljs-comment">// get functions that return the value of the attribrutes</span>
+        <span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">getBrand</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;brand;
+        }
+        <span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">getModel</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;model;
+        }
+        <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getYear</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;year;
+        }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// open bracket, input parameters when creating object</span>
+    <span class="hljs-function">Car <span class="hljs-title">myCar</span><span class="hljs-params">(<span class="hljs-string">"BMW"</span>, <span class="hljs-string">"X5"</span>, <span class="hljs-number">1999</span>)</span></span>;
+    <span class="hljs-comment">// check if attributes are inputted correctly</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Brand: "</span> &lt;&lt; myCar.getBrand() &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Model: "</span> &lt;&lt; myCar.getModel() &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Year: "</span> &lt;&lt; myCar.getYear() &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>Parameters can be used to set all the attributes, when creating an object</p>
+</blockquote>
+<blockquote>
+<p><strong>Constructors defined outside of class</strong></p>
+</blockquote>
+<pre class="hljs"><code><div>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span> {</span>
+    <span class="hljs-keyword">private</span>:
+        <span class="hljs-built_in">string</span> brand;
+        <span class="hljs-built_in">string</span> model;
+        <span class="hljs-keyword">int</span> year;
+
+    <span class="hljs-keyword">public</span>:
+        <span class="hljs-comment">// just the prototypes</span>
+        Car(<span class="hljs-built_in">string</span> brand, <span class="hljs-built_in">string</span> model, <span class="hljs-keyword">int</span> year);
+
+        <span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">getBrand</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;brand;
+        }
+        <span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">getModel</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;model;
+        }
+        <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getYear</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;year;
+        }
+};
+
+<span class="hljs-comment">// actual main body of method, with parameters</span>
+Car::Car(<span class="hljs-built_in">string</span> brand, <span class="hljs-built_in">string</span> model, <span class="hljs-keyword">int</span> year){
+    <span class="hljs-keyword">this</span>-&gt;brand = brand;
+    <span class="hljs-keyword">this</span>-&gt;model = model;
+    <span class="hljs-keyword">this</span>-&gt;year = year;
+}
+</div></code></pre>
+<blockquote>
+<p>You can do the same for constructors since they are just special methods</p>
+</blockquote>
+<h3 id="encapsulation"><strong>Encapsulation</strong></h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// class definitons</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span> {</span>
+    <span class="hljs-keyword">private</span>:
+        <span class="hljs-comment">// Private attributes, to increase security</span>
+        <span class="hljs-keyword">int</span> salary;
+
+    <span class="hljs-keyword">public</span>:
+        <span class="hljs-comment">// setter</span>
+        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setSalary</span><span class="hljs-params">(<span class="hljs-keyword">int</span> salary)</span></span>{
+            <span class="hljs-comment">// this-&gt;attribute, accesses the attribute of the object</span>
+            <span class="hljs-comment">// object's salary is salary </span>
+            <span class="hljs-keyword">this</span>-&gt;salary = salary;
+        }
+
+        <span class="hljs-comment">// getter</span>
+        <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getSalary</span><span class="hljs-params">()</span></span>{
+            <span class="hljs-comment">// returns object's salary</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;salary;
+        }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// creates an employee called worker</span>
+    Employee worker;
+
+    <span class="hljs-comment">// set worker's salary to -123</span>
+    worker.setSalary(<span class="hljs-number">-123</span>);
+
+    <span class="hljs-comment">// print worker's salary</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; worker.getSalary() &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>Encapsulation means making the attributes private to increase security<br>
+and by creating methods like getters and setters to get and set values.</p>
+</blockquote>
+<h3 id="inheritance"><strong>Inheritance</strong></h3>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Vehicle</span>{</span>
+    <span class="hljs-comment">// private attributes</span>
+    <span class="hljs-keyword">private</span>:
+        <span class="hljs-comment">// a string with the value Ford</span>
+        <span class="hljs-built_in">string</span> brand = <span class="hljs-string">"Ford"</span>;
+    <span class="hljs-keyword">public</span>:
+        <span class="hljs-comment">// get function</span>
+        <span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">getBrand</span><span class="hljs-params">()</span></span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;brand;
+        }
+
+        <span class="hljs-comment">// honk function that prints tuut tuut</span>
+        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">honk</span><span class="hljs-params">()</span></span>{
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Tuut, tuut! \n"</span>;
+        }
+};
+
+
+<span class="hljs-comment">// Derived class</span>
+<span class="hljs-comment">// create class derived from vehicle</span>
+<span class="hljs-comment">// class Child class name: public Parent class name{</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span>:</span> <span class="hljs-keyword">public</span> Vehicle {
+    <span class="hljs-comment">// private attributes</span>
+    <span class="hljs-keyword">private</span>:
+        <span class="hljs-comment">// string with the value Mustard</span>
+        <span class="hljs-built_in">string</span> model = <span class="hljs-string">"Mustard"</span>;
+    <span class="hljs-keyword">public</span>:
+        <span class="hljs-comment">// getFunction</span>
+        <span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">getModel</span><span class="hljs-params">()</span></span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;model;
+        }
+
+};
+
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// create an object of Car</span>
+    Car myCar;
+
+    <span class="hljs-comment">// object has the methods and attributes of vehicle since </span>
+    <span class="hljs-comment">// Car inherited from Vehicle</span>
+    myCar.honk();
+
+    <span class="hljs-comment">// print brand and model</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Brand: "</span> &lt;&lt; myCar.getBrand() &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Model: "</span> &lt;&lt; myCar.getModel() &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>Inheritance can be used to reuse classes and code</p>
+</blockquote>
+<blockquote>
+<p><strong>Multi level Inheritance</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-comment">// create parent class</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> {</span>
+    <span class="hljs-keyword">public</span>:
+        <span class="hljs-comment">// method, showing description</span>
+        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">showDesc</span><span class="hljs-params">()</span></span>{
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"I AM NOT KING KONG UWWWWAAAWAWA!"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        }
+};
+
+<span class="hljs-comment">// child class of Person</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span>:</span> <span class="hljs-keyword">public</span> Person {
+};
+
+<span class="hljs-comment">// child class of Student, grandchild of Person</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hacker</span>:</span> <span class="hljs-keyword">public</span> Student{
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// create hacker object</span>
+    Hacker badHacker;
+    <span class="hljs-comment">// hacker still has method from Person</span>
+    badHacker.showDesc();
+ 
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h3 id="multiple-inheritance"><strong>Multiple Inheritance</strong></h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// Parent class 1</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Mother</span> {</span>
+    <span class="hljs-keyword">public</span>:
+        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">showDesc</span><span class="hljs-params">()</span></span>{
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"I am beautiful!"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        }
+};
+
+<span class="hljs-comment">// Parent class 2</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Father</span>{</span>
+    <span class="hljs-keyword">public</span>:
+        <span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">getDesc</span><span class="hljs-params">()</span></span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"I'm smart!"</span>;
+        }
+};
+
+<span class="hljs-comment">// Child who is derived from both parents</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> :</span> <span class="hljs-keyword">public</span> Mother, <span class="hljs-keyword">public</span> Father{
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// create child object</span>
+    Child myObj;
+
+    <span class="hljs-comment">// child has all methods of the mother and father</span>
+    myObj.showDesc();
+    <span class="hljs-built_in">cout</span> &lt;&lt; myObj.getDesc() &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>Multiple inheritance can be useful, but it can get a bit confusing when they stack</p>
+</blockquote>
+<h3 id="inheritance-specifiers"><strong>Inheritance Specifiers</strong></h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span> {</span>
+    <span class="hljs-keyword">protected</span>: <span class="hljs-comment">// protected access specifier meaning only child class can access</span>
+        <span class="hljs-keyword">int</span> salary;
+};
+
+<span class="hljs-comment">// Derived class</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Programmer</span>:</span> <span class="hljs-keyword">public</span> Employee{
+    <span class="hljs-keyword">private</span>:
+        <span class="hljs-keyword">int</span> bonus;
+    <span class="hljs-keyword">public</span>:
+        <span class="hljs-comment">// child class can still use salary attribute</span>
+        <span class="hljs-comment">// setter and getter methods</span>
+        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setSalary</span><span class="hljs-params">(<span class="hljs-keyword">int</span> salary)</span> </span>{
+            <span class="hljs-keyword">this</span>-&gt;salary = salary;
+        }
+        <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getSalary</span><span class="hljs-params">()</span></span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;salary;
+        }
+        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setBonus</span><span class="hljs-params">(<span class="hljs-keyword">int</span> bonus)</span> </span>{
+            <span class="hljs-keyword">this</span>-&gt;bonus = bonus;
+        }
+        <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getBonus</span><span class="hljs-params">()</span></span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;bonus;
+        }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// Create programmer object</span>
+    Programmer myObj;
+    <span class="hljs-comment">// set bonus and salary</span>
+    myObj.setBonus(<span class="hljs-number">15000</span>);
+    myObj.setSalary(<span class="hljs-number">500000</span>);
+
+    <span class="hljs-comment">// print attributes</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Salary: "</span> &lt;&lt; myObj.getSalary() &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Bonus: "</span> &lt;&lt; myObj.getBonus() &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>Protected specifier can be really useful for keeping
+your code safe and also reusable</p>
+</blockquote>
+<h3 id="polymorphism"><strong>Polymorphism</strong></h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// Parent class</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span> {</span>
+    <span class="hljs-keyword">public</span>: 
+        <span class="hljs-comment">// method that prints</span>
+        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">animalSound</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-comment">// this text</span>
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"The animal makes a sound"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        }
+};
+
+<span class="hljs-comment">// derived class from Animal</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pig</span> :</span> <span class="hljs-keyword">public</span> Animal{
+    <span class="hljs-keyword">public</span>:
+        <span class="hljs-comment">// has same method, but changing contents of method</span>
+        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">animalSound</span><span class="hljs-params">()</span></span>{
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"The pig says: wee wee"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        }
+};
+
+<span class="hljs-comment">// derived class from Animal</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dog</span> :</span> <span class="hljs-keyword">public</span> Animal{
+    <span class="hljs-keyword">public</span>:
+        <span class="hljs-comment">// has same method, but changing contents of method</span>
+        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">animalSound</span><span class="hljs-params">()</span></span>{
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"The dog says: bark bark"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// create objects of animal, pig and dog</span>
+    Animal myAnimal;
+    Pig myPig;
+    Dog myDog;
+
+    <span class="hljs-comment">// they all print different things</span>
+    myAnimal.animalSound();
+    myPig.animalSound();
+    myDog.animalSound();
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;  
+}
+</div></code></pre>
+<blockquote>
+<p>Polymorphism can be used when you want to carry over multiple
+methods but not all exactly the same.</p>
+</blockquote>
+<h3 id="files"><strong>Files</strong></h3>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// Create and open text file</span>
+    <span class="hljs-comment">// ofstream = ouput file stream</span>
+    <span class="hljs-function">ofstream <span class="hljs-title">MyFile</span><span class="hljs-params">(<span class="hljs-string">"filename.txt"</span>)</span></span>;
+    
+    <span class="hljs-comment">// Write to the file</span>
+    MyFile &lt;&lt; <span class="hljs-string">"Files can be tricky, but it is fun enough!"</span>;
+
+    <span class="hljs-comment">// Close the file</span>
+    MyFile.close();
+
+    <span class="hljs-comment">// read from the text file</span>
+    <span class="hljs-comment">// ifstream = input file stream</span>
+    <span class="hljs-function">ifstream <span class="hljs-title">MyReadFile</span><span class="hljs-params">(<span class="hljs-string">"filename.txt"</span>)</span></span>;
+
+    <span class="hljs-comment">// create buffer</span>
+    <span class="hljs-built_in">string</span> myText;
+
+    <span class="hljs-comment">// put each line of filename.txt to myText</span>
+    <span class="hljs-keyword">while</span> (getline (MyReadFile, myText)){
+        <span class="hljs-comment">// print myText</span>
+        <span class="hljs-built_in">cout</span> &lt;&lt; myText;
+    }
+
+    <span class="hljs-comment">// close the file</span>
+    MyReadFile.close();
+}
+</div></code></pre>
+<h3 id="exceptions"><strong>Exceptions</strong></h3>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// try this code:</span>
+    <span class="hljs-keyword">try</span>{
+        <span class="hljs-keyword">int</span> age = <span class="hljs-number">15</span>;
+        <span class="hljs-comment">// if age is greater than 18</span>
+        <span class="hljs-keyword">if</span> (age &gt;= <span class="hljs-number">18</span>){
+            <span class="hljs-comment">// access granted</span>
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Access granted - you are old enough."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        } <span class="hljs-keyword">else</span>{
+            <span class="hljs-comment">// if not throw an exception</span>
+            <span class="hljs-keyword">throw</span>(age);
+        }  
+    }
+    <span class="hljs-comment">// catch the exception, getting an integer as a parameter</span>
+    <span class="hljs-keyword">catch</span>(<span class="hljs-keyword">int</span> myNum){
+        <span class="hljs-comment">// print access denied</span>
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Access denied - "</span> 
+             &lt;&lt; <span class="hljs-string">"You must be at least 18 years old!"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    }
+
+    <span class="hljs-comment">// try this code</span>
+    <span class="hljs-keyword">try</span>{
+        <span class="hljs-keyword">int</span> age = <span class="hljs-number">15</span>;
+        <span class="hljs-comment">// if age is larger or equal to 18</span>
+        <span class="hljs-keyword">if</span> (age &gt;= <span class="hljs-number">18</span>){
+            <span class="hljs-comment">// allow access</span>
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Access granted - you are old enough."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        } <span class="hljs-keyword">else</span>{
+            <span class="hljs-comment">// else throw an exepction of 505</span>
+            <span class="hljs-keyword">throw</span> <span class="hljs-number">505</span>;
+        }  
+    }
+    <span class="hljs-comment">// catch an exception taking a number as a parameter</span>
+    <span class="hljs-keyword">catch</span>(<span class="hljs-keyword">int</span> myNum){
+        <span class="hljs-comment">// print access denied</span>
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Access denied - "</span> 
+             &lt;&lt; <span class="hljs-string">"You must be at least 18 years old!"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        <span class="hljs-comment">// print error number</span>
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Error number "</span> &lt;&lt; myNum &lt;&lt; <span class="hljs-built_in">endl</span>;
+    }
+
+    <span class="hljs-keyword">try</span>{
+        <span class="hljs-keyword">int</span> age = <span class="hljs-number">15</span>;
+        <span class="hljs-keyword">if</span> (age &gt;= <span class="hljs-number">18</span>){
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Access granted - you are old enough."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        } <span class="hljs-keyword">else</span>{
+            <span class="hljs-keyword">throw</span> <span class="hljs-number">505</span>;
+        }  
+    }
+    <span class="hljs-comment">// catches any exception</span>
+    <span class="hljs-keyword">catch</span>(...){
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Access denied - "</span> 
+             &lt;&lt; <span class="hljs-string">"You must be at least 18 years old!"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>Exceptions can be used to check for errors, especially for<br>
+errors from user input.</p>
+</blockquote>
+
+</body>
+</html>

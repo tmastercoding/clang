@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>11_06_23.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="june-11th-2023--clang">June 11th 2023- clang</h2>
+<h3 id="type-def"><strong>type def:</strong></h3>
+<blockquote>
+<p><strong>type def - Human struct</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-comment">// human structure</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">HUMAN</span>{</span>
+    <span class="hljs-keyword">int</span> age;
+    <span class="hljs-keyword">int</span> <span class="hljs-built_in">height</span>;
+    <span class="hljs-keyword">int</span> weight;
+    <span class="hljs-keyword">int</span> gender;
+};
+
+<span class="hljs-comment">// print general info of human struct</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">print_status</span><span class="hljs-params">(struct HUMAN human)</span></span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// create Adam and Eve variables</span>
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">HUMAN</span> <span class="hljs-title">Adam</span> = {</span><span class="hljs-number">31</span>, <span class="hljs-number">182</span>, <span class="hljs-number">75</span>, <span class="hljs-number">0</span>};
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">HUMAN</span> <span class="hljs-title">Eve</span> = {</span><span class="hljs-number">27</span>, <span class="hljs-number">166</span>, <span class="hljs-number">48</span>, <span class="hljs-number">1</span>};
+
+    <span class="hljs-comment">// print status of both people</span>
+    print_status(Adam);
+    print_status(Eve);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">// print general info of human struct</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">print_status</span><span class="hljs-params">(struct HUMAN human)</span></span>{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"-----------------------------------\n"</span>);
+    
+    <span class="hljs-comment">// prints gender of human</span>
+    <span class="hljs-keyword">if</span>(human.gender == <span class="hljs-number">0</span>){
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"MALE\n"</span>);
+    } <span class="hljs-keyword">else</span>{
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"FEMALE\n"</span>);
+    }
+
+    <span class="hljs-comment">// prints age, height and weight of human</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"AGE: %d\n"</span>, human.age);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"HEIGHT: %d\n"</span>, human.<span class="hljs-built_in">height</span>);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"WEIGHT: %d\n"</span>, human.weight);
+
+    <span class="hljs-comment">// if the human is male and </span>
+    <span class="hljs-comment">// is taller than 180cm, he wins</span>
+    <span class="hljs-comment">// if not he loses</span>
+    <span class="hljs-keyword">if</span>(human.gender == <span class="hljs-number">0</span> &amp;&amp; human.<span class="hljs-built_in">height</span> &gt;= <span class="hljs-number">180</span>) {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"HE IS A WINNER!!\n"</span>);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (human.gender == <span class="hljs-number">0</span> &amp;&amp; human.<span class="hljs-built_in">height</span> &lt; <span class="hljs-number">180</span>){
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"HE IS A LOSER!! \n"</span>);
+    }
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"-----------------------------------\n"</span>);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>Problem - 'struct HUMAN' is annoying to type</p>
+</blockquote>
+<blockquote>
+<p>Solution - type def</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-comment">// human structure</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">HUMAN</span>{</span><span class="hljs-comment">// human structure</span>
+
+    <span class="hljs-keyword">int</span> age;
+    <span class="hljs-keyword">int</span> <span class="hljs-built_in">height</span>;
+    <span class="hljs-keyword">int</span> weight;
+    <span class="hljs-keyword">int</span> gender;
+
+};
+
+<span class="hljs-comment">// struct HUMAN has been shortened to Human</span>
+<span class="hljs-comment">// using typedef</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">HUMAN</span> <span class="hljs-title">Human</span>;</span>
+
+<span class="hljs-comment">// print general info of human struct</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">print_status</span><span class="hljs-params">(Human human)</span></span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// create Adam and Eve variables</span>
+    <span class="hljs-comment">// Does't need to type struct HUMAN</span>
+    Human Adam = {<span class="hljs-number">31</span>, <span class="hljs-number">182</span>, <span class="hljs-number">75</span>, <span class="hljs-number">0</span>};
+    Human Eve = {<span class="hljs-number">27</span>, <span class="hljs-number">166</span>, <span class="hljs-number">48</span>, <span class="hljs-number">1</span>};
+
+    <span class="hljs-comment">// print status of both people</span>
+    print_status(Adam);
+    print_status(Eve);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">// print general info of human struct</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">print_status</span><span class="hljs-params">(Human human)</span></span>{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"-----------------------------------\n"</span>);
+
+    <span class="hljs-comment">// prints gender of human</span>
+    <span class="hljs-keyword">if</span>(human.gender == <span class="hljs-number">0</span>){
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"MALE\n"</span>);
+    } <span class="hljs-keyword">else</span>{
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"FEMALE\n"</span>);
+    }
+
+    <span class="hljs-comment">// prints age, height and weight of human</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"AGE: %d\n"</span>, human.age);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"HEIGHT: %d\n"</span>, human.<span class="hljs-built_in">height</span>);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"WEIGHT: %d\n"</span>, human.weight);
+
+    <span class="hljs-comment">// if the human is male and </span>
+    <span class="hljs-comment">// is taller than 180cm, he wins</span>
+    <span class="hljs-comment">// if not he loses</span>
+    <span class="hljs-keyword">if</span>(human.gender == <span class="hljs-number">0</span> &amp;&amp; human.<span class="hljs-built_in">height</span> &gt;= <span class="hljs-number">180</span>) {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"HE IS A WINNER!!\n"</span>);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (human.gender == <span class="hljs-number">0</span> &amp;&amp; human.<span class="hljs-built_in">height</span> &lt; <span class="hljs-number">180</span>){
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"HE IS A LOSER!! \n"</span>);
+    }
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"-----------------------------------\n"</span>);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>Much more simpler &amp; convenient</p>
+</blockquote>
+<blockquote>
+<p><strong>type def - Simple calculator program</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// simple calculator program</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-comment">// makes it so that when you type</span>
+<span class="hljs-comment">// CAL_TYPE, it means int</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">int</span> CAL_TYPE;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// integer variables input, a, b</span>
+    CAL_TYPE input;
+    CAL_TYPE a, b;
+
+    <span class="hljs-comment">// while true</span>
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>){
+        <span class="hljs-comment">// choices</span>
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"--- calculator --- \n"</span>);
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"1. add\n"</span>);
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"2. subtract\n"</span>);
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"3. exit\n"</span>);
+
+        <span class="hljs-comment">// user input a choice</span>
+        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;input);
+
+        <span class="hljs-comment">// if input is 1</span>
+        <span class="hljs-keyword">if</span>(input == <span class="hljs-number">1</span>){
+            <span class="hljs-comment">// user input two numbers</span>
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"two numbers: "</span>);
+            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>, &amp;a, &amp;b);
+            
+            <span class="hljs-comment">// adds them together</span>
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d and %d\'s sum: %d\n"</span>, a, b, a+b);
+
+        <span class="hljs-comment">// if input is 2</span>
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (input == <span class="hljs-number">2</span>){
+            <span class="hljs-comment">// user input two numbers</span>
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"two numbers: "</span>);
+            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>, &amp;a, &amp;b);
+
+            <span class="hljs-comment">// subtracts them together</span>
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d and %d\'s difference: %d\n"</span>, a, b, a-b);
+        } <span class="hljs-keyword">else</span>{
+            <span class="hljs-comment">// if user input is 3,</span>
+            <span class="hljs-comment">// exit the program</span>
+            <span class="hljs-keyword">break</span>;
+        }
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>Int can be replaced easily with other datatypes<br>
+if the memory of the hardware is too weak.<br>
+You don't have to re-code the entire thing.</p>
+</blockquote>
+<blockquote>
+<p><strong>Uses of type def</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-comment">// function that adds two variables together</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span> </span>{<span class="hljs-keyword">return</span> a+b;}
+
+<span class="hljs-comment">// CAL_TYPE means int</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">int</span> CAL_TYPE;
+
+<span class="hljs-comment">// Padd means int* function(int parameter, int parameter)</span>
+<span class="hljs-function"><span class="hljs-keyword">typedef</span> <span class="hljs-title">int</span> <span class="hljs-params">(*Padd)</span><span class="hljs-params">(<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>)</span></span>;
+
+<span class="hljs-comment">// Arrays means int arr[10]</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">int</span> Arrays[<span class="hljs-number">10</span>];
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// assign a integer</span>
+    CAL_TYPE a = <span class="hljs-number">10</span>;
+
+    <span class="hljs-comment">// create an int array with 10 items</span>
+    Arrays arr = { <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">0</span> };
+    
+    <span class="hljs-comment">// create an pointer pointing to a </span>
+    <span class="hljs-comment">// integer function that has two integer vars</span>
+    Padd ptr = add;
+
+    <span class="hljs-comment">// print results/data of the variables</span>
+    <span class="hljs-built_in">printf</span>( <span class="hljs-string">"a: %d\n"</span>, a );
+    <span class="hljs-built_in">printf</span>( <span class="hljs-string">"arr[3] : %d\n"</span>, arr[<span class="hljs-number">3</span>] );
+    <span class="hljs-built_in">printf</span>( <span class="hljs-string">"add(3, 5) : %d \n"</span>, ptr(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>) );
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>**</p>
+</blockquote>
+<h3 id="volatile"><strong>volatile:</strong></h3>
+<blockquote>
+<p>What is volatile?</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">/*
+    DISCLAIMER:
+    CODE WILL CREATE INFINITE LOOP
+    NO SENSORS CONNECTED =
+    NO CHANGE IN FLAG
+*/</span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;Stdio.h&gt;</span></span>
+
+<span class="hljs-comment">// Sensor struct with data and flag</span>
+<span class="hljs-comment">// already type def</span>
+<span class="hljs-comment">// so can just use SENSOR</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">SENSOR</span>{</span>
+    <span class="hljs-keyword">int</span> sensor_flag;
+    <span class="hljs-keyword">int</span> data;
+} SENSOR;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// volatile means the compiler doesn't change or</span>
+    <span class="hljs-comment">// modify the code in any way</span>
+    <span class="hljs-comment">// this only applies to code with SENSOR</span>
+    <span class="hljs-keyword">volatile</span> SENSOR *sensor;
+    
+    <span class="hljs-comment">// while there are no values</span>
+    <span class="hljs-keyword">while</span>(!(sensor-&gt;sensor_flag)){
+        <span class="hljs-comment">// doesn't do anything</span>
+    }
+
+    <span class="hljs-comment">// while(1){</span>
+    <span class="hljs-comment">//     if(sensor-&gt;sensor_flag) break;</span>
+    <span class="hljs-comment">// }</span>
+    
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Data : %d\n"</span>, sensor-&gt;data);
+}
+</div></code></pre>
+<blockquote>
+<p>If we don't use volatile<br>
+The code will compile like this:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (!(sensor-&gt;sensor_flag)) {
+    <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) {
+    } 
+}
+</div></code></pre>
+<blockquote>
+<p>Which is not the same as what we coded</p>
+</blockquote>
+<h3 id="pragma"><strong>pragma</strong></h3>
+<blockquote>
+<p>What does Pragma do?</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-comment">// processes bytes in 1s not 4s</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> pack(1)</span>
+
+<span class="hljs-comment">// structure called Weird</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Weird</span> {</span>
+    <span class="hljs-keyword">char</span> arr[<span class="hljs-number">2</span>];
+    <span class="hljs-keyword">int</span> i;
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Weird</span> <span class="hljs-title">a</span>;</span>
+    <span class="hljs-comment">// prints the size of struct</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"size of a : %lu \n"</span>, <span class="hljs-keyword">sizeof</span>(a));
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>This returns 6 (1x2 bytes ( char[2] ) + 4 bytes( int ))<br>
+If we don't use pragma we get 8<br>
+Since computers are faster when they count in 4 bytes<br>
+Garbage value also comes when this happens<br>
+Potentially causing errors</p>
+</blockquote>
+<blockquote>
+<p>Pragma Input</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// 07_weird.c</span>
+
+<span class="hljs-comment">// if main code does not have struct called Weird,</span>
+<span class="hljs-comment">// define it</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> WEIRD_H</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> WEIRD_H</span>
+
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Weird</span> {</span>
+    <span class="hljs-keyword">char</span> arr[<span class="hljs-number">2</span>];
+    <span class="hljs-keyword">int</span> i;
+};
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">// main code</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-comment">// include header file 3 times</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"07_weird.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"07_weird.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"07_weird.h"</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Weird</span> <span class="hljs-title">a</span>;</span>
+    a.i = <span class="hljs-number">3</span>;
+
+    <span class="hljs-comment">// print valuie of struct</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Weird Structure a.i : %d \n"</span>, a.i);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>if we didn't check if the struct was already defined<br>
+errors would have happened</p>
+</blockquote>
+<blockquote>
+<p>There is a way to shorten this though, called:<br>
+Pragma_once</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// header file</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> once</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Weird</span> {</span>
+    <span class="hljs-keyword">char</span> arr[<span class="hljs-number">2</span>];
+    <span class="hljs-keyword">int</span> i;
+};
+</div></code></pre>
+<blockquote>
+<p>However you shouldn't always use this<br>
+since this is os dependent and might<br>
+not work or work differently</p>
+</blockquote>
+<h3 id="files"><strong>files</strong></h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// File is a struct</span>
+    <span class="hljs-comment">// fp is a pointer pointing to the file</span>
+    FILE *fp;
+
+    <span class="hljs-comment">// open file called a.txt and allow</span>
+    <span class="hljs-comment">// to write</span>
+    <span class="hljs-comment">// This locks the file for other programs</span>
+    fp = fopen(<span class="hljs-string">"a.txt"</span>, <span class="hljs-string">"w"</span>);
+
+    <span class="hljs-comment">// if the fp is null, show an error</span>
+    <span class="hljs-keyword">if</span>(fp == <span class="hljs-literal">NULL</span>) {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Write Error!!\n"</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+    
+    <span class="hljs-comment">// replace all text with hello world </span>
+    <span class="hljs-built_in">fputs</span>(<span class="hljs-string">"Hello World!!! \n"</span>, fp);
+
+    <span class="hljs-comment">// unlocks the file for other programs</span>
+    fclose(fp);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>This is how we can acces files and edit, write, delete and read them.</p>
+</blockquote>
+<blockquote>
+<p>Streams are the connection between<br>
+The OS and outside things like <br>
+the monitor, mouse and keyboard</p>
+</blockquote>
+<blockquote>
+<p>We can lock these streams by closing them</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// stdout and stdin are both files</span>
+    <span class="hljs-comment">// meaning you can close them</span>
+    fclose(<span class="hljs-built_in">stdout</span>);
+    fclose(<span class="hljs-built_in">stdin</span>);
+
+    <span class="hljs-keyword">int</span> var;
+
+    <span class="hljs-comment">// these do not work because you have</span>
+    <span class="hljs-comment">// closed both files</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"aaa"</span>);
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;var);
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>Getting information from files</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// open the file called a.txt</span>
+    <span class="hljs-comment">// to read</span>
+    FILE *fp = fopen(<span class="hljs-string">"./a.txt"</span>, <span class="hljs-string">"r"</span>);
+    
+    <span class="hljs-comment">// assign an array called</span>
+    <span class="hljs-comment">// buffer with 20 characters available</span>
+    <span class="hljs-keyword">char</span> buf[<span class="hljs-number">20</span>];
+
+    <span class="hljs-comment">// if file is null show error</span>
+    <span class="hljs-keyword">if</span>(fp == <span class="hljs-literal">NULL</span>){
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"READ ERROR !!\n"</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+
+    <span class="hljs-comment">// access 20 characters from the file</span>
+    <span class="hljs-comment">// and put it into buf</span>
+    fgets(buf, <span class="hljs-number">20</span>, fp);
+
+    <span class="hljs-comment">// print the information inputted</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"inputting information: %s \n"</span>, buf);
+    
+    <span class="hljs-comment">// close the file</span>
+    fclose(fp);
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+
+</body>
+</html>

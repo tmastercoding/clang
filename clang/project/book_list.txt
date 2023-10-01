@@ -1,0 +1,25 @@
+Number of books: 4
+No. 1
+Book name: The old man and sea
+Author name: Earnest Hemmingway
+Publisher name: Penguin
+Borrowed: NO
+--------------------------------
+No. 2
+Book name: Percy Jackson
+Author name: Rick Riordan
+Publisher name: Disney Hyperion
+Borrowed: NO
+--------------------------------
+No. 3
+Book name: Percy Jackson 2
+Author name: Rick Riordan
+Publisher name: Disney Hyperion
+Borrowed: NO
+--------------------------------
+No. 4
+Book name: Nudge
+Author name: Richard H. Thaler
+Publisher name: Penguin
+Borrowed: NO
+--------------------------------

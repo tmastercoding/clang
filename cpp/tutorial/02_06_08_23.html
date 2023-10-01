@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>02_06_08_23.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="august-6th-2023--cpp"><strong>August 6th 2023- cpp</strong></h2>
+<blockquote>
+<p><strong>Boolean Values</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// assign boolean values true and false</span>
+<span class="hljs-keyword">bool</span> isCodingFun = <span class="hljs-literal">true</span>;
+<span class="hljs-keyword">bool</span> isFishTasty = <span class="hljs-literal">false</span>;
+
+<span class="hljs-comment">// print variables</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; isCodingFun &lt;&lt; <span class="hljs-string">"\n"</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; isFishTasty &lt;&lt; <span class="hljs-built_in">endl</span>;
+</div></code></pre>
+<blockquote>
+<p>C++ has a boolean type that is either true or false<br>
+They are actually just 1 for true and 0 for false <br>
+when you print them</p>
+</blockquote>
+<blockquote>
+<p><strong>Boolean Expressions</strong>
+Greater than:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> x = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">int</span> y = <span class="hljs-number">9</span>;
+
+<span class="hljs-comment">// print if x is greater than y</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; (x &gt; y) &lt;&lt; <span class="hljs-built_in">endl</span>;
+</div></code></pre>
+<blockquote>
+<p>Less than:</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> x = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">int</span> y = <span class="hljs-number">9</span>;
+
+<span class="hljs-comment">// print if x is greater than y</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; (x &gt; y) &lt;&lt; <span class="hljs-built_in">endl</span>;
+</div></code></pre>
+<blockquote>
+<p>Equal to</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> x = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">int</span> y = <span class="hljs-number">9</span>;
+
+<span class="hljs-comment">// print if x is equal to y</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; (x == y) &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-comment">// print if x is equal to 10</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; (x == <span class="hljs-number">10</span>) &lt;&lt; <span class="hljs-built_in">endl</span>;
+</div></code></pre>
+<blockquote>
+<p>These boolean expressions can be used in if statements<br>
+and to compare different variables<br>
+These always return true or false</p>
+</blockquote>
+<blockquote>
+<p><strong>Real life example - are you old enough to vote?</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> myAge = <span class="hljs-number">11</span>;
+<span class="hljs-keyword">int</span> votingAge = <span class="hljs-number">18</span>;
+
+<span class="hljs-comment">// cout &lt;&lt; (myAge &gt;= votingAge) &lt;&lt; endl;</span>
+
+<span class="hljs-comment">// if myAge is greater than or equal to votingAge</span>
+<span class="hljs-keyword">if</span>(myAge &gt;= votingAge){
+    <span class="hljs-comment">// Print:</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Old enough to vote!"</span>;
+<span class="hljs-comment">// else</span>
+} <span class="hljs-keyword">else</span>{
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Not old enough to vote BABY!"</span>;
+}
+</div></code></pre>
+<blockquote>
+<p><strong>If statements</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> x = <span class="hljs-number">20</span>;
+<span class="hljs-keyword">int</span> y = <span class="hljs-number">18</span>;
+
+<span class="hljs-comment">// if(statement){</span>
+<span class="hljs-comment">// if x is greater than y</span>
+<span class="hljs-keyword">if</span>(x &gt; y){
+    <span class="hljs-comment">// do:</span>
+    <span class="hljs-comment">// print 20 is greater than 18</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"20 is greater than 18"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    }
+</div></code></pre>
+<blockquote>
+<p><strong>Else statements</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> time = <span class="hljs-number">20</span>;
+
+<span class="hljs-comment">// if(statement){}</span>
+<span class="hljs-comment">// time is less than 18</span>
+<span class="hljs-keyword">if</span>(time &lt; <span class="hljs-number">18</span>){
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Good day"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-comment">// else{</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// if all other statements are false:</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Good evening."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+}
+</div></code></pre>
+<blockquote>
+<p><strong>Else if statement</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> time = <span class="hljs-number">22</span>;
+
+<span class="hljs-comment">// if(statement){</span>
+<span class="hljs-comment">// if time is greater than 10</span>
+<span class="hljs-keyword">if</span>(time &lt; <span class="hljs-number">10</span>){
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Good morning."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+<span class="hljs-comment">// else if(statement){}</span>
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (time &lt; <span class="hljs-number">20</span>) {
+    <span class="hljs-comment">// if other statements before this was false</span>
+    <span class="hljs-comment">// and if this statement is true</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">" Good day."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+<span class="hljs-comment">// else{</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// if all other statements are false:</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Good evening."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+}
+
+<span class="hljs-comment">// in tenary form or short form</span>
+<span class="hljs-comment">// (statement) ? (if true do this) : (else)</span>
+
+<span class="hljs-comment">// if else in tenary form</span>
+<span class="hljs-comment">// add another statement after : (else)</span>
+<span class="hljs-built_in">string</span> greeting = (time &lt; <span class="hljs-number">10</span>) ? <span class="hljs-string">"Good morning."</span> : 
+                    (time &lt; <span class="hljs-number">20</span>) ? <span class="hljs-string">"Good day."</span>     :
+                                <span class="hljs-string">"Good evening."</span>;
+                                
+<span class="hljs-built_in">cout</span> &lt;&lt; greeting &lt;&lt; <span class="hljs-built_in">endl</span>;
+</div></code></pre>
+<blockquote>
+<p>Sometimes writing in short form is worse since it<br>
+reduces readability and makes your code hard to change</p>
+</blockquote>
+<blockquote>
+<p><strong>Switch Case</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> day = <span class="hljs-number">4</span>;
+<span class="hljs-built_in">string</span> output_str;
+<span class="hljs-comment">// switch(variable){}</span>
+<span class="hljs-keyword">switch</span>(day) {
+    <span class="hljs-comment">// case number (if variable is this number)</span>
+    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+        output_str = <span class="hljs-string">"Monday"</span>;
+        <span class="hljs-comment">// always break the case</span>
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+        output_str = <span class="hljs-string">"Tuesday"</span>;
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+        output_str = <span class="hljs-string">"Wednesday"</span>;
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:
+        output_str = <span class="hljs-string">"Thursday"</span>;
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:
+        output_str = <span class="hljs-string">"Friday"</span>;
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:
+        output_str = <span class="hljs-string">"Saturday"</span>;
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">7</span>:
+        output_str = <span class="hljs-string">"Sunday"</span>;
+        <span class="hljs-keyword">break</span>; 
+    <span class="hljs-comment">// if variable is none of the cases above</span>
+    <span class="hljs-comment">// do:</span>
+    <span class="hljs-keyword">default</span>:
+        output_str = <span class="hljs-string">"Looking forward to the Weekend! I HATE MONDAYS"</span>;
+}
+<span class="hljs-comment">// print output string</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; output_str &lt;&lt; <span class="hljs-built_in">endl</span>;
+</div></code></pre>
+<blockquote>
+<p>Use switch when you get input from users</p>
+</blockquote>
+<blockquote>
+<p><strong>While loop</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// while (statement) is true</span>
+<span class="hljs-keyword">while</span>( i &lt; <span class="hljs-number">5</span> ){
+    <span class="hljs-comment">// do:</span>
+    <span class="hljs-comment">// print i</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">"\n"</span>;
+    <span class="hljs-comment">// increase idx</span>
+    i++;
+}
+</div></code></pre>
+<blockquote>
+<p><strong>Do while loop</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// do this first</span>
+<span class="hljs-keyword">do</span> {
+    <span class="hljs-comment">// print idx</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-comment">// increase idx</span>
+    i++;
+<span class="hljs-comment">// keep going if statement is true</span>
+} <span class="hljs-keyword">while</span>( i &lt; <span class="hljs-number">5</span> );
+</div></code></pre>
+<blockquote>
+<p><strong>For loop</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// (set idx; statement; change idx)</span>
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++){
+    <span class="hljs-comment">// print i</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">"\n"</span>;
+}
+</div></code></pre>
+<blockquote>
+<p><strong>For loop pt. 2</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// you can change the idx in any way</span>
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i = i+<span class="hljs-number">2</span>){
+    <span class="hljs-built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="hljs-built_in">endl</span>;
+}
+</div></code></pre>
+<blockquote>
+<p><strong>Nested loop</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// you can put outer: and inner:</span>
+<span class="hljs-comment">// to differentiate the nested loops</span>
+
+<span class="hljs-comment">// outer is done 2 times</span>
+outer:
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> idx = <span class="hljs-number">1</span>; idx &lt;= <span class="hljs-number">2</span>; ++idx){
+    <span class="hljs-comment">// print idx</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Outer: "</span> &lt;&lt; idx &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-comment">// inner is done 3 times each outer</span>
+    inner:
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> jdx = <span class="hljs-number">1</span>; jdx &lt;= <span class="hljs-number">3</span>; ++jdx){
+        <span class="hljs-comment">// print jdx</span>
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Inner: "</span> &lt;&lt; jdx &lt;&lt; <span class="hljs-built_in">endl</span>;
+    }
+}
+<span class="hljs-comment">// 2 x 3 = 6</span>
+<span class="hljs-comment">// inner is done 6 times in total</span>
+</div></code></pre>
+<blockquote>
+<p><strong>Foreach loop</strong></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment">// array to loop</span>
+<span class="hljs-keyword">int</span> myNumbers[<span class="hljs-number">5</span>] = {<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>, <span class="hljs-number">50</span>};
+
+<span class="hljs-comment">// for(variable: array){</span>
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i : myNumbers){
+    <span class="hljs-comment">// each variable is a variable from array</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="hljs-built_in">endl</span>;
+}
+</div></code></pre>
+
+</body>
+</html>

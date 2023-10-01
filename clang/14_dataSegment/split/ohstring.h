@@ -1,0 +1,1 @@
+char compare(char *pre, char *post);
