@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>01_06_08_23.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="nypc-2022-practice-question-01"><strong>NYPC 2022 Practice Question 01</strong></h2>
+<blockquote>
+<p>Validate race record question<br>
+Used Python</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-comment"># Must print Yes if all records are valid</span>
+<span class="hljs-comment"># And no if a record is invalid</span>
+
+<span class="hljs-comment"># A record is invalid if:</span>
+<span class="hljs-comment"># User starts a race before previous race has been finished</span>
+<span class="hljs-comment"># User finishes a race  before starting a race</span>
+<span class="hljs-comment"># Race takes under (excluding) 60 seconds</span>
+<span class="hljs-comment"># If race does not finish</span>
+
+<span class="hljs-comment">#### file format ####</span>
+<span class="hljs-comment"># (number of players) (number of total logs)</span>
+<span class="hljs-comment"># (time) (player number) (start(0) or finish(1))</span>
+
+<span class="hljs-comment"># Read log file</span>
+<span class="hljs-comment"># Pre process file</span>
+<span class="hljs-comment"># Check if each record is valid</span>
+<span class="hljs-comment"># Print outcome</span>
+
+<span class="hljs-comment"># Read log file function</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">readLogFile</span><span class="hljs-params">( filename )</span>:</span>
+    <span class="hljs-comment"># Open the log file without so that you</span>
+    <span class="hljs-comment"># Don't need to close it using with as:</span>
+    <span class="hljs-keyword">with</span> open( <span class="hljs-string">f'./data/<span class="hljs-subst">{filename}</span>'</span>) <span class="hljs-keyword">as</span> f:
+        <span class="hljs-comment"># get the first line of the file</span>
+        <span class="hljs-comment"># to get the number of players </span>
+        <span class="hljs-comment"># and number of total logs into a tuple</span>
+        header = tuple(f.readline().split())
+
+        <span class="hljs-comment"># read the rest of the lines and put it into a list called logs </span>
+        logs = f.readlines()
+
+    <span class="hljs-comment"># create an empty list called data</span>
+    data = list()
+    
+    <span class="hljs-comment"># loop the logs list</span>
+    <span class="hljs-keyword">for</span> log <span class="hljs-keyword">in</span> logs:
+        <span class="hljs-comment"># print( log.replace('\n','').split() )</span>
+        <span class="hljs-comment"># data.append( tuple(log.replace('\n','').split()) )</span>
+
+        <span class="hljs-comment"># get rid of the "new line"s and split the log, </span>
+        <span class="hljs-comment"># and turn all the numbers into integers</span>
+        <span class="hljs-comment"># put all of this into a tuple and add it to data</span>
+        data.append(tuple(map( <span class="hljs-keyword">lambda</span> x: int(x), log.replace(<span class="hljs-string">'\n'</span>,<span class="hljs-string">''</span>).split()))) 
+
+    <span class="hljs-comment"># return header and data that is a tuple </span>
+    <span class="hljs-keyword">return</span> header, tuple(data)
+
+<span class="hljs-comment"># tuple of all filenames</span>
+filenames = (
+    <span class="hljs-string">'log_01.log'</span>,
+    <span class="hljs-string">'log_02.log'</span>,
+    <span class="hljs-string">'log_03.log'</span>,
+    <span class="hljs-string">'log_04.log'</span>,
+    <span class="hljs-string">'log_05.log'</span>,
+)
+
+<span class="hljs-comment"># create a list for all the files' data</span>
+files = list()
+
+<span class="hljs-comment"># loop filenames</span>
+<span class="hljs-keyword">for</span> filename <span class="hljs-keyword">in</span> filenames:
+    <span class="hljs-comment"># add a dictionary</span>
+    <span class="hljs-comment"># with the filename, header and data</span>
+    files.append({
+        <span class="hljs-string">'filename'</span>: filename,
+        <span class="hljs-string">'header'</span>: readLogFile(filename)[<span class="hljs-number">0</span>],
+        <span class="hljs-string">'logs'</span>: readLogFile(filename)[<span class="hljs-number">1</span>]
+        })
+
+<span class="hljs-comment"># header = logfile[0]</span>
+<span class="hljs-comment"># records = logfile[1]</span>
+
+<span class="hljs-comment"># print("header: ", header, "\nrecords: ", records)</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">validateLog</span><span class="hljs-params">(file)</span>:</span>
+    <span class="hljs-comment"># get the player count of the file using header</span>
+    player_count = int(file.get(<span class="hljs-string">'header'</span>)[<span class="hljs-number">0</span>])
+    no_of_logs = int(file.get(<span class="hljs-string">'header'</span>)[<span class="hljs-number">1</span>])
+
+    <span class="hljs-comment"># create a flag with boolean value</span>
+    flag = <span class="hljs-literal">True</span>
+
+    <span class="hljs-comment"># if player_count doubled is not equal to the number of logs</span>
+    <span class="hljs-comment"># (meaning that one or more players have an odd number of logs</span>
+    <span class="hljs-comment"># meaning player disobeyed a rule)</span>
+    <span class="hljs-keyword">if</span> player_count * <span class="hljs-number">2</span> != no_of_logs:
+        <span class="hljs-comment"># print area of error</span>
+        print(<span class="hljs-string">'zero : No'</span>)
+        
+        <span class="hljs-comment"># set the flag to false</span>
+        flag = <span class="hljs-literal">False</span>
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-comment"># create a dictionary</span>
+        log_d = dict()
+
+        <span class="hljs-comment"># loop the logs of the file</span>
+        <span class="hljs-keyword">for</span> log <span class="hljs-keyword">in</span> file.get(<span class="hljs-string">'logs'</span>):
+            <span class="hljs-comment"># assign each number of the log to time, player and startend</span>
+            time, player, startend = log
+
+            <span class="hljs-comment"># print the time, player and startend</span>
+            print( <span class="hljs-string">f'<span class="hljs-subst">{time}</span>, <span class="hljs-subst">{player}</span>, <span class="hljs-subst">{startend}</span>'</span>)
+            
+            <span class="hljs-comment"># print all the keys of the log dict</span>
+            print( <span class="hljs-string">f'<span class="hljs-subst">{log_d.keys()}</span>'</span>)
+
+            <span class="hljs-comment"># if the player was already in log_dict</span>
+            <span class="hljs-keyword">if</span> player <span class="hljs-keyword">in</span> log_d.keys():
+
+                <span class="hljs-comment"># if the player was finishing the game</span>
+                <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> (startend == <span class="hljs-number">0</span>):
+
+                    <span class="hljs-comment"># if the time - the prev log's time </span>
+                    <span class="hljs-comment"># was less than 60</span>
+                    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> (time - log_d.get(player)[<span class="hljs-number">0</span>] &gt; <span class="hljs-number">60</span>):
+
+                        <span class="hljs-comment"># print area of error</span>
+                        print(<span class="hljs-string">'first : No'</span>)
+
+                        <span class="hljs-comment"># make the flag false</span>
+                        flag = <span class="hljs-literal">False</span>
+
+                        <span class="hljs-comment"># break loop</span>
+                        <span class="hljs-keyword">break</span>
+                    
+                    <span class="hljs-comment"># delete the player's data</span>
+                    log_d.pop(player)
+
+                <span class="hljs-comment"># if the player was starting the game</span>
+                <span class="hljs-keyword">else</span>:
+
+                    <span class="hljs-comment"># print the area of error</span>
+                    print( <span class="hljs-string">'middle : No'</span> )
+
+                    <span class="hljs-comment"># switch the flag</span>
+                    flag = <span class="hljs-literal">False</span>
+
+                    <span class="hljs-comment"># break the loop</span>
+                    <span class="hljs-keyword">break</span>
+
+            <span class="hljs-comment"># if the player wasn't already in log_dict</span>
+            <span class="hljs-keyword">else</span>:
+
+                <span class="hljs-comment"># if the player is starting a game</span>
+                <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> (startend == <span class="hljs-number">1</span>):
+                    
+                    <span class="hljs-comment"># add the current info of the player to </span>
+                    <span class="hljs-comment"># the dictionary</span>
+                    log_d.update({
+                        player : (time, startend)
+                    })
+                <span class="hljs-comment"># if the player is finishing a game</span>
+                <span class="hljs-keyword">else</span>:
+
+                    <span class="hljs-comment"># print area of error</span>
+                    print( <span class="hljs-string">'last : No'</span> )
+
+                    <span class="hljs-comment"># set flag to false</span>
+                    flag = <span class="hljs-literal">False</span>
+
+                    <span class="hljs-comment"># break loop</span>
+                    <span class="hljs-keyword">break</span>
+
+    <span class="hljs-comment"># if flag is true</span>
+    <span class="hljs-keyword">if</span> flag:
+        <span class="hljs-comment"># print yes</span>
+        print( <span class="hljs-string">'yes'</span> )
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-comment"># print no</span>
+        print( <span class="hljs-string">'no'</span> )
+
+<span class="hljs-comment"># loop files </span>
+<span class="hljs-keyword">for</span> file <span class="hljs-keyword">in</span> files:
+    <span class="hljs-comment"># validate the log of each file</span>
+    validateLog(file)
+</div></code></pre>
+
+</body>
+</html>
