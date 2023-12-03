@@ -1,0 +1,1 @@
+( i == 0 )? (num1 * (num2[i]-'0')) : num2ToInt + (num1 * (num2[i]-'0'))
