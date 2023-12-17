@@ -45,6 +45,7 @@ Output:
 
 #include <iostream>
 #include <string>
+#include <stdlib.h>
 using namespace std;
 
 struct Currency{
@@ -52,9 +53,63 @@ struct Currency{
     double costOfHKD;
 };
 
+int getTotWage(int numOfSal, int numOfCur, Currency* curList){
+    int tot = 0;
+    int wage = 0;
+    string currency = "\0";
+
+    for(int idx = 0; idx < numOfSal; idx++){
+        wage = 0;
+        currency = "\0";    
+        cin >> wage >> currency;
+
+        for(int jdx = 0; jdx < numOfCur; jdx++){
+            if(!(currency.compare(curList[jdx].name))){
+                // cout << curList[jdx].name << endl;
+                tot += wage / curList[jdx].costOfHKD ;
+            } else if(!(currency.compare("HKD"))){
+                // cout << "HKD" << endl;
+                tot += wage;
+            }
+        }
+    }
+
+    return tot;
+}
+
 int main(){
-    int numOfCur;
+    int numOfCur = 0;
     cin >> numOfCur;
-    int 
+    Currency *curList = (Currency *)malloc(numOfCur * sizeof(Currency));
+    for(int idx = 0; idx < numOfCur; idx++){
+        cin >> curList[idx].name >> curList[idx].costOfHKD;
+    }
+    // for(int idx = 0; idx < numOfCur; idx++){
+    //     cout << curList[idx].name << " " << curList[idx].costOfHKD << endl;
+    // }
+
+    int numOfSal = 0;
+    cin >> numOfSal;
+    int wTot = getTotWage(numOfSal, numOfCur, curList);
+    int wAvg = wTot/numOfSal;
+    // cout << wTot << endl;
+    // cout << wAvg << endl;
+
+    int mTot = getTotWage(numOfSal, numOfCur, curList);
+    int mAvg = mTot/numOfSal;
+    // cout << mTot << endl;
+    // cout << mAvg << endl;
+
+
+    int dif = mAvg - wAvg;
+    if(dif < 0){
+        dif = 0 - dif;
+    }
+    cout << dif << endl;
+    // for(int idx = 0; idx < numOfCur; idx++){
+    //     free(curList[idx]);
+    // }
+    free(curList);
+
     return 0;
 }
