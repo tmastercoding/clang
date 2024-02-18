@@ -2,6 +2,12 @@
 #include <string>
 using namespace std;
 
+/**
+ * @date 23.12.17
+ * @author Oh Tay
+ * @details A program splitting a char array, turning each term into int
+*/
+
 int main(){
 
     // char arr

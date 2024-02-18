@@ -16,7 +16,7 @@ Unfortunately for you, it seems like the UN changes the denominations of the coi
 as they try to find the set that works the best. 
 This means that you’ll have to start all of your calculations from scratch each time. 
 
-There will always be a $1 coin, and each denomination will be a distinct integer value.
+There will always be a $1 coin, and deach denomination will be a distinct integer value.
 
 Input Specifications:
 N, the number of coins in the set of denominations

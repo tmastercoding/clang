@@ -1,7 +1,40 @@
 #include <iostream>
 using namespace std;
 
-int main(){
+void print_flag() {
+
+    int record;
+    char flag;
+
+    cin >> record;
+
+    record /=10;
+
+    switch(record) {
+        case 10:
+            flag = 'A';
+            break;
+        case 9:
+            flag = 'A';
+            break;
+        case 8:
+            flag = 'B';
+            break;
+        case 7:
+            flag = 'C';
+            break;
+        case 6:
+            flag = 'D';
+            break;
+        default:
+            flag = 'F';
+            break;
+    }
+
+    cout << flag << endl;
+}
+
+int main(){ 
     int grade;
     cin >> grade;
 

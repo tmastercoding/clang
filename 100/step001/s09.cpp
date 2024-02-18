@@ -12,6 +12,5 @@ int main(){
     cout << ( a * b ) % c << endl;
     cout << ( ( a % c) * (b % c ) ) % c << endl;
 
-
     return 0;
 }
