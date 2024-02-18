@@ -1,6 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * @author 
+ * @since
+ * @implements |
+ *   
+ *    - reverse ?
+ *    - main ?
+*/
+
 // reverse func
 void reverse(int start, int end, int size, int* arr);
 
