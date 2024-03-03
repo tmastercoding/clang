@@ -3,8 +3,6 @@
 #include <vector>
 using namespace std;
 
-// int maxItem()
-
 int main(){
     int count = 3;
     const int size = 100;
@@ -26,17 +24,26 @@ int main(){
         p = strtok(NULL, sep);
     }
 
+    for(int val: scores){
+        cout << val << endl;
+    }
+
     int v_max_value = *max_element( scores.begin(), scores.end());
     int v_max_index = max_element( scores.begin(), scores.end()) - scores.begin();
     
     cout << v_max_value << ' ' << v_max_index << endl;
-    
-    vector<int>::iterator iter;
-    for( iter = scores.begin() ; iter != scores.end(); ++iter )
 
-    for(int score: scores){
-        total += (float)score/v_max_value*100;
+    // auto calc = [](int &n, int v_max_value){(float)n/v_max_value*100;};
+    vector<int>::iterator iter;
+    // for_each(scores.begin(), scores.end(), calc);
+
+    for( iter = scores.begin() ; iter != scores.end(); iter++){
+        total += (float)(*iter)/v_max_value*100;
     }
+
+    // for(int score: scores){
+    //     total += (float)score/v_max_value*100;
+    // }
 
     avg = total/count;
 

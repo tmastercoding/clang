@@ -2,12 +2,14 @@
 #include <stdlib.h>
 
 /**
- * @author 
- * @since
+ * @author Tay Oh
+ * @date 18.02.24 
  * @implements |
  *   
- *    - reverse ?
- *    - main ?
+ *    - reverse : reverses an array
+ *    - main : creates array of baskets 1-basketSize
+ *             gets input for commands
+ *             reverses, outputs
 */
 
 // reverse func
