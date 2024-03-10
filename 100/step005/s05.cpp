@@ -45,10 +45,6 @@ int main(){
         }
     } 
 
-    for(int i : v){
-        cout << i << endl;
-    }
-
     struct Sum {
         void operator() (int n){sum += n;}
         int sum{0};
