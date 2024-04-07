@@ -19,10 +19,10 @@ int main(){
     printf("%d\n", idx);
 
     // sizeof method
-    char* text = (char* )malloc(idx * sizeof(char));
-    strcpy(text, buffer);
+    // char* text = (char* )malloc(idx * sizeof(char));
+    // strcpy(text, buffer);
 
-    printf("%lu\n", sizeof(text));
+    // printf("%lu\n", sizeof(text));
 
 
     return 0;

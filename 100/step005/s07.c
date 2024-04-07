@@ -8,7 +8,7 @@ int strToInt(const char *s);
 int main(){
     // declare variables
 
-    char* number = (char *)malloc(10);
+    char* number = (char*)malloc(10);
     scanf("%s", number);
     // printf("%s", number);
     printf("%d\n", strToInt(number));

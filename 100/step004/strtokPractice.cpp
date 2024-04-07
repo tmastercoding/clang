@@ -10,12 +10,22 @@ int main(){
     char sep[] = " ";
 
     cin.getline(buffer, size, '\n');
+
+    char* p = strtok(buffer, sep);
+
+    while(p != NULL){
+        v.push_back(stoi(p));
+        p = strtok(NULL, sep);
+    }
+
+    cin.getline(buffer, size, '\n');
     char* p = strtok(buffer, sep);
 
     while(p != NULL){
         v.push_back(stoi(p));
         strtok(NULL, sep);
     }
+
 
     return 0;
 }

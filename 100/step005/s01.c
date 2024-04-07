@@ -14,6 +14,7 @@ int main(){
         buffer[idx++] = c;
     }
 
+    // put buffer into malloc
     char* text = (char* )malloc(idx+1 * sizeof(char));
     strcpy(text, buffer);
 

@@ -24,7 +24,7 @@ int main(){
 
     // input lines
     char line[line_size] = {'\0',};
-    map<int, string> lines;
+    vector<pair<int, string>> lines;
 
     // input times
     cin >> times;
@@ -32,14 +32,13 @@ int main(){
 
     // input lines
     while(idx < times){
-        cin.getline(line, line_size, dlm);
-        
+         
         // tokenise
         buffer = strtok(line, sep);
         buffer2 = strtok(NULL, sep);
 
         // insert as pair
-        lines.insert( pair<int, string>(stoi(buffer), buffer2));
+        lines.push_back( pair<int, string>(stoi(buffer), buffer2));
         idx++;
     }
 
@@ -47,7 +46,7 @@ int main(){
     // for_each(lines.begin(), lines.end(), print);
     
     // output
-    for(map<int, string>:: iterator it = lines.begin(); it != lines.end(); it++){
+    for(vector<pair<int, string>>:: iterator it = lines.begin(); it != lines.end(); it++){
         for(int idx = 0; idx < it->second.length(); idx++){
             for(int repeat = 0; repeat < it->first; repeat++){
                 cout << it->second[idx];
