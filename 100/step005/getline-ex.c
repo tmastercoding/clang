@@ -6,8 +6,6 @@ int main() {
 
     char* line = NULL;
     size_t len = 0;
-    FILE* stream = stdin;
-
     while( getline( &line, &len, stdin) != -1 ) {
         puts( line );
         

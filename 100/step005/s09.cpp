@@ -13,7 +13,7 @@ int main(){
     vector<int> v;
 
     getline(cin, line);
-
+    
     istringstream iss(line);
     
     while(getline(iss, buffer, sep)){
