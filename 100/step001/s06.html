@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>s06.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="baekjoon-solutions"><strong>Baekjoon Solutions:</strong></h1>
+<h2 id="step-1-output-and-operations"><strong>Step 1: Output and Operations</strong></h2>
+<h3 id="question-6-four-basic-operations"><strong>Question 6: Four Basic Operations</strong></h3>
+<h3 id="link-to-problem"><strong>link to problem:</strong></h3>
+<p><a href="https://www.acmicpc.net/problem/10869">https://www.acmicpc.net/problem/10869</a></p>
+<h4 id="korean-ver"><strong>Korean ver</strong>:</h4>
+<pre class="hljs"><code><div>문제
+두 자연수 A와 B가 주어진다. 이때, A+B, A-B, A*B, A/B(몫), A%B(나머지)를 출력하는 프로그램을 작성하시오. 
+
+입력
+두 자연수 A와 B가 주어진다. (1 ≤ A, B ≤ 10,000)
+
+출력
+첫째 줄에 A+B, 둘째 줄에 A-B, 셋째 줄에 A*B, 넷째 줄에 A/B, 다섯째 줄에 A%B를 출력한다.
+
+예제 입력 1 
+7 3
+예제 출력 1 
+10
+4
+21
+2
+1
+</div></code></pre>
+<h4 id="english-ver"><strong>English ver</strong>:</h4>
+<pre class="hljs"><code><div>problem
+Two natural numbers A and B are given. At this time, write a program that outputs A+B, AB, A*B, A/B (quotient), and A%B (remainder). 
+
+input
+Two natural numbers A and B are given. (1 ≤ A, B ≤ 10,000)
+
+Print
+Prints A+B on the first line, A-B on the second line, A*B on the third line, A/B on the fourth line, and A%B on the fifth line.
+
+Example input 1 
+7 3
+Example output 1 
+10
+4 
+21
+2
+1
+</div></code></pre>
+<h3 id="c-solution"><strong>C++ Solution</strong>:</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-comment">// string class</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// declare int</span>
+    <span class="hljs-keyword">int</span> pre;
+    <span class="hljs-comment">// declare string</span>
+    <span class="hljs-built_in">string</span> post;
+
+    <span class="hljs-comment">// input</span>
+    <span class="hljs-built_in">cin</span> &gt;&gt; pre; 
+    <span class="hljs-built_in">cin</span> &gt;&gt; post;
+
+    <span class="hljs-comment">// cout &lt;&lt; stoi(post) &lt;&lt; endl;</span>
+    <span class="hljs-comment">// stoi() is used to convert string to int</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; pre + stoi(post) &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; pre - stoi(post) &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-function">pre * <span class="hljs-title">stoi</span><span class="hljs-params">(post)</span> &lt;&lt; <span class="hljs-built_in">endl</span></span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; pre / stoi(post) &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; pre % stoi(post) &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h3 id="c-solution"><strong>C Solution</strong>:</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-comment">// string.h for strlen</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string.h&gt;</span></span>
+
+<span class="hljs-comment">// get_input() ?</span>
+<span class="hljs-comment">// is_int() ? </span>
+<span class="hljs-comment">// to_int() ?</span>
+
+<span class="hljs-comment">// func that gets input and puts into num</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getNumInput</span><span class="hljs-params">(<span class="hljs-keyword">int</span> *num)</span></span>{
+    <span class="hljs-comment">// cdhar buffer all set to '\0'</span>
+    <span class="hljs-keyword">char</span> <span class="hljs-built_in">buffer</span>[<span class="hljs-number">10</span>] = {<span class="hljs-string">'\0'</span>, };
+    <span class="hljs-keyword">char</span> *p_buffer;
+    <span class="hljs-keyword">char</span> ch;
+    
+    <span class="hljs-comment">// ptr pointing to buffer</span>
+    p_buffer = <span class="hljs-built_in">buffer</span>;   
+    fflush(<span class="hljs-built_in">stdin</span>);
+
+    <span class="hljs-comment">// get input</span>
+    <span class="hljs-keyword">while</span>((ch = getchar()) != <span class="hljs-string">'\n'</span>){
+        <span class="hljs-comment">// if ch is number</span>
+        <span class="hljs-keyword">if</span>(<span class="hljs-string">'0'</span> &lt;= ch &amp;&amp; ch &lt;= <span class="hljs-string">'9'</span>){
+            <span class="hljs-comment">// add to buffer</span>
+            *p_buffer++ = ch;
+        } <span class="hljs-keyword">else</span>{
+            <span class="hljs-comment">// print error</span>
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Please only input numbers!\n"</span>);
+        }
+    }
+    
+    <span class="hljs-comment">// get length using strlen</span>
+    <span class="hljs-keyword">int</span> str_size = <span class="hljs-built_in">strlen</span>(<span class="hljs-built_in">buffer</span>);
+    <span class="hljs-comment">// printf("buffer: %s\n", buffer);</span>
+    <span class="hljs-comment">// printf("str_size: %d\n", str_size);</span>
+
+    <span class="hljs-comment">// loop buffer from last to start</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> idx = str_size<span class="hljs-number">-1</span>; idx &gt;= <span class="hljs-number">0</span>; idx--){
+        <span class="hljs-comment">// printf("idx: %d\n", idx);</span>
+        <span class="hljs-keyword">int</span> <span class="hljs-built_in">pow</span> = <span class="hljs-number">1</span>;
+        <span class="hljs-comment">// get power needed</span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> jdx = str_size-idx<span class="hljs-number">-1</span>; jdx &gt; <span class="hljs-number">0</span>; jdx--){
+            <span class="hljs-comment">// printf("jdx: %d\n", jdx);</span>
+            <span class="hljs-built_in">pow</span> *= <span class="hljs-number">10</span>;
+        }
+
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"pow: %d\n"</span>, <span class="hljs-built_in">pow</span>);
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"number: %d\n"</span>, (<span class="hljs-built_in">buffer</span>[idx]-<span class="hljs-string">'0'</span>));
+        <span class="hljs-comment">// multiply digit and number and add to num</span>
+        *(num) += ((<span class="hljs-built_in">buffer</span>[idx]-<span class="hljs-string">'0'</span>) * <span class="hljs-built_in">pow</span>);
+    }
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"num : %d\n"</span>, *num);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// two ints</span>
+    <span class="hljs-keyword">int</span> pre = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> post = <span class="hljs-number">0</span>;
+
+    <span class="hljs-comment">// get input </span>
+    getNumInput(&amp;pre);
+    getNumInput(&amp;post);
+
+    <span class="hljs-comment">// print each value</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"pre: %d\n"</span>, pre);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"post: %d\n"</span>, post);
+
+    <span class="hljs-comment">// do +, -, *, /, % for two numbers</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d + %d = %d\n"</span>, pre, post, pre+post);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d - %d = %d\n"</span>, pre, post, pre-post);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d * %d = %d\n"</span>, pre, post, pre*post);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d / %d = %d\n"</span>, pre, post, pre/post);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d %% %d = %d\n"</span>, pre, post, pre%post);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h3 id="all-code-can-be-found-on-my-github"><strong>all code can be found on my github</strong></h3>
+<p><a href="https://github.com/tmastercoding/clang/tree/main/100">https://github.com/tmastercoding/clang/tree/main/100</a></p>
+
+</body>
+</html>

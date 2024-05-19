@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>s07.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="baekjoon-solutions"><strong>Baekjoon Solutions:</strong></h1>
+<h2 id="step-2-conditional-statements"><strong>Step 2: Conditional Statements</strong></h2>
+<h3 id="question-7-three-dice"><strong>Question 7: Three Dice</strong></h3>
+<h3 id="link-to-problem"><strong>link to problem:</strong></h3>
+<p><a href="https://www.acmicpc.net/problem/2480">https://www.acmicpc.net/problem/2480</a></p>
+<h4 id="korean-ver"><strong>Korean ver</strong>:</h4>
+<pre class="hljs"><code><div>문제
+1에서부터 6까지의 눈을 가진 3개의 주사위를 던져서 다음과 같은 규칙에 따라 상금을 받는 게임이 있다.
+
+같은 눈이 3개가 나오면 10,000원+(같은 눈)×1,000원의 상금을 받게 된다.
+같은 눈이 2개만 나오는 경우에는 1,000원+(같은 눈)×100원의 상금을 받게 된다.
+모두 다른 눈이 나오는 경우에는 (그 중 가장 큰 눈)×100원의 상금을 받게 된다.
+예를 들어, 3개의 눈 3, 3, 6이 주어지면 상금은 1,000+3×100으로 계산되어 1,300원을 받게 된다. 또 3개의 눈이 2, 2, 2로 주어지면 10,000+2×1,000 으로 계산되어 12,000원을 받게 된다. 3개의 눈이 6, 2, 5로 주어지면 그중 가장 큰 값이 6이므로 6×100으로 계산되어 600원을 상금으로 받게 된다.
+
+3개 주사위의 나온 눈이 주어질 때, 상금을 계산하는 프로그램을 작성 하시오.
+
+입력
+첫째 줄에 3개의 눈이 빈칸을 사이에 두고 각각 주어진다.
+
+출력
+첫째 줄에 게임의 상금을 출력 한다.
+
+예제 입력 1 
+3 3 6
+
+예제 출력 1 
+1300
+
+예제 입력 2 
+2 2 2
+
+예제 출력 2 
+12000
+
+예제 입력 3 
+6 2 5
+
+예제 출력 3 
+600
+</div></code></pre>
+<h4 id="english-ver"><strong>English ver</strong>:</h4>
+<pre class="hljs"><code><div>problem
+
+There is a game where you throw three dice with numbers from 1 to 6 and win a prize according to the following rules.
+
+If three identical eyes appear, you will receive a prize of 10,000 won + (same eye) x 1,000 won.
+If only two identical eyes appear, you will receive a prize of 1,000 won + (same eye) x 100 won.
+If all the eyes are different, you will receive a prize of (largest eye among them) x 100 won.
+For example, if three eyes 3, 3, and 6 are given, the prize money is calculated as 1,000+3×100 and you will receive 1,300 won. Also, if 3 eyes are given as 2, 2, 2, it is calculated as 10,000+2×1,000 and you will receive 12,000 won. If three eyes are given as 6, 2, and 5, the largest value among them is 6, so it is calculated as 6 × 100 and you will receive 600 won as prize money.
+
+Write a program that calculates the prize money, given three dice rolls.
+
+input
+In the first row, three eyes are given each with a space in between.
+
+Print
+The first line prints the game's prize money.
+
+Example input 1 
+3 3 6
+
+Example output 1 
+1300
+
+Example input 2 
+2 2 2
+
+Example output 2 
+12000
+
+Example input 3 
+6 2 5
+
+Example output 3 
+600
+</div></code></pre>
+<h3 id="c-solution"><strong>C++ Solution</strong>:</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-comment">// sol 1</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">solv</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// get input</span>
+    <span class="hljs-keyword">int</span> a, b, c;
+    <span class="hljs-keyword">int</span> <span class="hljs-built_in">max</span> = <span class="hljs-number">0</span>;
+
+    <span class="hljs-built_in">cin</span> &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+
+    <span class="hljs-comment">// if all the same</span>
+    <span class="hljs-keyword">if</span>( a == b &amp;&amp; b == c ) {
+        <span class="hljs-built_in">cout</span> &lt;&lt; a * <span class="hljs-number">1000</span> + <span class="hljs-number">10000</span> &lt;&lt; <span class="hljs-built_in">endl</span>; 
+    <span class="hljs-comment">// if two are the same</span>
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>( a == b ) {
+        <span class="hljs-built_in">cout</span> &lt;&lt; a * <span class="hljs-number">100</span> + <span class="hljs-number">1000</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>( b == c ) {
+        <span class="hljs-built_in">cout</span> &lt;&lt; b * <span class="hljs-number">100</span> + <span class="hljs-number">1000</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>( c == a ) {
+        <span class="hljs-built_in">cout</span> &lt;&lt; c * <span class="hljs-number">100</span> + <span class="hljs-number">1000</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-comment">// if nothing is the same</span>
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// get max</span>
+        <span class="hljs-built_in">max</span> = a;
+        <span class="hljs-keyword">if</span>( <span class="hljs-built_in">max</span> &lt; b ) {
+            <span class="hljs-built_in">max</span> = b;
+        }
+        <span class="hljs-keyword">if</span>( <span class="hljs-built_in">max</span> &lt; c ) {
+            <span class="hljs-built_in">max</span> = c;
+        }
+
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">max</span> * <span class="hljs-number">100</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    }
+}
+
+<span class="hljs-comment">// getting max out of array</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">ottai_max</span><span class="hljs-params">(<span class="hljs-keyword">int</span> *arr, <span class="hljs-keyword">int</span> <span class="hljs-built_in">size</span>)</span></span>{
+    <span class="hljs-keyword">int</span> <span class="hljs-built_in">max</span> = arr[<span class="hljs-number">0</span>];
+    <span class="hljs-comment">// loop </span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> idx = <span class="hljs-number">0</span>; idx &lt; <span class="hljs-built_in">size</span>; idx++){
+        <span class="hljs-comment">// if arr is greater than max</span>
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">max</span> &lt; arr[idx]){
+            <span class="hljs-built_in">max</span> = arr[idx];
+        }
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// get input</span>
+    <span class="hljs-keyword">int</span> dice1 = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">int</span> dice2 = <span class="hljs-number">3</span>;
+    <span class="hljs-keyword">int</span> dice3 = <span class="hljs-number">2</span>;
+
+    <span class="hljs-built_in">cin</span> &gt;&gt; dice1 &gt;&gt; dice2 &gt;&gt; dice3;
+    <span class="hljs-comment">// array of dice</span>
+    <span class="hljs-keyword">int</span> dice_arr[] = {dice1, dice2, dice3};
+    <span class="hljs-keyword">int</span> price = <span class="hljs-number">0</span>;  
+
+    <span class="hljs-comment">// if all the same</span>
+    <span class="hljs-keyword">if</span> (dice1 == dice2 &amp;&amp; dice2 == dice3){
+        price = dice1 * <span class="hljs-number">1000</span> + <span class="hljs-number">10000</span>;
+
+    <span class="hljs-comment">// if two are the same</span>
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(dice1 == dice2){
+        price = dice1 * <span class="hljs-number">100</span> + <span class="hljs-number">1000</span>;
+
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(dice2 == dice3){
+        price = dice2 * <span class="hljs-number">100</span> + <span class="hljs-number">1000</span>;
+
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(dice1 == dice3){
+        price = dice1 * <span class="hljs-number">100</span> + <span class="hljs-number">1000</span>;
+    <span class="hljs-comment">// if nothing is the same</span>
+    } <span class="hljs-keyword">else</span>{
+        price = ottai_max(dice_arr, <span class="hljs-number">3</span>)*<span class="hljs-number">100</span>;
+    }
+
+    <span class="hljs-comment">// output</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; price &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h3 id="all-code-can-be-found-on-my-github"><strong>all code can be found on my github</strong></h3>
+<p><a href="https://github.com/tmastercoding/clang/tree/main/100">https://github.com/tmastercoding/clang/tree/main/100</a></p>
+
+</body>
+</html>

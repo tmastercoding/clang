@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>s05.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="baekjoon-solutions"><strong>Baekjoon Solutions:</strong></h1>
+<h2 id="step-2-conditional-statements"><strong>Step 2: Conditional Statements</strong></h2>
+<h3 id="question-5-alarm-clock"><strong>Question 5: Alarm Clock</strong></h3>
+<h3 id="link-to-problem"><strong>link to problem:</strong></h3>
+<p><a href="https://www.acmicpc.net/problem/2884">https://www.acmicpc.net/problem/2884</a></p>
+<h4 id="korean-ver"><strong>Korean ver</strong>:</h4>
+<pre class="hljs"><code><div>문제
+상근이는 매일 아침 알람을 듣고 일어난다. 알람을 듣고 바로 일어나면 다행이겠지만, 항상 조금만 더 자려는 마음 때문에 매일 학교를 지각하고 있다.
+
+상근이는 모든 방법을 동원해보았지만, 조금만 더 자려는 마음은 그 어떤 것도 없앨 수가 없었다.
+
+이런 상근이를 불쌍하게 보던 창영이는 자신이 사용하는 방법을 추천해 주었다.
+
+바로 &quot;45분 일찍 알람 설정하기&quot;이다.
+
+이 방법은 단순하다. 원래 설정되어 있는 알람을 45분 앞서는 시간으로 바꾸는 것이다. 어차피 알람 소리를 들으면, 알람을 끄고 조금 더 잘 것이기 때문이다. 이 방법을 사용하면, 매일 아침 더 잤다는 기분을 느낄 수 있고, 학교도 지각하지 않게 된다.
+
+현재 상근이가 설정한 알람 시각이 주어졌을 때, 창영이의 방법을 사용한다면, 이를 언제로 고쳐야 하는지 구하는 프로그램을 작성하시오.
+
+입력
+첫째 줄에 두 정수 H와 M이 주어진다. (0 ≤ H ≤ 23, 0 ≤ M ≤ 59) 그리고 이것은 현재 상근이가 설정한 알람 시간 H시 M분을 의미한다.
+
+입력 시간은 24시간 표현을 사용한다. 24시간 표현에서 하루의 시작은 0:0(자정)이고, 끝은 23:59(다음날 자정 1분 전)이다. 시간을 나타낼 때, 불필요한 0은 사용하지 않는다.
+
+출력
+첫째 줄에 상근이가 창영이의 방법을 사용할 때, 설정해야 하는 알람 시간을 출력한다. (입력과 같은 형태로 출력하면 된다.)
+
+예제 입력 1 
+10 10
+
+예제 출력 1 
+9 25
+
+예제 입력 2 
+0 30
+
+예제 출력 2 
+23 45
+
+예제 입력 3 
+23 40
+
+예제 출력 3 
+22 55
+</div></code></pre>
+<h4 id="english-ver"><strong>English ver</strong>:</h4>
+<pre class="hljs"><code><div>problem
+
+Sanggeun wakes up every morning after hearing the alarm. It would be nice if I could wake up right away after hearing the alarm, but I'm always late for school every day because I want to sleep a little more.
+
+Sanggeun tried everything, but nothing could get rid of his desire to sleep just a little longer.
+
+Changyoung, who felt sorry for Sanggeun, recommended the method he used.
+
+This is “Set an alarm 45 minutes early.”
+
+This method is simple. Change the originally set alarm time to 45 minutes earlier. If I hear the alarm anyway, I'll turn it off and sleep a little longer. If you use this method, you will feel like you got more sleep every morning and you won't be late for school.
+
+Given the alarm time currently set by Sanggeun, if you use Changyoung's method, write a program to determine when to change it to.
+
+input
+Two integers H and M are given in the first line. (0 ≤ H ≤ 23, 0 ≤ M ≤ 59) And this means the alarm time currently set by Sanggeun is H hours and M minutes.
+
+The input time uses 24-hour expression. In 24-hour expression, the start of the day is 0:0 (midnight) and the end is 23:59 (1 minute before midnight the next day). When indicating time, unnecessary 0s are not used.
+
+Print
+The first line outputs the alarm time that must be set when Sang-geun uses Chang-young's method. (You can output it in the same format as the input.)
+
+Example input 1 
+10 10
+
+Example output 1 
+9 25
+
+Example input 2 
+0 30
+
+Example output 2 
+23 45
+
+Example input 3 
+23 40
+
+Example output 3 
+22 55
+</div></code></pre>
+<h3 id="c-solution"><strong>C++ Solution</strong>:</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-comment">// solution 1</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">get_time</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// subtracted time</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> minutes = <span class="hljs-number">45</span>;
+
+    <span class="hljs-keyword">int</span> hour = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> <span class="hljs-built_in">min</span> = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> diff = <span class="hljs-number">0</span>;
+    <span class="hljs-comment">// get hour and min</span>
+    <span class="hljs-built_in">cin</span> &gt;&gt; hour &gt;&gt; <span class="hljs-built_in">min</span>;
+
+    <span class="hljs-comment">// subtract</span>
+    diff = <span class="hljs-built_in">min</span> - minutes;
+
+    <span class="hljs-comment">// if diff is negative</span>
+    <span class="hljs-keyword">if</span>( diff &lt; <span class="hljs-number">0</span> ) {
+        <span class="hljs-comment">// subtract 1 hour</span>
+        hour--;
+        <span class="hljs-comment">//if hour is negative</span>
+        <span class="hljs-keyword">if</span>( hour &lt; <span class="hljs-number">0</span>) {
+            <span class="hljs-comment">// make hour 23</span>
+            hour = <span class="hljs-number">23</span>;
+        }
+    }
+
+    <span class="hljs-comment">// print hour</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; hour &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-comment">// print 60 - absolute value of diff</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-number">60</span>-<span class="hljs-built_in">abs</span>(diff) &lt;&lt; <span class="hljs-built_in">endl</span>;
+}
+
+<span class="hljs-comment">// sol 2</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">solv_2</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// subtracted time</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> minutes = <span class="hljs-number">45</span>;
+
+    <span class="hljs-keyword">int</span> hour = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> <span class="hljs-built_in">min</span> = <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">int</span> total_min = <span class="hljs-number">0</span>;
+
+    <span class="hljs-comment">// total number of mins</span>
+    total_min = hour * <span class="hljs-number">60</span> + <span class="hljs-built_in">min</span>-minutes;
+
+    <span class="hljs-comment">// if total min is negative, 23 hours</span>
+    hour = (total_min &lt; <span class="hljs-number">0</span>)? <span class="hljs-number">23</span>: total_min%<span class="hljs-number">24</span>;
+    <span class="hljs-comment">// if total min is negative, 60-absolute val of total_min</span>
+    <span class="hljs-built_in">min</span> =  (total_min &lt; <span class="hljs-number">0</span>)? <span class="hljs-number">60</span> - <span class="hljs-built_in">abs</span>( total_min ) : total_min%<span class="hljs-number">60</span>;
+
+    <span class="hljs-comment">// output</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; hour &lt;&lt; <span class="hljs-string">" "</span> &lt;&lt; <span class="hljs-built_in">min</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+}
+
+<span class="hljs-comment">// sol 3</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// get input</span>
+    <span class="hljs-keyword">int</span> hr, <span class="hljs-built_in">min</span>;
+    <span class="hljs-built_in">cin</span> &gt;&gt; hr &gt;&gt; <span class="hljs-built_in">min</span>;
+
+    <span class="hljs-comment">// total time in minutes</span>
+    <span class="hljs-keyword">int</span> total_time = <span class="hljs-built_in">min</span>;
+    total_time += hr*<span class="hljs-number">60</span>;
+
+    <span class="hljs-comment">// modified time</span>
+    <span class="hljs-keyword">int</span> early_time = total_time - <span class="hljs-number">45</span>;
+
+    <span class="hljs-comment">// if neagtive</span>
+    <span class="hljs-keyword">if</span>(early_time &lt; <span class="hljs-number">0</span>){
+        <span class="hljs-comment">// add 24 hours</span>
+        early_time += <span class="hljs-number">24</span> * <span class="hljs-number">60</span>;
+    }   
+
+    <span class="hljs-comment">// get hour and min</span>
+    <span class="hljs-keyword">int</span> early_hour = (<span class="hljs-keyword">int</span>)(early_time/<span class="hljs-number">60</span>);
+    <span class="hljs-keyword">int</span> early_min = early_time % <span class="hljs-number">60</span>;
+
+    <span class="hljs-comment">// output</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; early_hour &lt;&lt; <span class="hljs-string">" "</span> &lt;&lt; early_min &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h3 id="all-code-can-be-found-on-my-github"><strong>all code can be found on my github</strong></h3>
+<p><a href="https://github.com/tmastercoding/clang/tree/main/100">https://github.com/tmastercoding/clang/tree/main/100</a></p>
+
+</body>
+</html>

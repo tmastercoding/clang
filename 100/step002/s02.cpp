@@ -1,15 +1,21 @@
 #include <iostream>
 using namespace std;
 
+// solution using switch case
 void print_flag() {
-
     int record;
+    // flag for grade
     char flag;
 
+    // get input
     cin >> record;
 
+    // becomes int not float
+    // between 0-10
     record /=10;
-
+    cout << record << endl;
+    
+    // switch case
     switch(record) {
         case 10:
             flag = 'A';
@@ -31,13 +37,17 @@ void print_flag() {
             break;
     }
 
+    // print flag
     cout << flag << endl;
 }
 
 int main(){ 
+    // get input
     int grade;
     cin >> grade;
 
+    // sol using tenary
+    // (grade boundary)? 'letter grade':
     cout << ((grade < 101 && 89 < grade)? 'A':
             (grade < 90 && 79 < grade)? 'B':
             (grade < 80 && 69 < grade)? 'C':

@@ -24,14 +24,23 @@ void toArray() {
 int main(){
     int a, b;
 
+    // get input
     cin >> a >> b;
     
+    // power 10^0
     int exponentValue = 1;
+    
+    // loop 3 times as always 3 digit
     for( int i = 0; i < 3; i++ ) {
+        // multiply a to a digit of b
+        // digit of b = (b / exponentValue) % 10)
         cout << a * ( (int)(b / exponentValue) % 10) << endl;
+        
+        // increase power by 1 (e.g. 10^2)
         exponentValue *= 10;
     }
 
+    // example:
     // 472
     // 385/1 % 10 = 385 % 10 = 5
     // 5 * a
@@ -45,8 +54,8 @@ int main(){
 
     // cout << a * ((int)( b / 10 ) % 10  ) << endl;
 
+    // print last row
     cout << a * b << endl;
-
     
     return 0;
 }

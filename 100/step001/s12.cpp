@@ -2,7 +2,7 @@
 using namespace std;
 
 int main(){
-
+    // extra cat
     string cat[] = {
         "\\    /\\ ",
         " )  ( ')", 
@@ -10,6 +10,7 @@ int main(){
         " \\(__)|" 
         };
 
+    // string array for dog
     string dog[] = {
         "|\\_/|",
         "|q p|   /}", 
@@ -18,7 +19,9 @@ int main(){
         "||_/=\\\\__|"
         };
 
+    // loop array for each line
     for (int idx = 0; idx < 4; idx++){
+        // print
         cout << cat[idx] << endl;
     }
     cout << endl;

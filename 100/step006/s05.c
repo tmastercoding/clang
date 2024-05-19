@@ -1,23 +1,33 @@
 #include <stdio.h>
 #include <string.h>
 
-void lower(char** str, int size);
+char to_lower( char ch );
+// void lower(char* str);
 
 int main(){
-    char* buffer = NULL;
+    // char* buffer = NULL;
     int alphabet[26] = {0, };
-    size_t size = 0;
-    getline(&buffer, &size, stdin);
-    size = strlen(buffer)-1;
+    const int max_size = 1000000;
+    int idx = 0;
+    // getline(&buffer, &size, stdin);
+    // size = strlen(buffer)-1;
     int max = 0;
     int maxCount = 0;
     char maxLetter;
+    char ch;
 
-
-    lower(&buffer, size);
-
-    for (int idx = 0; idx < size; idx++){
-        alphabet[buffer[idx]-'a'] +=1;
+    while((ch = getchar()) != '\n' && idx < max_size){
+        // buffer[size++] = to_lower(ch);
+        alphabet[ to_lower(ch) -'a']++;
+        idx++;
+    }
+    
+    // lower(buffer);
+    // printf("%s\n", buffer);
+    for (int idx = 0; idx < 26; idx++){
+        if( alphabet[idx] ){
+            printf("%c: %d\n", idx + 'A', alphabet[idx]);
+        }
     }
 
     max = alphabet[0];
@@ -41,10 +51,14 @@ int main(){
     return 0;
 }
 
-void lower(char** str, int size){
-    for(int idx = 0; idx < size; idx++){
-        if((*str)[idx] < 'a'){
-            (*str)[idx] += ('a' - 'A');
-        }
-    }
+// void lower(char* str){
+//     int idx = 0;
+//     while(*(str+idx) != '\0'){
+//         *(str+idx) = to_lower(*(str+idx));
+//         idx++;
+//     }
+// }
+
+char to_lower(char ch){
+    return ( 'A' <= ch && ch <= 'Z')? ch + 'a' - 'A' : ch;
 }

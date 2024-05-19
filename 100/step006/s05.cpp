@@ -30,12 +30,11 @@ int main(){
             count+=1;
         }
     }
-
-    if(count > 1){
-        cout << "?" << endl;
-    } else{
-        cout << (char)toupper(maxKey) << endl;
-    }
+ 
+    cout << (
+        (count > 1)? '?'
+                   : (char)toupper(maxKey) 
+            ) << endl;
 
     return 0;
 }
