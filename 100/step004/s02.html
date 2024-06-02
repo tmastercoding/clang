@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>s02.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="baekjoon-solutions"><strong>Baekjoon Solutions:</strong></h1>
+<h2 id="step-4-1d-arrays"><strong>Step 4: 1D Arrays</strong></h2>
+<h3 id="question-2-number-less-than-x"><strong>Question 2: Number Less than X</strong></h3>
+<h3 id="link-to-problem"><strong>link to problem:</strong></h3>
+<p><a href="https://www.acmicpc.net/problem/10871">https://www.acmicpc.net/problem/10871</a></p>
+<h4 id="korean-ver"><strong>Korean ver</strong>:</h4>
+<pre class="hljs"><code><div>문제
+정수 N개로 이루어진 수열 A와 정수 X가 주어진다. 이때, A에서 X보다 작은 수를 모두 출력하는 프로그램을 작성하시오.
+
+입력
+첫째 줄에 N과 X가 주어진다. (1 ≤ N, X ≤ 10,000)
+
+둘째 줄에 수열 A를 이루는 정수 N개가 주어진다. 주어지는 정수는 모두 1보다 크거나 같고, 10,000보다 작거나 같은 정수이다.
+
+출력
+X보다 작은 수를 입력받은 순서대로 공백으로 구분해 출력한다. X보다 작은 수는 적어도 하나 존재한다.
+
+예제 입력 1 
+10 5
+1 10 4 9 2 3 8 5 7 6
+예제 출력 1 
+1 4 2 3
+</div></code></pre>
+<h4 id="english-ver"><strong>English ver</strong>:</h4>
+<pre class="hljs"><code><div>problem
+We are given a sequence A consisting of N integers and an integer X. At this time, write a program that prints all numbers smaller than X in A.
+
+input
+N and X are given in the first line. (1 ≤ N, X ≤ 10,000)
+
+In the second line, N integers forming sequence A are given. All given integers are greater than or equal to 1 and less than or equal to 10,000.
+
+Print
+Numbers smaller than There is at least one number smaller than X.
+
+Example input 1 
+10 5
+1 10 4 9 2 3 8 5 7 6
+Example output 1 
+1 4 2 3
+</div></code></pre>
+<h3 id="python-solution"><strong>Python Solution</strong>:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># SOL 1</span>
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+    <span class="hljs-comment"># get size and numLimit</span>
+    buffer = input()
+    size = int(buffer.split(<span class="hljs-string">' '</span>)[<span class="hljs-number">0</span>])
+    numLimit = int(buffer.split(<span class="hljs-string">' '</span>)[<span class="hljs-number">1</span>])
+
+    <span class="hljs-comment"># check range</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-number">1</span>&lt;= size) <span class="hljs-keyword">and</span> (numLimit &lt;= <span class="hljs-number">10000</span>):
+        <span class="hljs-keyword">break</span>
+    
+    <span class="hljs-comment"># print error</span>
+    print(<span class="hljs-string">"Please input a number greater(including) than 1 and a number smaller (including) than 10000"</span>)
+
+
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+    
+    buffer = input()
+    <span class="hljs-comment"># get numList</span>
+    numList = buffer.split(<span class="hljs-string">' '</span>)
+
+    <span class="hljs-comment"># if length matches size</span>
+    <span class="hljs-keyword">if</span> len(numList) <span class="hljs-keyword">is</span> size:
+        <span class="hljs-keyword">break</span>
+    print(<span class="hljs-string">"Please input "</span> + str(size) + <span class="hljs-string">" integers."</span>)
+
+<span class="hljs-comment"># loop numList</span>
+<span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> numList:
+    <span class="hljs-keyword">if</span> int(num) &lt; numLimit:
+        <span class="hljs-comment"># print if smaller</span>
+        print(num, end = <span class="hljs-string">' '</span>)
+<span class="hljs-comment">###########################################</span>
+<span class="hljs-comment"># SOL 2</span>
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+<span class="hljs-comment"># get input</span>
+size, num = input().split()
+
+numbers = input().split(maxsplit=size)
+
+<span class="hljs-comment"># create a np array </span>
+numbers_np = np.array(numbers)
+<span class="hljs-comment"># changes all element to int</span>
+numbers_np = numbers_np.astype(int)
+<span class="hljs-comment"># create a list of elements smaller than num</span>
+results = list(numbers_np[ numbers_np &lt; int(num) ])
+
+<span class="hljs-comment"># output</span>
+print( results )
+</div></code></pre>
+<h3 id="c-solution"><strong>C++ Solution</strong>:</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">int</span> <span class="hljs-built_in">size</span>, num;
+    <span class="hljs-comment">// get input</span>
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>){
+        <span class="hljs-built_in">cin</span> &gt;&gt; <span class="hljs-built_in">size</span> &gt;&gt; num;
+
+        <span class="hljs-comment">// check range</span>
+        <span class="hljs-keyword">if</span> ((<span class="hljs-number">1</span> &lt;= <span class="hljs-built_in">size</span> )&amp;&amp; (num &gt;= <span class="hljs-number">10000</span>)){
+            <span class="hljs-keyword">break</span>;
+        }
+        <span class="hljs-comment">// error message</span>
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Please make size greater or equal to 1 and num smaller or equal to 10000"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    }
+
+    <span class="hljs-comment">// create vector</span>
+    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; numbers;
+
+    <span class="hljs-comment">// get input for numbers</span>
+    <span class="hljs-keyword">int</span> temp = <span class="hljs-number">0</span>;
+
+    <span class="hljs-comment">/// add temp to vector</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> idx = <span class="hljs-number">0</span>; idx &lt; <span class="hljs-built_in">size</span><span class="hljs-number">-1</span>; idx++){
+        <span class="hljs-built_in">cin</span> &gt;&gt; temp;
+        numbers.push_back(temp);
+    }
+
+    <span class="hljs-comment">// int* p_num = &amp;num;</span>
+    <span class="hljs-comment">// auto smallerThan = []( const int &amp;n, const int &amp;num ) {if(n &lt; num) cout &lt;&lt; n &lt;&lt; ' ';};</span>
+    <span class="hljs-comment">// for_each(numbers.begin(), numbers.end(), smallerThan(num = p_num))</span>
+
+    <span class="hljs-comment">// if iter smaller than num, print iter</span>
+    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;::iterator iter = numbers.<span class="hljs-built_in">begin</span>();
+    <span class="hljs-keyword">for</span>(; iter != numbers.<span class="hljs-built_in">end</span>(); iter++){
+        <span class="hljs-keyword">if</span>(*iter &lt; num) <span class="hljs-built_in">cout</span> &lt;&lt; *iter &lt;&lt; <span class="hljs-string">' '</span>;  
+    }
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h3 id="c-solution"><strong>C Solution</strong>:</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-comment">// to check correct input</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">int</span> <span class="hljs-built_in">size</span>, num;
+    <span class="hljs-comment">// input size num</span>
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d %d"</span>, &amp;<span class="hljs-built_in">size</span>, &amp;num);
+    fflush(<span class="hljs-built_in">stdin</span>);
+
+    <span class="hljs-comment">// malloc numbers</span>
+    <span class="hljs-keyword">int</span>* numbers = (<span class="hljs-keyword">int</span>* )<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">size</span> * <span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>));
+    
+    <span class="hljs-keyword">int</span> idx = <span class="hljs-number">0</span>;
+    <span class="hljs-comment">// input numbers</span>
+    <span class="hljs-keyword">while</span>(idx &lt; <span class="hljs-built_in">size</span>){
+        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;(numbers[idx++]));
+    }
+    
+    idx = <span class="hljs-number">0</span>;
+    <span class="hljs-comment">// loop through numbers</span>
+    <span class="hljs-keyword">while</span>(idx &lt; <span class="hljs-built_in">size</span>){
+        <span class="hljs-comment">// if less than</span>
+        <span class="hljs-keyword">if</span>(num &gt; numbers[idx]){
+            <span class="hljs-comment">// output</span>
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d "</span>, numbers[idx]);
+        }
+        idx++;
+    }
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"\n"</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h3 id="all-code-can-be-found-on-my-github"><strong>all code can be found on my github</strong></h3>
+<p><a href="https://github.com/tmastercoding/clang/tree/main/100">https://github.com/tmastercoding/clang/tree/main/100</a></p>
+
+</body>
+</html>

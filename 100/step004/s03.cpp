@@ -30,12 +30,15 @@ void cpp_ver(){
         cin >> temp;
 
         // assign temp to var
+        // if first time
         if(!idx){
             max = temp;
             min = temp;
         } else {
+            // if greater
             if(temp > max){
                 max = temp;
+            // if smaller
             } else if(temp < min){
                 min = temp;
             }
@@ -61,14 +64,19 @@ void c_ver(){
     // input numbers
     int idx = 0;
     while(idx < size){
+        // get input
         scanf("%d", &temp);
+
+        // if first time
         if(!idx){
             min = temp;
             max = temp;
         } else {
+            // if smaller
             if(temp < min){
                 min = temp;
             }
+            // if greater
             if (temp > max){
                 max = temp;
             }

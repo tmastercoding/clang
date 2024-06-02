@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>s05.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="baekjoon-solutions"><strong>Baekjoon Solutions:</strong></h1>
+<h2 id="step-3-loops"><strong>Step 3: Loops</strong></h2>
+<h3 id="question-5-coding-is-a-pe-subject"><strong>Question 5: Coding is a P.E. Subject</strong></h3>
+<h3 id="link-to-problem"><strong>link to problem:</strong></h3>
+<p><a href="https://www.acmicpc.net/problem/25314">https://www.acmicpc.net/problem/25314</a></p>
+<h4 id="korean-ver"><strong>Korean ver</strong>:</h4>
+<pre class="hljs"><code><div>문제
+오늘은 혜아의 면접 날이다. 면접 준비를 열심히 해서 앞선 질문들을 잘 대답한 혜아는 이제 마지막으로 칠판에 직접 코딩하는 문제를 받았다. 혜아가 받은 문제는 두 수를 더하는 문제였다. C++ 책을 열심히 읽었던 혜아는 간단히 두 수를 더하는 코드를 칠판에 적었다. 코드를 본 면접관은 다음 질문을 했다. “만약, 입출력이 
+N바이트 크기의 정수라면 프로그램을 어떻게 구현해야 할까요?”
+
+혜아는 책에 있는 정수 자료형과 관련된 내용을 기억해 냈다. 책에는 long int는 
+4바이트 정수까지 저장할 수 있는 정수 자료형이고 long long int는 
+8바이트 정수까지 저장할 수 있는 정수 자료형이라고 적혀 있었다. 혜아는 이런 생각이 들었다. “int 앞에 long을 하나씩 더 붙일 때마다 
+4바이트씩 저장할 수 있는 공간이 늘어나는 걸까? 분명 long long long int는 
+12바이트, long long long long int는 
+16바이트까지 저장할 수 있는 정수 자료형일 거야!” 그렇게 혜아는 당황하는 면접관의 얼굴을 뒤로한 채 칠판에 정수 자료형을 써 내려가기 시작했다.
+
+혜아가 
+N바이트 정수까지 저장할 수 있다고 생각해서 칠판에 쓴 정수 자료형의 이름은 무엇일까?
+
+입력
+첫 번째 줄에는 문제의 정수 
+N이 주어진다. 
+(4 ≤ N ≤ 1,000; 
+N은 
+4의 배수
+) 
+
+출력
+혜아가 
+N바이트 정수까지 저장할 수 있다고 생각하는 정수 자료형의 이름을 출력하여라.
+
+예제 입력 1 
+4
+예제 출력 1 
+long int
+예제 입력 2 
+20
+예제 출력 2 
+long long long long long int
+</div></code></pre>
+<h4 id="english-ver"><strong>English ver</strong>:</h4>
+<pre class="hljs"><code><div>problem
+
+Today is Hye-ah’s interview day. Hye-ah, who had worked hard to prepare for her interview and answered the previous questions well, was now given one final coding problem to write directly on her blackboard. Her problem that Hye-ah was given was the problem of adding two numbers. Hye-ah, who had been reading the C++ book diligently, wrote on the blackboard the code to simply add two numbers. After seeing the code, the interviewer asked the following question. “If the input and output
+N“If it’s a byte-sized integer, how should I implement the program?”
+
+Hyea remembered information related to the integer data type in the book. In the long intbook
+4long long intIt is an integer data type that can store up to a byte integer .
+8It was described as an integer data type that can store up to a byte integer. Hye-ah had this thought. “ Every time you add one more intin front oflong
+4Does the space that can store each byte increase? obviouslylong long long int​
+12byte, long long long long intis
+16“It must be an integer data type that can store even bytes!” With that, Hye-ah turned away from the interviewer's bewildered face and began writing integer data types on her blackboard.
+
+Hye-ah
+NWhat is the name of the integer data type that I wrote on the blackboard because I thought it could store byte integers?
+
+input
+The first line contains the integer in question
+NThis is given.
+(4 ≤ N ≤ 1,000; 
+N is a
+multiple of 4) 
+
+Print
+Hye-ah
+NPrint the name of the integer data type that you think can store up to an integer byte.
+
+Example input 1 
+4
+Example output 1 
+long int
+Example input 2 
+20
+Example output 2 
+long long long long long int
+</div></code></pre>
+<h3 id="c-solution"><strong>C++ Solution</strong>:</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-comment">// sol 1</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">solv</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// declare integer</span>
+    <span class="hljs-keyword">int</span> n;
+
+    <span class="hljs-comment">// get input</span>
+    <span class="hljs-built_in">cin</span> &gt;&gt; n;
+
+    <span class="hljs-comment">// divide by 4 (adding long is 4 bytes)</span>
+    n = n/<span class="hljs-number">4</span>;
+    
+    <span class="hljs-comment">// loop n times</span>
+    <span class="hljs-keyword">while</span>( n-- &gt; <span class="hljs-number">0</span> ) {
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"long"</span> &lt;&lt; <span class="hljs-string">" "</span>;
+    }
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"int"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// get input</span>
+    <span class="hljs-keyword">int</span> bytes;
+    <span class="hljs-built_in">cin</span> &gt;&gt; bytes;
+
+    <span class="hljs-comment">// loop for bytes/4 times</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> idx = <span class="hljs-number">0</span>; idx &lt; bytes/<span class="hljs-number">4</span>; idx++){
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"long "</span>;
+    }
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"int"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h3 id="all-code-can-be-found-on-my-github"><strong>all code can be found on my github</strong></h3>
+<p><a href="https://github.com/tmastercoding/clang/tree/main/100">https://github.com/tmastercoding/clang/tree/main/100</a></p>
+
+</body>
+</html>

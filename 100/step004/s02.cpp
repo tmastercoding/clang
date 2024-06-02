@@ -18,17 +18,22 @@ void cpp_ver(){
     // get input
     while(1){
         cin >> size >> num;
+
+        // check range
         if ((1 <= size )&& (num >= 10000)){
             break;
         }
+        // error message
         cout << "Please make size greater or equal to 1 and num smaller or equal to 10000" << endl;
     }
 
-    // vector
+    // create vector
     vector<int> numbers;
 
     // get input for numbers
     int temp = 0;
+
+    /// add temp to vector
     for(int idx = 0; idx < size-1; idx++){
         cin >> temp;
         numbers.push_back(temp);
@@ -44,7 +49,6 @@ void cpp_ver(){
         if(*iter < num) cout << *iter << ' ';  
     }
     cout << endl;
-
 }
 
 void c_ver(){
@@ -63,8 +67,11 @@ void c_ver(){
     }
     
     idx = 0;
+    // loop through numbers
     while(idx < size){
+        // if less than
         if(num > numbers[idx]){
+            // output
             printf("%d ", numbers[idx]);
         }
         idx++;

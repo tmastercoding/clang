@@ -18,8 +18,8 @@ void c_input(int* var, int startRange, int endRange);
 void cpp_input(int* var, int startRange, int endRange);
 
 int main(){
-    // c_ver();
-    cpp_ver();
+    c_ver();
+    // cpp_ver();
     return 0;
 }
 
@@ -42,6 +42,7 @@ void c_input(int* var, int startRange, int endRange){
 
 // to check correct input
 void cpp_input(int* var, int startRange, int endRange){
+    // while true
     while(1){
         // get input
         cin >> *var;
@@ -71,20 +72,21 @@ int c_ver(){
         scanf("%d ", &numberArr[idx]);
         idx++;
     }
+
     scanf("%d", &numberArr[idx]);
     fflush(stdin);
 
     // input for number
     c_input(&number, -100, 100);
 
-    
+    // count how many
     int count = 0;
     // loop numberArr
     for(int idx = 0; idx<length; idx++){
         // increase count if match
         if(number == numberArr[idx]) count++;
     }
-
+    // output
     printf("%d\n", count);
 
 
@@ -157,6 +159,7 @@ int cpp_ver(){
         // if match increase count
         if(*iter == number) count++;
     }
+    //  output
     cout << count << endl;
 
     return 0;
