@@ -2,6 +2,12 @@
 #include <string.h>
 #include <stdlib.h>
 
+/**
+ * @date ??.??.??
+ * @author Tay Oh
+ * @details Splits text according to sep
+*/
+
 char** split(char* text, const char sep, int* recivSize);
 
 int main() {

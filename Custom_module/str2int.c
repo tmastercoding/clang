@@ -4,6 +4,13 @@
 #define true 1
 #define false 0
 
+/**
+ * @date ??.??.??
+ * @author Tay Oh
+ * @details code showing various
+ *          ways to str to int
+*/
+
 int strToInt(const char *s);
 int isInt(const char *s);
 int isIntRecursive(const char *s);

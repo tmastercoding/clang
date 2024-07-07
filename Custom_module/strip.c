@@ -12,6 +12,13 @@ int main() {
     
 }
 
+/**
+ * @date ??.??.??
+ * @author Tay Oh
+ * @details code stripping outside
+ *          of string
+*/
+
 
 void strip( const char* str ) {
     int pre_flag = 0;

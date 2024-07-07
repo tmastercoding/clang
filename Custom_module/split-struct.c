@@ -2,19 +2,31 @@
 #include <string.h>
 #include <stdlib.h>
 
+/**
+ * @date ??.??.??
+ * @author Tay Oh
+ * @details SplitObject struct that
+ *          contains outputArr and 
+ *          its size
+*/
+
 typedef struct SplitObject{
     char** outputArr;
     int recivSize;
 } SplitObject;
 
+// splits text with sep
 SplitObject split(char* text, const char sep);
 
 int main() {
     char text[] = "  a      Hello    world   )_)    ";
     SplitObject split_object;
+    // split text
     split_object = split(text, ' ');
 
+    // output
     printf("recivSize: %d\n", split_object.recivSize);
+    // free mem
     for(int idx = 0; idx < split_object.recivSize; idx++){
         free(split_object.outputArr[idx]);
     }
