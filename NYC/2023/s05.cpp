@@ -275,3 +275,43 @@ int getInterRecur( vector<vector<int>> comb, vector<int>* returnVal) {
 
     return 0;
 };
+
+// comb  is vector of arrays
+// [ 1, 2, 3  ]
+// [ 3, 5, 7  ]
+// [ 1, 9, 3  ]
+// [ 9, 6, 3  ]
+// int getIntersectionRecursive( vector<vector<int>> comb  )
+// return intersection
+vector<int> getInterRecur_01( vector<vector<int>> comb, vector<int> intersection) {
+
+    if( comb.size() <= 0 ) return intersection;
+    else if( comb.size() == 1 ) return comb.at(0);
+    else {
+        
+        if(intersection != NULL ){
+            // get intersection
+            set_intersection(
+                comb.at(0).begin(), comb.at(0).end(),
+                comb.at(1).begin(), comb.at(1).end(),
+                back_inserter(intersection)
+            );
+            comb.erase(comb.begin());
+            comb.erase(comb.begin()+1);
+        } else {
+            // get intersection
+            set_intersection(
+                intersection.begin(), intersection.end(),
+                comb.at(0).begin(), comb.at(0).end(),
+                back_inserter(intersection)
+            );
+           comb.erase(comb.begin());   
+        }
+
+    }
+    
+    return getInterRecur_01(comb, intersection);
+
+};
+
+
