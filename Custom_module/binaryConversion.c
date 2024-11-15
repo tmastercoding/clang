@@ -2,6 +2,14 @@
 #include <stdlib.h>
 #include <math.h>
 
+/**
+ * @date ??.??.??
+ * @author Tay Oh
+ * @details decimal number to a binary,
+ *          octal, hexa, etc. string
+ *          functions
+*/
+
 // decimal to _____ str conversion
 char* getBinary( int num);
 char* getOctal(  int num);
@@ -114,7 +122,7 @@ char* getNumSys(int num, int base){
     //         break;
     //     default:
     // }
-    
+
     while(num > 0){
         temp = num&(base-1);
         buffer[count++] = temp+ ((temp>9)? 'a'-10: '0');

@@ -8,20 +8,20 @@ void c_ver();
 void cpp_ver();
 
 int main(){
-    // c_ver();
-    cpp_ver();
+    c_ver();
+    // cpp_ver();
     return 0;
 }
 
 void c_ver(){
-    int total = 5;
+    int total = 30;
     int count = 0;
     // array set to 0
-    int students[5] = {0,};
+    int students[30] = {0,};
 
-    // loop 3 times
+    // loop 28 times
     while (1) {
-        if(count == 3){
+        if(count == 28){
             break;
         }
         // get input
@@ -36,7 +36,7 @@ void c_ver(){
     count = 0;
     // print idx with 1 as val
     while(1){
-        if(count == 5){
+        if(count == total){
             break;
         }
         if(!students[count]){
@@ -47,7 +47,8 @@ void c_ver(){
 }
 
 void cpp_ver(){
-    int size = 5;
+    // assign variables
+    int size = 30;
     int count = 0;
 
     // map
@@ -59,7 +60,7 @@ void cpp_ver(){
 
     // get input
     while(1){
-        if(count == 3){
+        if(count == 28){
             break;
         }
         int temp;

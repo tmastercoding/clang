@@ -1,0 +1,9 @@
+4 4
+abcd
+bcda
+cdab
+dabc
+3
+ab
+bc
+abc

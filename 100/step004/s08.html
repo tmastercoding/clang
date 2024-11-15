@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>s08.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="baekjoon-solutions"><strong>Baekjoon Solutions:</strong></h1>
+<h2 id="step-4-1d-arrays"><strong>Step 4: 1D Arrays</strong></h2>
+<h3 id="question-8-remainder"><strong>Question 8: Remainder</strong></h3>
+<h3 id="link-to-problem"><strong>link to problem:</strong></h3>
+<p><a href="https://www.acmicpc.net/problem/3052">https://www.acmicpc.net/problem/3052</a></p>
+<h4 id="korean-ver"><strong>Korean ver</strong>:</h4>
+<pre class="hljs"><code><div>문제
+두 자연수 A와 B가 있을 때, A%B는 A를 B로 나눈 나머지 이다. 예를 들어, 7, 14, 27, 38을 3으로 나눈 나머지는 1, 2, 0, 2이다. 
+
+수 10개를 입력받은 뒤, 이를 42로 나눈 나머지를 구한다. 그 다음 서로 다른 값이 몇 개 있는지 출력하는 프로그램을 작성하시오.
+
+입력
+첫째 줄부터 열번째 줄 까지 숫자가 한 줄에 하나씩 주어진다. 이 숫자는 1,000보다 작거나 같고, 음이 아닌 정수이다.
+
+출력
+첫째 줄에, 42로 나누었을 때, 서로 다른 나머지가 몇 개 있는지 출력한다.
+
+예제 입력 1 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+예제 출력 1 
+10
+각 수를 42로 나눈 나머지는 1, 2, 3, 4, 5, 6, 7, 8, 9, 10이다.
+
+예제 입력 2 
+42
+84
+252
+420
+840
+126
+42
+84
+420
+126
+예제 출력 2 
+1
+모든 수를 42로 나눈 나머지는 0이다.
+
+예제 입력 3 
+39
+40
+41
+42
+43
+44
+82
+83
+84
+85
+예제 출력 3 
+6
+각 수를 42로 나눈 나머지는 39, 40, 41, 0, 1, 2, 40, 41, 0, 1이다. 서로 다른 값은 6개가 있다.
+</div></code></pre>
+<h4 id="english-ver"><strong>English ver</strong>:</h4>
+<pre class="hljs"><code><div>problem
+When there are two natural numbers A and B, A%B is the remainder when A is divided by B. For example, when 7, 14, 27, and 38 are divided by 3, the remainders are 1, 2, 0, and 2. 
+
+After inputting 10 numbers, divide them by 42 and find the remainder. Next, write a program that prints how many different values ​​there are.
+
+input
+From the first line to the tenth line, numbers are given one per line. This number is a non-negative integer less than or equal to 1,000.
+
+output of power
+The first line prints how many different remainders there are when divided by 42.
+
+Example input 1 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+Example output 1 
+10
+
+When each number is divided by 42, the remainder is 1, 2, 3, 4, 5, 6, 7, 8, 9, and 10.
+
+Example input 2 
+42
+84
+252
+420
+840
+126
+42
+84
+420
+126
+
+Example output 2 
+1
+
+When any number is divided by 42, the remainder is 0.
+
+Example input 3 
+39
+40
+41
+42
+43
+44
+82
+83
+84
+85
+
+Example output 3 
+6
+
+When each number is divided by 42, the remainder is 39, 40, 41, 0, 1, 2, 40, 41, 0, 1. There are 6 different values.
+</div></code></pre>
+<h3 id="python-solution"><strong>Python Solution</strong>:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># set = no repeated vals</span>
+remainders = set()
+
+<span class="hljs-comment"># get input</span>
+<span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>):
+    temp = int(input())
+    <span class="hljs-comment"># modulus 42</span>
+    remainders.add(temp%<span class="hljs-number">42</span>)
+
+<span class="hljs-comment"># print length</span>
+print(len(remainders))
+</div></code></pre>
+<h3 id="c-solution-ver-1"><strong>C++ Solution Ver 1:</strong>:</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;map&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// no repeat vals in map</span>
+    <span class="hljs-built_in">map</span>&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">bool</span>&gt; remainders;
+    <span class="hljs-keyword">int</span> temp;
+
+    <span class="hljs-comment">// input and insert</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> idx = <span class="hljs-number">0</span>; idx &lt; <span class="hljs-number">10</span>; idx++){
+        <span class="hljs-built_in">cin</span> &gt;&gt; temp;
+        remainders.insert(pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">bool</span>&gt;(temp%<span class="hljs-number">42</span>, <span class="hljs-literal">false</span>));
+    }
+
+    <span class="hljs-comment">// print size</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; remainders.<span class="hljs-built_in">size</span>()&lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h3 id="c-solution-ver-2"><strong>C++ Solution Ver 2:</strong></h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// declare variables</span>
+    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; v;
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> <span class="hljs-built_in">size</span> = <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">int</span> idx = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> num = <span class="hljs-number">0</span>;
+    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;::iterator it;
+
+    <span class="hljs-comment">// loop for input</span>
+    <span class="hljs-keyword">while</span>(idx &lt; <span class="hljs-built_in">size</span>){
+
+        <span class="hljs-comment">// input</span>
+        <span class="hljs-built_in">cin</span> &gt;&gt; num;   
+
+        <span class="hljs-comment">// if first</span>
+        <span class="hljs-keyword">if</span>( v.empty() ){
+            v.push_back(num % <span class="hljs-number">42</span>);
+        } <span class="hljs-keyword">else</span>{
+            <span class="hljs-comment">// find num in v</span>
+            it = <span class="hljs-built_in">find</span>(v.<span class="hljs-built_in">begin</span>(), v.<span class="hljs-built_in">end</span>(), num % <span class="hljs-number">42</span>);
+            <span class="hljs-keyword">if</span>(it == v.<span class="hljs-built_in">end</span>()){
+                v.push_back(num%<span class="hljs-number">42</span>);
+            }
+        }
+        <span class="hljs-comment">// it = find(v.begin(), v.end(), num % 42);</span>
+        <span class="hljs-comment">// if(it == v.end()){</span>
+        <span class="hljs-comment">//     v.push_back(num%42);</span>
+        <span class="hljs-comment">// }</span>
+        idx++;
+    }
+    <span class="hljs-comment">// output</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; v.<span class="hljs-built_in">size</span>() &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h3 id="c-solution-ver-1"><strong>C Solution Ver 1</strong>:</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// declare variables</span>
+    <span class="hljs-keyword">int</span> divisor = <span class="hljs-number">42</span>;
+    <span class="hljs-comment">// array set to -1</span>
+    <span class="hljs-keyword">int</span> <span class="hljs-built_in">buffer</span>[<span class="hljs-number">10</span>]= {<span class="hljs-number">-1</span>,};
+    <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> <span class="hljs-built_in">size</span> = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> temp;
+
+    <span class="hljs-comment">// get input and divde</span>
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>){
+        <span class="hljs-keyword">if</span>(count == <span class="hljs-number">10</span>){
+            <span class="hljs-keyword">break</span>;
+        }
+        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;temp);
+        <span class="hljs-built_in">buffer</span>[count] = temp%divisor;
+        count++;
+    }
+
+    <span class="hljs-comment">// loop through idx</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> idx = <span class="hljs-number">0</span>; idx &lt; <span class="hljs-number">10</span>; idx++){
+        <span class="hljs-comment">// if term been cancelled</span>
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">buffer</span>[idx] == <span class="hljs-number">-1</span>){
+            <span class="hljs-keyword">continue</span>;
+        }
+        
+        <span class="hljs-comment">// loop starting after idx</span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> jdx = idx+<span class="hljs-number">1</span>; jdx &lt; <span class="hljs-number">10</span>; jdx++){
+            <span class="hljs-comment">// if term been cancelled</span>
+            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">buffer</span>[jdx] == <span class="hljs-number">-1</span>){
+                <span class="hljs-keyword">continue</span>;
+            }
+
+            <span class="hljs-comment">// if terms equal</span>
+            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">buffer</span>[idx] == <span class="hljs-built_in">buffer</span>[jdx]){
+                <span class="hljs-comment">// printf("%d == %d\n", buffer[idx], buffer[jdx]);</span>
+                <span class="hljs-comment">// cancel</span>
+                <span class="hljs-built_in">buffer</span>[jdx] = <span class="hljs-number">-1</span>;
+            }
+        }
+    }
+
+    <span class="hljs-comment">// add when term is not cancelled</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> idx = <span class="hljs-number">0</span>; idx &lt; <span class="hljs-number">10</span>; idx++){
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">buffer</span>[idx] != <span class="hljs-number">-1</span>){
+            <span class="hljs-built_in">size</span>++;
+        }  
+    }
+
+    <span class="hljs-comment">// print size</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>, <span class="hljs-built_in">size</span>);  
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h3 id="c-solution-ver-2"><strong>C Solution Ver 2</strong>:</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// declare variables</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> <span class="hljs-built_in">size</span> = <span class="hljs-number">10</span>;
+    <span class="hljs-comment">// int src[size] = {0,};</span>
+    <span class="hljs-keyword">int</span> arr[<span class="hljs-built_in">size</span>] = {<span class="hljs-number">0</span>,};
+
+    <span class="hljs-keyword">int</span> temp = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> flag = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> uniq_count = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> num = <span class="hljs-number">0</span>;
+
+    <span class="hljs-comment">// init </span>
+    <span class="hljs-keyword">for</span>( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-built_in">size</span>; i++ ) {
+        arr[i] = <span class="hljs-number">-1</span>;
+    }
+
+    <span class="hljs-comment">// loop for input</span>
+    <span class="hljs-keyword">for</span>( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-built_in">size</span>; i++ ) {
+        <span class="hljs-built_in">scanf</span>( <span class="hljs-string">"%d"</span> ,&amp;num);
+        temp = num % <span class="hljs-number">42</span>;
+
+        <span class="hljs-comment">// first</span>
+        <span class="hljs-keyword">if</span> ( i == <span class="hljs-number">0</span> ) {
+            arr[i] = temp;
+            uniq_count++;
+        }
+
+        flag = <span class="hljs-number">0</span>;
+        <span class="hljs-comment">// check overlap</span>
+        <span class="hljs-keyword">for</span>( <span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; i+<span class="hljs-number">1</span>; j++ ) {
+            <span class="hljs-comment">// not checking same</span>
+            <span class="hljs-keyword">if</span> (i == j){
+                <span class="hljs-keyword">continue</span>;
+            }
+            <span class="hljs-keyword">if</span>(arr[j] == arr[i]) {
+                flag =<span class="hljs-number">0</span>;
+                <span class="hljs-keyword">break</span>;
+            }
+            <span class="hljs-keyword">if</span>(arr[j] != arr[i]) {
+                flag = <span class="hljs-number">1</span>;
+            }
+        }
+
+        <span class="hljs-comment">// if unique</span>
+        <span class="hljs-keyword">if</span>( flag ) {
+            arr[i] = temp;
+            uniq_count++;
+        }
+
+    }
+    <span class="hljs-comment">// output</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>, uniq_count);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h3 id="all-code-can-be-found-on-my-github"><strong>all code can be found on my github</strong></h3>
+<p><a href="https://github.com/tmastercoding/clang/tree/main/100">https://github.com/tmastercoding/clang/tree/main/100</a></p>
+
+</body>
+</html>

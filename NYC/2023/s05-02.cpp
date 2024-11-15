@@ -15,7 +15,7 @@ vector<int> getIntersection( vector<int> a, vector<int> b ) {
     return intersection;
 };
 
-int getInterRecur( vector<vector<int>> comb, vector<int>* returnVal) {
+int getInterRecur( vector<vector<int>> comb, vector<int>* intersection) {
     vector<int> inter;
 
     set_intersection(
@@ -28,11 +28,11 @@ int getInterRecur( vector<vector<int>> comb, vector<int>* returnVal) {
     comb.erase(comb.begin());
     // assign 1st (now 0)
     comb.at(0).assign(inter.begin(), inter.end());
-    returnVal->assign(inter.begin(), inter.end());
+    intersection->assign(inter.begin(), inter.end());
 
 
     if(comb.size() > 1){
-        getInterRecur(comb, returnVal);
+        getInterRecur(comb, intersection);
     } 
 
     return 0;

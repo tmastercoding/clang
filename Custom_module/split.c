@@ -13,9 +13,12 @@ char** split(char* text, const char sep, int* recivSize);
 int main() {
     char text[] = "  a      Hello    world   )_)    ";
     int recivSize = 0;
+    // splits text
     char** output = split(text, ' ', &recivSize);
 
+    // output
     printf("recivSize: %d\n", recivSize);
+    // free mem
     for(int idx = 0; idx < recivSize; idx++){
         free(output[idx]);
     }

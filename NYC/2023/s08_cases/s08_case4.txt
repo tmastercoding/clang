@@ -1,0 +1,14 @@
+10 10
+aaaaaaazaa
+zaaaaaaaaa
+aaaaaazaaa
+aaaaazaaaa
+aaazaaaaaa
+aaaaaaazaa
+aaaaaaaaaa
+azaaaaaaaz
+aaaazaaaaa
+aaaaaazaaa
+2
+aaa
+aaaaa

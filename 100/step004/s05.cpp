@@ -8,18 +8,18 @@ void c_ver();
 void cpp_ver();
 
 int main(){
-    // c_ver();
-    cpp_ver();
+    c_ver();
+    // cpp_ver();
     return 0;
 }
 
 void c_ver(){
-    // declare val
+    // declare var
     int sizeBasket = 0;
     int noOfPut = 0;
     int idx, tempFrom, tempTill, tempBall = 0;
 
-    // inpuit
+    // input
     scanf("%d %d", &sizeBasket, &noOfPut);
 
     // malloc basket list

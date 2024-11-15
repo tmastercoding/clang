@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 int main() {
+    // declare variables
     const int size = 10;
     // int src[size] = {0,};
     int arr[size] = {0,};
@@ -15,6 +16,7 @@ int main() {
         arr[i] = -1;
     }
 
+    // loop for input
     for( int i = 0;i < size; i++ ) {
         scanf( "%d" ,&num);
         temp = num % 42;
@@ -26,7 +28,12 @@ int main() {
         }
 
         flag = 0;
+        // check overlap
         for( int j = 0; j < i+1; j++ ) {
+            // not checking same
+            if (i == j){
+                continue;
+            }
             if(arr[j] == arr[i]) {
                 flag =0;
                 break;
@@ -36,12 +43,15 @@ int main() {
             }
         }
 
+        // if unique
         if( flag ) {
             arr[i] = temp;
             uniq_count++;
         }
 
     }
+    // output
+    printf("%d\n", uniq_count);
 
     return 0;
 }

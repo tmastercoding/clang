@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
+#include <string>
 #include <algorithm>
+#include <sstream>
 using namespace std;
 
 // void swap(vector<int> *basket, int one, int other);
@@ -8,10 +10,18 @@ using namespace std;
 int main(){
     // declare variables
     int one, other = 0;
-    int sizeBasket = 5;
-    int noOfSwitch = 4;
+    int sizeBasket = 0;
+    int noOfSwitch = 0;
+    string buffer;
+    string temp;
 
     // input variables
+    getline(cin, buffer);
+    istringstream iss(buffer);
+    iss >> temp;
+    sizeBasket = stoi(temp);
+    iss >> temp;
+    noOfSwitch = stoi(temp);
 
     // set up vector
     vector<int> baskets;

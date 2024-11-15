@@ -7,12 +7,13 @@ void c_ver();
 void cpp_ver();
 
 int main(){
-    // c_ver();
-    cpp_ver();
+    c_ver();
+    // cpp_ver();
     return 0;
 }
 
 void c_ver(){
+    // declare variables
     int divisor = 42;
     // array set to -1
     int buffer[10]= {-1,};

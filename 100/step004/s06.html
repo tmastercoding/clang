@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>s06.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="baekjoon-solutions"><strong>Baekjoon Solutions:</strong></h1>
+<h2 id="step-4-1d-arrays"><strong>Step 4: 1D Arrays</strong></h2>
+<h3 id="question-6-swapping-balls"><strong>Question 6: Swapping Balls</strong></h3>
+<h3 id="link-to-problem"><strong>link to problem:</strong></h3>
+<p><a href="https://www.acmicpc.net/problem/10813">https://www.acmicpc.net/problem/10813</a></p>
+<h4 id="korean-ver"><strong>Korean ver</strong>:</h4>
+<pre class="hljs"><code><div>문제
+도현이는 바구니를 총 N개 가지고 있고, 각각의 바구니에는 1번부터 N번까지 번호가 매겨져 있다. 바구니에는 공이 1개씩 들어있고, 처음에는 바구니에 적혀있는 번호와 같은 번호가 적힌 공이 들어있다.
+
+도현이는 앞으로 M번 공을 바꾸려고 한다. 도현이는 공을 바꿀 바구니 2개를 선택하고, 두 바구니에 들어있는 공을 서로 교환한다.
+
+공을 어떻게 바꿀지가 주어졌을 때, M번 공을 바꾼 이후에 각 바구니에 어떤 공이 들어있는지 구하는 프로그램을 작성하시오.
+
+입력
+첫째 줄에 N (1 ≤ N ≤ 100)과 M (1 ≤ M ≤ 100)이 주어진다.
+
+둘째 줄부터 M개의 줄에 걸쳐서 공을 교환할 방법이 주어진다. 각 방법은 두 정수 i j로 이루어져 있으며, i번 바구니와 j번 바구니에 들어있는 공을 교환한다는 뜻이다. (1 ≤ i ≤ j ≤ N)
+
+도현이는 입력으로 주어진 순서대로 공을 교환한다.
+
+출력
+1번 바구니부터 N번 바구니에 들어있는 공의 번호를 공백으로 구분해 출력한다.
+
+예제 입력 1 
+5 4
+1 2
+3 4
+1 4
+2 2
+예제 출력 1 
+3 1 4 2 5
+</div></code></pre>
+<h4 id="english-ver"><strong>English ver</strong>:</h4>
+<pre class="hljs"><code><div>problem
+Dohyun has a total of N baskets, and each basket is numbered from 1 to N. Each basket contains one ball, and at first, the ball with the same number written on the basket is included.
+
+Dohyun plans to change ball M from now on. Dohyeon chooses two baskets to exchange balls with, and exchanges the balls in the two baskets.
+
+Given how to change the balls, write a program to find what balls are in each basket after changing the balls M times.
+
+input
+The first line gives N (1 ≤ N ≤ 100) and M (1 ≤ M ≤ 100).
+
+Starting from the second row, you are given a way to exchange balls across M rows. Each method consists of two integers i j, and means exchanging the balls in basket i and basket j. (1 ≤ i ≤ j ≤ N)
+
+Dohyun exchanges balls in the order given as input.
+
+output of power
+Print the numbers of balls in baskets 1 through N, separated by spaces.
+
+Example input 1 
+5 4
+1 2
+3 4
+1 4
+2 2
+Example output 1 
+3 1 4 2 5
+</div></code></pre>
+<h3 id="python-solution-ver-1"><strong>Python Solution Ver 1</strong>:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># declare variables</span>
+sizeBasket = <span class="hljs-number">0</span>
+noOfSwitch = <span class="hljs-number">0</span>
+tempSrc = <span class="hljs-number">0</span>
+tempDest = <span class="hljs-number">0</span>
+tempBall = <span class="hljs-number">0</span>
+idx = <span class="hljs-number">0</span>
+
+<span class="hljs-comment"># input for var</span>
+buffer = input().split()
+sizeBasket = int(buffer[<span class="hljs-number">0</span>])
+noOfSwitch = int(buffer[<span class="hljs-number">1</span>])
+
+<span class="hljs-comment"># create and set dictionary</span>
+<span class="hljs-comment"># {basket number: ball number}</span>
+baskets = dict()
+<span class="hljs-keyword">for</span> key <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, sizeBasket+<span class="hljs-number">1</span>):
+    baskets[key] = key
+
+
+<span class="hljs-comment"># loop for noOfSwitch</span>
+<span class="hljs-keyword">while</span> idx &lt; noOfSwitch:    
+    <span class="hljs-comment"># input for tempVar</span>
+    buffer = input()
+    tempSrc = int(buffer.split(maxsplit = <span class="hljs-number">2</span>)[<span class="hljs-number">0</span>])
+    tempDest = int(buffer.split(maxsplit = <span class="hljs-number">2</span>)[<span class="hljs-number">1</span>])
+    <span class="hljs-comment"># switch</span>
+    tempBall = int(baskets[tempDest])
+    baskets[tempDest] = int(baskets[tempSrc])
+    baskets[tempSrc] = tempBall
+    idx+=<span class="hljs-number">1</span>
+<span class="hljs-comment"># output</span>
+<span class="hljs-keyword">for</span> val <span class="hljs-keyword">in</span> baskets.values():
+    print(val, end = <span class="hljs-string">' '</span>)
+
+print()
+</div></code></pre>
+<h3 id="python-solution-ver-2"><strong>Python Solution Ver 2</strong>:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># input for var</span>
+buffer = input().split()
+sizeBasket = int(buffer[<span class="hljs-number">0</span>])
+noOfSwitch = int(buffer[<span class="hljs-number">1</span>])
+
+<span class="hljs-comment"># declare variable</span>
+idx = noOfSwitch
+
+<span class="hljs-comment"># zip to dict</span>
+basket = dict(zip( list(range(<span class="hljs-number">1</span>,sizeBasket+<span class="hljs-number">1</span>)), list(range(<span class="hljs-number">1</span>,sizeBasket+<span class="hljs-number">1</span>)) ))
+
+<span class="hljs-comment"># swap function</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">swap</span><span class="hljs-params">( basket, a, b )</span>:</span>
+    temp = int(basket[ a ])
+    basket[ a ] = int(basket[ b ])
+    basket[ b ] = temp
+    <span class="hljs-keyword">return</span> basket
+
+<span class="hljs-comment"># loop for sizeBasket</span>
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+    <span class="hljs-comment"># get input</span>
+    one, other = input().split()
+
+    <span class="hljs-comment"># swap</span>
+    basket = swap( basket, int( one ), int( other ) )
+    
+    idx-= <span class="hljs-number">1</span>
+    <span class="hljs-keyword">if</span> idx &lt;= <span class="hljs-number">0</span>:  <span class="hljs-keyword">break</span>
+
+<span class="hljs-comment"># output</span>
+<span class="hljs-keyword">for</span> b <span class="hljs-keyword">in</span> basket.values():
+    print(b, end = <span class="hljs-string">' '</span>)
+print()
+</div></code></pre>
+<h3 id="c-solution-ver-1"><strong>C++ Solution</strong>: Ver 1</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;sstream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-comment">// void swap(vector&lt;int&gt; *basket, int one, int other);</span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// declare variables</span>
+    <span class="hljs-keyword">int</span> one, other = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> sizeBasket = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> noOfSwitch = <span class="hljs-number">0</span>;
+    <span class="hljs-built_in">string</span> <span class="hljs-built_in">buffer</span>;
+    <span class="hljs-built_in">string</span> temp;
+
+    <span class="hljs-comment">// input variables</span>
+    getline(<span class="hljs-built_in">cin</span>, <span class="hljs-built_in">buffer</span>);
+    <span class="hljs-function"><span class="hljs-built_in">istringstream</span> <span class="hljs-title">iss</span><span class="hljs-params">(<span class="hljs-built_in">buffer</span>)</span></span>;
+    iss &gt;&gt; temp;
+    sizeBasket = stoi(temp);
+    iss &gt;&gt; temp;
+    noOfSwitch = stoi(temp);
+
+    <span class="hljs-comment">// set up vector</span>
+    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; baskets;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> idx = <span class="hljs-number">0</span>; idx &lt; sizeBasket; idx++){
+        baskets.push_back(idx+<span class="hljs-number">1</span>);
+    }
+
+    <span class="hljs-keyword">int</span> idx = <span class="hljs-number">0</span>;
+    <span class="hljs-comment">// loop for noOfSwitch</span>
+    <span class="hljs-keyword">while</span>(idx &lt; noOfSwitch){
+        <span class="hljs-comment">// input one, other1</span>
+        <span class="hljs-built_in">cin</span> &gt;&gt; one &gt;&gt; other;
+        <span class="hljs-comment">// swap</span>
+        <span class="hljs-keyword">if</span>(other!=one){
+            swap(baskets[one<span class="hljs-number">-1</span>], baskets[other<span class="hljs-number">-1</span>]);
+        }
+        idx++;
+    }
+
+    <span class="hljs-comment">// output</span>
+    <span class="hljs-keyword">auto</span> <span class="hljs-built_in">print</span> = [](<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> &amp;n) {<span class="hljs-built_in">cout</span> &lt;&lt; n &lt;&lt; <span class="hljs-string">' '</span>;};
+    for_each(baskets.<span class="hljs-built_in">begin</span>(), baskets.<span class="hljs-built_in">end</span>(), <span class="hljs-built_in">print</span>);
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h3 id="c-solution-ver-2"><strong>C++ Solution</strong>: Ver 2</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-comment">// void swap( int* basket, int one, int other  );</span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// declare variables</span>
+    <span class="hljs-keyword">int</span> one, other;
+    <span class="hljs-keyword">int</span> size_basket = <span class="hljs-number">5</span>;
+    <span class="hljs-keyword">int</span> count_of_change = <span class="hljs-number">4</span>;
+
+    <span class="hljs-comment">// input </span>
+    <span class="hljs-built_in">cin</span> &gt;&gt; size_basket &gt;&gt; count_of_change;
+
+    <span class="hljs-comment">// declare vector</span>
+    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; basket;
+
+    <span class="hljs-comment">// cout &lt;&lt; size_basket &lt;&lt; " " &lt;&lt; count_of_change &lt;&lt; endl;</span>
+
+    <span class="hljs-comment">// add to vector</span>
+    <span class="hljs-keyword">for</span>( <span class="hljs-keyword">int</span> idx = <span class="hljs-number">0</span>; idx &lt; size_basket; idx++ ) {
+        basket.push_back(idx+<span class="hljs-number">1</span>);
+    }
+
+    <span class="hljs-comment">// loop</span>
+    <span class="hljs-keyword">while</span>( <span class="hljs-number">1</span> ) {
+        <span class="hljs-comment">// get input</span>
+        <span class="hljs-built_in">scanf</span>( <span class="hljs-string">"%d %d"</span>, &amp;one, &amp;other );
+
+        <span class="hljs-comment">// if not same swap</span>
+        <span class="hljs-keyword">if</span>( one != other ) {
+            swap( basket[one<span class="hljs-number">-1</span>], basket[other<span class="hljs-number">-1</span>] );
+        }
+
+        <span class="hljs-comment">// printf( "one : %d, other: %d\n", one, other );</span>
+
+        count_of_change--;
+
+        <span class="hljs-keyword">if</span>( !count_of_change ) <span class="hljs-keyword">break</span>;
+
+    }
+
+    <span class="hljs-comment">// print</span>
+    for_each(basket.<span class="hljs-built_in">begin</span>(), basket.<span class="hljs-built_in">end</span>(), [](<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> &amp;n ) { <span class="hljs-built_in">cout</span> &lt;&lt; n &lt;&lt; <span class="hljs-string">' '</span>; } );
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h3 id="c-solution"><strong>C Solution</strong>:</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span>
+
+<span class="hljs-comment">// swap function</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-keyword">int</span> *basket, <span class="hljs-keyword">int</span> first, <span class="hljs-keyword">int</span> second)</span></span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">// declare variables</span>
+    <span class="hljs-keyword">int</span> sizeBasket = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> noOfSwitch = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> one, other = <span class="hljs-number">0</span>;
+    <span class="hljs-comment">// input variables</span>
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d %d"</span>, &amp;sizeBasket, &amp;noOfSwitch);
+
+    <span class="hljs-comment">// malloc a list and set</span>
+    <span class="hljs-keyword">int</span>* baskets = (<span class="hljs-keyword">int</span> *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>) * sizeBasket);
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> idx = <span class="hljs-number">0</span>; idx &lt; sizeBasket; idx++){
+        baskets[idx] = idx+<span class="hljs-number">1</span>;
+    }
+
+    <span class="hljs-keyword">int</span> idx = <span class="hljs-number">0</span>;
+    <span class="hljs-comment">// loop noOfSwitch times</span>
+    <span class="hljs-keyword">while</span>(idx &lt; noOfSwitch){
+        <span class="hljs-comment">// input one, other</span>
+        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d %d"</span>, &amp;one, &amp;other);
+        <span class="hljs-comment">// swap when one, other are different</span>
+        <span class="hljs-keyword">if</span>(one!=other){
+            swap(baskets, one<span class="hljs-number">-1</span>, other<span class="hljs-number">-1</span>);
+        }
+        idx++;
+    }
+
+    <span class="hljs-comment">// output</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> idx = <span class="hljs-number">0</span>; idx &lt; sizeBasket; idx++){
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d "</span>, baskets[idx]);
+    }
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"\n"</span>);
+
+    <span class="hljs-built_in">free</span>(baskets);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-keyword">int</span> *basket, <span class="hljs-keyword">int</span> first, <span class="hljs-keyword">int</span> second)</span></span>{
+    <span class="hljs-keyword">int</span> temp = basket[first];
+    basket[first] = basket[second];
+    basket[second] = temp;
+}
+</div></code></pre>
+<h3 id="all-code-can-be-found-on-my-github"><strong>all code can be found on my github</strong></h3>
+<p><a href="https://github.com/tmastercoding/clang/tree/main/100">https://github.com/tmastercoding/clang/tree/main/100</a></p>
+
+</body>
+</html>

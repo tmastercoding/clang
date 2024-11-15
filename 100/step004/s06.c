@@ -3,6 +3,7 @@
 
 void c_ver();
 
+// swap function
 void swap(int *basket, int first, int second);
 
 int main(){

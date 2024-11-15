@@ -20,22 +20,8 @@ vector<int> recursiveIntersection(vector<vector<int>> comb) {
 
         comb.erase(comb.begin());
 
-        cout << idx <<  " : Vector elements: ";
-        for (const auto& elem : intersection) {
-            cout << elem << " ";
-        }
-        cout << endl;
-
         vector<int> tempIntersection;
         vector<int> nextIntersection = recursiveIntersection(comb);
-
-        cout << idx << " : nextIntersection elements: ";
-        for (const auto& elem : nextIntersection) {
-            cout << elem << " ";
-
-        }
-        idx++;
-        cout << endl;
 
         set_intersection(
             intersection.begin(), intersection.end(),
