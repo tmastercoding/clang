@@ -3,17 +3,20 @@
 using namespace std;
 
 int main(){
-    freopen("art2.in", "r", stdin);
-    freopen("art2.out", "w", stdout);
+    // freopen("art2.in", "r", stdin);
+    // freopen("art2.out", "w", stdout);
     int n;
     cin >> n;
     stack<pair<int, int>> s;
-    int visit[100001];
+    int visit[100001], arr[100001]; 
     pair<int, int> p;
     int cur, ssize, maxDepth = 0, pMaxDepth = 0;
     bool possible = true;
     for(int idx = 0; idx < n; idx++){
-        cin >> cur;
+        cin >> arr[idx];
+    }
+    for(int idx = 0; idx < n; idx++){
+        cur = arr[idx];
         
         if (cur){
             p.first = cur;
