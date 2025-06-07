@@ -2,7 +2,9 @@
 using namespace std;
 
 int main(){
-    int n, moves[100001][3];
+    // freopen("hps.in", "r", stdin);
+    // freopen("hps.out", "w", stdout);
+    int n, moves[100010][3];
     cin >> n;
 
     moves[0][0] = 0;
@@ -14,20 +16,43 @@ int main(){
         moves[i+1][0] = moves[i][0];
         moves[i+1][1] = moves[i][1];
         moves[i+1][2] = moves[i][2];
-        if(move == 'P'){
+        if(move == 'H'){
             moves[i+1][0]++;
-        } else if(move == 'H'){
+        } else if(move == 'P'){
             moves[i+1][1]++;
         } else{
-            moves[i+1][1]++;
+            moves[i+1][2]++;
         }
     }
 
-    int first, second;
-    if(moves[n][0] > moves[n][1] || moves[n][0] > moves[n][2]){
-        first = 0;
-        if(moves[n][1] > moves[n][2])
+    int cnt, maxCnt = 0;
+    for(int idx = 0; idx <= n; idx++){
+        // cout << moves[idx][0] << ' ' << moves[idx][1] << ' ' << moves[idx][2] << '\n';
+        cnt = 0;
+        if(moves[idx][0] > moves[idx][1] && moves[idx][0] > moves[idx][2]){
+            cnt += moves[idx][0];
+        } else if(moves[idx][1] > moves[idx][0] && moves[idx][1] > moves[idx][2]){
+            cnt += moves[idx][1];
+        } else{
+            cnt += moves[idx][2];
+        }
+        if(n != idx){
+            int hoof, paper, scissors;
+            hoof = moves[n][0] - moves[idx][0];
+            paper = moves[n][1] - moves[idx][1];
+            scissors = moves[n][2] - moves[idx][2];
+            if(hoof > scissors && hoof > paper){
+                cnt += hoof;
+            } else if(paper > scissors && paper > hoof){
+                cnt += paper;
+            } else{
+                cnt += scissors;
+            }
+        }
+        if(cnt > maxCnt){
+            maxCnt = cnt;
+        }
     }
-
+    cout << maxCnt << '\n';
     return 0;
 }

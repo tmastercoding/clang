@@ -27,8 +27,8 @@ int main(){
         } else{
             if( arr[i].second >= curE){
                 sum += abs(arr[i].second - curE);
+                curE = arr[i].second;
             }
-            curE = arr[i].second;
         }
     }
     cout << sum << '\n';

@@ -1,5 +1,4 @@
 // 제로 10773
-
 #include <iostream>
 #include <stack>
 using namespace std;

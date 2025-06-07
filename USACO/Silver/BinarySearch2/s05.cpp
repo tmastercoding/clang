@@ -72,8 +72,8 @@ int main(){
     if((prev-pos[0] <= lo && prev > lo )|| cnt < c){
         start = pos[0];
     }
-    cout << lo << ' ' << start << '\n';
 
+    cout << lo << ' ' << start << '\n';
     
     return 0;
 }

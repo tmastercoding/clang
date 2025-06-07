@@ -1,7 +1,11 @@
+// Music Notes 6010
 #include <iostream>
 using namespace std;
 
 int main(){
+    cin.tie(NULL);
+    ios::sync_with_stdio(false);
+
     int n, q;
     long long sums[50000] = {}, length;
 
@@ -16,28 +20,19 @@ int main(){
         }
     }
 
-    long long find, lo = 0, hi = n, mid, ans1, ans2;
-    cin >> find;
-    while(lo < hi){
-        mid = (lo+hi)/2;
-        cout << mid << '\n';
-        if(sums[mid] < find){
-            hi = mid;
-        } else{
-            lo = mid+1;
+    for(int i = 0; i < q; i++){
+        long long find, lo = 0, hi = n, mid;
+        cin >> find;
+        while(lo < hi){
+            mid = (lo+hi)/2;
+            if(sums[mid] > find){
+                hi = mid;
+            } else{
+                lo = mid+1;
+            }
         }
+        cout << lo+1 << '\n';
+
     }
-    ans1 = lo;
-    // lo = 0, hi = n;
-    // while(lo < hi){
-    //     mid = (lo+hi+1)/2;
-    //     cout << mid << '\n';
-    //     if(sums[mid] > find){
-    //         hi = mid-1;
-    //     } else{
-    //         lo = mid;
-    //     }
-    // }
-    cout << ans1 << ' ' << lo << '\n';
     return 0;
 }
